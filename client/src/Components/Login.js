@@ -1,9 +1,9 @@
 import logo from '../images/showroomlogo.png'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { authenticate } from '../services/autherize'
+import { withRouter } from 'react-router-dom'
 import axios from 'axios'
-const Login = () => {
-    const navigate = useNavigate()
+const Login = (props) => {
     const [users, setUsers] = useState({
         email: "",
         password: ""
@@ -15,11 +15,11 @@ const Login = () => {
 
     const submitUser = (e) => {
         e.preventDefault();
-        console.log("USER DB = ", process.env.REACT_APP_USERS);
         axios
-            .post(`${process.env.REACT_APP_USERS}/users/login`, { email, password })
+            .post(`${process.env.REACT_APP_USERS}/auth/login`, { email, password })
             .then((response) => {
-                navigate('/')
+                // login success
+                authenticate(response, () => props.history.push('/'))
             }).catch(err => {
                 alert(err.response.data.error)
             })
@@ -71,4 +71,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default withRouter(Login)

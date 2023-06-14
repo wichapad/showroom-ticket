@@ -1,5 +1,4 @@
 //รับข้อมูล เพิ่มลง Database
-
 const Users = require('../models/Users')
 
 exports.storeUser = (req, res) => {

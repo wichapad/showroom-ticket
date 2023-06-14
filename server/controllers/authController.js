@@ -1,10 +1,11 @@
+const JWT = require('jsonwebtoken')
+const Users = require('../models/Users')
 const bcrypt = require('bcrypt')
-const User = require('../models/Users')
 
-exports.loginUser = (req, res) => {
+exports.login = (req, res) => {
     const { email, password } = req.body
 
-    User.findOne({ email: email }).then((user) => {
+    Users.findOne({ email: email }).then((user) => {
         if (!user) {
             return res.status(404).json({ message: "User not found" })
         }
@@ -16,13 +17,15 @@ exports.loginUser = (req, res) => {
             }
             if (result) {
                 // password macth กัน
-                return res.status(200).json({ error: "Login successfully" })
+                const token = JWT.sign({ email }, process.env.ACCESS_JWT_SECRET, { expiresIn: '1d' })
+                return res.status(200).json({ token,email })
             } else {
                 //password not match 
-                return res.status(401).json({ error: "Invalid password" })
+                return res.status(400).json({ error: "Invalid password" })
             }
         })
-    }).catch((err)=>{
-        return res.status(500).json({error: "Invalid server error"})
+    }).catch((err) => {
+        return res.status(500).json({ error: "Invalid server error" })
     })
+
 }

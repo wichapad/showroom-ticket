@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
-
+//โครงสร้าง ฐานข้อมูล
 const UserSchema = mongoose.Schema({
     email: {
         type: String,
@@ -20,7 +20,7 @@ const UserSchema = mongoose.Schema({
 UserSchema.pre('save', function (next) {
     const user = this
 
-    bcrypt.hash(user.password, 10).then(hash => {
+    bcrypt.hash(user.password, bcrypt.genSaltSync(10), null).then(hash => {
         user.password = hash
         next()
     }).catch(error => {
