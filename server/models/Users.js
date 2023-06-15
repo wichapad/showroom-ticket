@@ -8,8 +8,7 @@ const UserSchema = mongoose.Schema({
         unique: true
     },
     username: {
-        type: String,
-        required: true,
+        type: String
     },
     password: {
         type: String,
@@ -17,6 +16,7 @@ const UserSchema = mongoose.Schema({
     }
 }, { timestamps: true })
 
+// middleware hash รหัสผ่าน ก่อนบันทึกข้อมูล
 UserSchema.pre('save', function (next) {
     const user = this
 

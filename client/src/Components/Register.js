@@ -1,37 +1,59 @@
-import { useState } from 'react'
-import logo from '../images/showroomlogo.png'
-import {useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import logo from '../images/showroomlogowhite.png'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { authenticate, getUser } from '../services/autherize'
 
 const Register = () => {
   const navigate = useNavigate();
+
+  //create state users
   const [users, setUsers] = useState({
     email: "",
     username: "",
-    password: ""
+    password: "",
+    confirmPassword: ""
   })
-  const { email, username, password } = users
+  const { email, username, password, confirmPassword } = users
+
   //กำหนดค่าให้ state
   const inputValue = name => event => {
     setUsers({ ...users, [name]: event.target.value })
   }
 
-  const submitData = (e) => {
+  //function submit register
+  const submitData = async (e) => {
     e.preventDefault();
-    console.log("USERS DB = ", process.env.REACT_APP_USERS);
-    axios
+
+    //password length < 6
+    if (password.length < 6) {
+      alert('Password must be at least 6 characters');
+      return;
+    }
+
+    // password and confirm password match
+    if (password !== confirmPassword) {
+      alert("Passwords do not match")
+      return;
+    }
+
+    await axios
       .post(`${process.env.REACT_APP_USERS}/users/register`, { email, username, password })
-      .then(response=>{
-        navigate('/')
-      }).catch(err=>{
+      .then(response => {
+        authenticate(response, () => { navigate('/') })
+      }).catch(err => {
         alert(err.response.data.error)
       })
   }
 
+  useEffect(() => {
+    getUser() && navigate("/")
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <>
-      <nav className="bg-white border-gray-200 dark:bg-purple-500">
+      <nav className="bg-white border-gray-200 bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="/" className="flex items-center">
             <img src={logo} className="h-5 mr-3" alt="Flowbite Logo" />
@@ -69,7 +91,9 @@ const Register = () => {
             <label className="mb-2" >
               Confirm Password
             </label>
-            <input id="confirm" type="password" />
+            <input id="confirm" type="password"
+              value={confirmPassword}
+              onChange={inputValue("confirmPassword")} />
           </div>
           <div className="flex items-center justify-center">
             <input type="submit" value="Sign Up" className="button-container mb-8 cursor-pointer" />

@@ -1,33 +1,45 @@
-import logo from '../images/showroomlogo.png'
-import { useState } from 'react'
-import { authenticate } from '../services/autherize'
-import { withRouter } from 'react-router-dom'
+import logo from '../images/showroomlogowhite.png'
+import { useState, useEffect } from 'react'
+import { authenticate, getUser } from '../services/autherize'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-const Login = (props) => {
+const Login = () => {
+    const navigate = useNavigate()
+
+    //create state users
     const [users, setUsers] = useState({
         email: "",
         password: ""
     })
     const { email, password } = users
+
+    //กำหนดค่าให้ state 
     const inputValue = name => event => {
         setUsers({ ...users, [name]: event.target.value })
     }
 
-    const submitUser = (e) => {
+    //function submit login
+    const submitUser = async (e) => {
         e.preventDefault();
-        axios
+        await axios
             .post(`${process.env.REACT_APP_USERS}/auth/login`, { email, password })
             .then((response) => {
                 // login success
-                authenticate(response, () => props.history.push('/'))
+                authenticate(response, () => navigate('/'))
             }).catch(err => {
                 alert(err.response.data.error)
             })
     }
 
+    // ตรวจสอบ token ว่ามีเก็บอยู่ใน session storage ไหม
+    useEffect(()=>{
+        getUser() && navigate("/")
+        // eslint-disable-next-line
+    },[])
+
     return (
         <>
-            <nav className="bg-white border-gray-200 dark:bg-purple-500">
+            <nav className="bg-white border-gray-200 bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="/" className="flex items-center">
                         <img src={logo} className="h-5 mr-3" alt="Showroom Logo" />
@@ -71,4 +83,4 @@ const Login = (props) => {
     )
 }
 
-export default withRouter(Login)
+export default Login
