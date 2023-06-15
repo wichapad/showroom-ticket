@@ -1,4 +1,5 @@
 const JWT = require('jsonwebtoken')
+// const expressJWT = require('express-jwt')
 const Users = require('../models/Users')
 const bcrypt = require('bcrypt')
 
@@ -17,8 +18,8 @@ exports.login = (req, res) => {
             }
             if (result) {
                 // password macth กัน
-                const token = JWT.sign({ email }, process.env.ACCESS_JWT_SECRET, { expiresIn: '1d' })
-                return res.status(200).json({ token,email })
+                const token = JWT.sign({ _id: user._id }, process.env.ACCESS_JWT_SECRET, { expiresIn: '1d' })
+                return res.status(200).json({ token, _id:user._id })
             } else {
                 //password not match 
                 return res.status(400).json({ error: "Invalid password" })
@@ -29,3 +30,9 @@ exports.login = (req, res) => {
     })
 
 }
+//สร้าง middleware เพื่อมาตรวจสอบ token
+// exports.requireLogin = expressJWT({
+//     secret:process.env.ACCESS_JWT_SECRET,
+//     algorithms:['HS256'],
+//     userProperty:'auth'
+// })
