@@ -13,7 +13,7 @@
 # Font-end system 
 # React
 # Tailwind
-# Navbar Color background PURPLE HAZE จาก https://hypercolor.dev/
+# Navbar Color background PURPLE HAZE จาก https://hypercolor.dev/  // bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800
 # 1. Home button หน้าแรก ของ website 
 # 2. sign in button เข้าระบบด้วย email,password
 # 3. sign up button ระบบ register email ,username ,password ,confirm password 
