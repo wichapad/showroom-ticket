@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const cors = require('cors')
 require("dotenv").config();
-const authRoute = require('./routes/auth')
+const eventsData =require('./Data/EventsData')
 
 app.use(express.json())
 app.use(express.urlencoded())
@@ -13,6 +13,7 @@ app.use(cors())
 
 // call routes
 const users = require('./routes/users');
+const authRoute = require('./routes/auth');
 
 mongoose
     .connect(process.env.DATABASE, {
@@ -25,6 +26,10 @@ mongoose
 
 app.use(users)
 app.use(authRoute)
+
+app.get('/api/events', (req,res)=>{
+    res.json(eventsData)
+})
 
 
 const port = process.env.PORT
