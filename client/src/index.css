@@ -32,6 +32,7 @@
         margin-bottom: 0.8rem;
     }
 
+    /* ------------ button ------------ */
     .button-container {
         width: 100%;
         color: #fff;
@@ -46,13 +47,6 @@
 
     .button-container:active {
         background: rgb(147, 51, 234);
-    }
-    .button-comming{
-        width: 100%;
-        color: #c14ef4;
-        border: 1px solid #c14ef4;
-        padding: 0.5rem 0.8rem;
-        border-radius: 25px;
     }
 
     /* ------------ Home ------------ */
@@ -77,4 +71,33 @@
         left: 4rem;
         object-fit: cover;
     }
+
+    .slide-bg-image {
+        background-image: url("https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        width: 100%;
+        padding: 2rem;
+        position: relative;
+       
+    }
+    .swiper {
+        width: 350px;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+  
+    .swiper-slide {
+        background-position: center;
+        background-size: cover;
+    }
+
+    .swiper-slide img {
+        display: block;
+        width: 100%;
+        
+    }
+
 }

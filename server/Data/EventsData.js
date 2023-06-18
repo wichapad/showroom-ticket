@@ -23,14 +23,14 @@ const eventsData = [
     {
         id: 4,
         Image: "https://pbs.twimg.com/media/FmDk8TeWIBY3r_u.jpg",
-        NameArtlist: "Sam Smith",
+        NameArtlist: "Sam Smith Gloria The Tour",
         Date: "01-08-2023",
         Location: "PNC Arena,Raleigh,CL"
     },
     {
         id: 5,
         Image: "https://www.allegiantstadium.com/assets/img/0818-LasVegas-Blackpink-Encore-960x960-358a713561.jpg",
-        NameArtlist: "BLACKPINK WORLD TOUR BORN PINK ENCORE IN NORTH AMERICA",
+        NameArtlist: "Blackpink World Tour Born Pink Encore",
         Date: "11-08-2023",
         Location: "MetLife Stadium,East Rutherford, NJ"
     },
