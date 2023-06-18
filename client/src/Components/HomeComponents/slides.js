@@ -4,7 +4,7 @@ import "swiper/css";
 import '../../App.css'
 import "swiper/css/effect-cube";
 import "swiper/css/pagination";
-import { useEffect } from "react";
+
 
 const Slide = () => {
 
