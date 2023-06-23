@@ -15,7 +15,7 @@ const Card = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-2 w-full">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-2 max-w-screen-xl">
       {events.map((event) => {
         return (
           <div
@@ -28,11 +28,11 @@ const Card = () => {
               alt={event.NameArtlist}
             />
             <div className="px-6 py-4">
-              <p className="text-xs mb-3 h-8 font-semibold">
+              <p className="text-sm mb-3 h-8 font-semibold">
                 Name : {event.NameArtlist}
               </p>
-              <p className="text-xs font-medium mb-3">Date : {event.Date}</p>
-              <p className="text-gray-500 text-xs h-8">
+              <p className="text-sm font-medium mb-3">Date : {event.Date}</p>
+              <p className="text-gray-500 text-sm h-8">
                 Location : {event.Location}
               </p>
             </div>
