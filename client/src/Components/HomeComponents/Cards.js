@@ -2,10 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 const Card = () => {
   const [events, setEvents] = useState([]);
+  
 
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_USERS}/api/events`)
+      
       .then((response) => {
         setEvents(response.data);
       })
@@ -16,7 +18,7 @@ const Card = () => {
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-2 max-w-screen-xl">
-      {events.map((event) => {
+      {events.slice(0,6).map((event) => {
         return (
           <div
             key={event.id}
