@@ -29,9 +29,7 @@ app.use(users)
 app.use(authRoute)
 app.use('/api',eventsRoute)
 
-app.get('/api/events', (req,res)=>{
-    res.json(eventsData)
-})
+
 
 
 const port = process.env.PORT

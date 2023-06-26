@@ -4,12 +4,13 @@ const Events = require("../models/Events");
 exports.storeEvents = async (req, res) => {
   try {
     const eventsData = req.body; //รับข้อมูล events model
-    const artistName = eventsData.events[0].band[0].artist; // หาค่า artist เพื่ออ้างอิงใน slug
-    const slug = slugify(artistName, { lower: true });
-    const newEvent = await Events.create(eventsData); // สร้าง events ใหม่
+    const artistName = eventsData.band.artist; // หาค่า artist เพื่ออ้างอิงใน slug
+    const slug = slugify(artistName);
 
-    res.status(200).json(newEvent);
-    console.log("Slug ", slug);
+    
+    const event = await Events.create({...eventsData,slug}); // สร้าง events ใหม่ โดยกำหนด slug
+
+    res.status(200).json({event});
   } catch (error) {
     res.status(500).json({
       error: error.message,
@@ -19,8 +20,8 @@ exports.storeEvents = async (req, res) => {
 
 exports.allEvents = async (req, res) => {
   try {
-    const events = await Events.find();
-    res.status(200).json(events);
+    const event = await Events.find();
+    res.status(200).json({event});
   } catch (error) {
     res.status(500).json({
       error: error.message,
@@ -29,16 +30,39 @@ exports.allEvents = async (req, res) => {
 };
 
 exports.singleEvent = async (req, res) => {
-    
   try {
-    const {slug} = req.params.slug
-    const events = await Events.findOne({slug:slug})
-    if(!events){
-        return res.status(400).json({
-            message:"Event not found"
-        })
+    const {slug} = req.params;
+    const event = await Events.findOne({slug });
+    if (!event) {
+      return res.status(400).json({
+        message: "Event not found",
+      });
     }
-    res.status(200).json(events);
+    res.status(200).json(event);
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
+};
+
+exports.updateEvents = async (req, res) => {
+  try {
+    const {slug} = req.params;
+    const eventsData = req.body;
+
+    const updateEvent = await Events.findOneAndUpdate({ slug }, eventsData, {
+      new: true,
+    });
+
+    if (!updateEvent) {
+      //ถ้าไม่พบ events ที่ตรงกับ slug
+      return res.status(400).json({
+        message: "Event not found",
+      });
+    }
+
+    res.status(200).json({updateEvent});
   } catch (error) {
     res.status(500).json({
       error: error.message,

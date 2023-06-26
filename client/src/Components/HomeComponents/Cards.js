@@ -3,18 +3,28 @@ import React, { useEffect, useState } from "react";
 const Card = () => {
   const [events, setEvents] = useState([]);
 
-
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_USERS}/api/events`)
 
       .then((response) => {
-        setEvents(response.data);
+        console.log(response.data.event);
+        setEvents(response.data.event);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day < 10 ? "0" + day : day}-${
+      month < 10 ? "0" + month : month
+    }-${year}`;
+  };
 
   return (
     <div className="max-w-screen-xl  mx-4">
@@ -22,24 +32,27 @@ const Card = () => {
         <span className="text-2xl">Showroom Events</span>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-2 ">
-        {events.slice(0, 6).map((event) => {
+        {events.map((event) => {
           return (
             <div
-              key={event.id}
+              key={event._id}
               className="max-w-xs overflow-hidden rounded shadow-lg m-6"
             >
               <img
-                className="w-full aspect-square object-cover"
-                src={event.Image}
-                alt={event.NameArtlist}
+                className="w-full object-cover"
+                src={event.images.poster_image}
+                alt=""
               />
               <div className="px-6 py-4">
                 <p className="text-sm mb-3 h-8 font-semibold">
-                  Name : {event.NameArtlist}
+                  Name : {event.showschedule[0].location[0].name_show}
                 </p>
-                <p className="text-sm font-medium mb-3">Date : {event.Date}</p>
+                <p className="text-sm font-medium mb-3">
+                  Date : {formatDate(event.showschedule[0].dates[0].localDate)}
+                </p>
                 <p className="text-gray-500 text-sm h-8">
-                  Location : {event.Location}
+                  Location : {event.showschedule[0].location[0].venue},
+                  {event.showschedule[0].location[0].state}
                 </p>
               </div>
               <div className="flex justify-center my-2.5 px-3.5">
