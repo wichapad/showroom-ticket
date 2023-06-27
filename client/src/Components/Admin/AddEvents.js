@@ -1,69 +1,93 @@
 import { useState } from "react";
 
 const AddEvents = () => {
-  const [date, setDate] = useState(""); // เพิ่ม state สำหรับเก็บค่า localDate
-  const [time, setTime] = useState(""); // เพิ่ม state สำหรับเก็บค่า localTime
-  const [formData, setFormData] = useState({
-    band: {
-      artist: "",
-      description: "",
-      genre: "",
+  const [band, setBand] = useState({
+    artist: "",
+    description: "",
+    genre: "",
+  });
+  const [images, setImages] = useState({
+    bandImage: "",
+    posterImage: "",
+  });
+  const [showSchedule, setShowSchedule] = useState([
+    {
+      dates: [{ localDate: "", localTime: "" }],
+      location: [{ name_show: "", venue: "", state: "", city: "" }],
     },
-    images: {
-      band_image: "",
-      poster_image: "",
-    },
-    showschedule: [
+  ]);
+  const [tickets, setTickets] = useState([
+    { ticket_type: "", ticket_price: 0 },
+  ]);
+
+  const inputValue = (e) => {
+    const { name, value } = e.target;
+    if (name.startsWith("band.")) {
+      setBand((prevState) => ({
+        ...prevState,
+        [name.split(".")[1]]: value,
+      }));
+    } else if (name.startsWith("images.")) {
+      setImages((prevState) => ({
+        ...prevState,
+        [name.split(".")[1]]: value,
+      }));
+    }
+  };
+
+  const inputDatesValue = (index, field, value) => {
+    setShowSchedule((prevState) => {
+      const updatedSchedule = [...prevState];
+      updatedSchedule[index].dates[0][field] = value;
+      return updatedSchedule;
+    });
+  };
+
+  const addDates = () => {
+    setShowSchedule((prevState) => [
+      ...prevState,
       {
         dates: [{ localDate: "", localTime: "" }],
         location: [{ name_show: "", venue: "", state: "", city: "" }],
       },
-    ],
-    ticket: [{ ticket_type: "", ticket_price: "" }],
-  });
-
-  const inputValue = (e) => {
-    const { id, value } = e.target; //ดึงค่า id และ value ของ element ที่เกิดการ onChange
-    const feild = id.split("."); // ทำการแยก id เป็น สองส่วน
-    if (feild.length === 2) {
-      //เช็คว่า ค่า id ที่ใส่อยู่่ตรง element มีสองส่วนหรือไม่ เช่น band-artist, band-description
-      const [section, subField] = feild; //section เก็บ ส่วนแรกของ id => band , subfield เก็บ ส่วนสองของ id => artist
-      if (section === "localDate") {
-        setDate(value); // อัปเดตค่า state สำหรับ localDate
-      }
-
-      if (section === "localTime") {
-        setTime(value); // อัปเดตค่า state สำหรับ localTime
-      }
-      setFormData((prevState) => ({
-        //setformdata อัพเดตค่าใน formdata
-        ...prevState,
-        [section]: { ...prevState[section], [subField]: value }, // ใช้ section เก็บค่า id ส่วนแรก เป็น key value  และ ใช้ ...prevState[section] เก็บค่า id ส่วนสอง และ subfield รับค่า ที่ กรอกใน input เข้ามา
-      }));
-    }
+    ]);
   };
 
-  const addDate = () => {
-    if (date && time) {
-      setFormData((prevState) => ({
-        ...prevState,
-        showschedule: [
-          ...prevState.showschedule,
-          {
-            dates: [{ localDate: date, localTime: time }],
-            location: [{ name_show: "", venue: "", state: "", city: "" }],
-          },
-        ],
-      }));
-      setDate(""); // เคลียร์ค่า state สำหรับ localDate
-      setTime(""); // เคลียร์ค่า state สำหรับ localTime
-    }
+  const inputLocationValue = (index, field, value) => {
+    setShowSchedule((prevState) => {
+      const updatedSchedule = [...prevState];
+      updatedSchedule[index].location[0][field] = value;
+      return updatedSchedule;
+    });
   };
-  
+
+  const addLocation = () => {
+    setShowSchedule((prevState) => [
+      ...prevState,
+      {
+        location: [{ name_show: "", venue: "", state: "", city: "" }],
+      },
+    ]);
+  };
+
+  const inputTicketValue = (index, field, value) => {
+    setTickets((prevState) => {
+      const updateTickets = [...prevState];
+      updateTickets[index][field] = value;
+      return updateTickets;
+    });
+  };
+
+  const addTicket = () => {
+    setTickets((prevState) => [
+      ...prevState,
+      { ticket_type: "", ticket_price: 0 },
+    ]);
+  };
 
   return (
     <div className="flex flex-col justify-center  w-full max-w-lg m-auto">
-      {JSON.stringify(formData)}
+      {JSON.stringify(band)}
       <h1 className="text-center">Showroom Events</h1>
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         {/* Add Band form */}
@@ -75,8 +99,9 @@ const AddEvents = () => {
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="band.artist"
+              name="band.artist"
               type="text"
+              value={band.artist}
               onChange={inputValue}
             />
           </div>
@@ -86,8 +111,9 @@ const AddEvents = () => {
             </label>
             <textarea
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="band.description"
+              name="band.description"
               type="text"
+              value={band.description}
               onChange={inputValue}
             />
           </div>
@@ -97,14 +123,16 @@ const AddEvents = () => {
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="band.genre"
+              name="band.genre"
               type="text"
+              value={band.genre}
               onChange={inputValue}
             />
           </div>
         </div>
         <hr />
         {/* Add Image form */}
+        {JSON.stringify(images)}
         <div className="my-4">
           <h1 className="text-center">Image</h1>
           <div className="mb-4">
@@ -113,8 +141,9 @@ const AddEvents = () => {
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="images.band_image"
+              name="images.bandImage"
               type="text"
+              value={band.bandImage}
               onChange={inputValue}
             />
           </div>
@@ -124,48 +153,55 @@ const AddEvents = () => {
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="images.poster_image"
+              name="images.posterImage"
               type="text"
+              value={band.posterImage}
               onChange={inputValue}
             />
           </div>
         </div>
         <hr />
         {/* Add Showschedule form */}
+        {JSON.stringify(showSchedule)}
         <div className="my-2">
           {/* Date */}
           <h1 className="text-center">Date</h1>
-
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              Date:
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="localDate"
-              type="date"
-              onChange={inputValue}
-              value={date} // กำหนดค่าให้ input ของ localDate
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              Time:
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="localTime"
-              type="time"
-              onChange={inputValue}
-              value={time} // กำหนดค่าให้ input ของ localDate
-            />
-          </div>
+          {showSchedule.map((show, index) => (
+            <div key={index}>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Date:
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  type="date"
+                  value={show.dates[0].localDate}
+                  onChange={(e) =>
+                    inputDatesValue(index, "localDate", e.target.value)
+                  }
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Time:
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  type="text"
+                  value={show.dates[0].localTime}
+                  onChange={(e) =>
+                    inputDatesValue(index, "localTime", e.target.value)
+                  }
+                />
+              </div>
+            </div>
+          ))}
 
           <div className="flex justify-end mb-2">
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold  py-2 px-2  rounded focus:outline-none focus:shadow-outline"
               type="button"
-              onClick={addDate} // เรียกใช้งานฟังก์ชัน addDate เมื่อคลิกที่ปุ่ม Add Date
+              onClick={addDates}
             >
               Add Date
             </button>
@@ -173,55 +209,69 @@ const AddEvents = () => {
 
           <hr />
           {/* Location */}
+          {JSON.stringify(showSchedule)}
           <h1 className="mt-2 text-center">Location</h1>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              name_show:
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="nameShow"
-              type="text"
-              onChange={inputValue}
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              Venue:
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="venue"
-              type="text"
-              onChange={inputValue}
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              State:
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="state"
-              type="text"
-              onChange={inputValue}
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              City:
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="city"
-              type="text"
-              onChange={inputValue}
-            />
-          </div>
+          {showSchedule.map((show, index) => (
+            <div key={index}>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  name_show:
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  type="text"
+                  value={show.location[0].name_show}
+                  onChange={(e) =>
+                    inputLocationValue(index, "name_show", e.target.value)
+                  }
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Venue:
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  type="text"
+                  value={show.location[0].venue}
+                  onChange={(e) =>
+                    inputLocationValue(index, "venue", e.target.value)
+                  }
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  State:
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  type="text"
+                  value={show.location[0].state}
+                  onChange={(e) =>
+                    inputLocationValue(index, "state", e.target.value)
+                  }
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  City:
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  type="text"
+                  value={show.location[0].city}
+                  onChange={(e) =>
+                    inputLocationValue(index, "city", e.target.value)
+                  }
+                />
+              </div>
+            </div>
+          ))}
           <div className="flex justify-end ">
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold  py-2 px-2  rounded focus:outline-none focus:shadow-outline"
               type="button"
+              onClick={addLocation}
             >
               Add Location
             </button>
@@ -230,33 +280,44 @@ const AddEvents = () => {
         <hr />
         {/* Add Ticket form */}
         <div className="my-2">
+          {JSON.stringify(tickets)}
           <h1 className="text-center">Ticket</h1>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              Ticket_Type:
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="ticketType"
-              type="text"
-              onChange={inputValue}
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              Ticket_price:
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="ticketPrice"
-              type="text"
-              onChange={inputValue}
-            />
-          </div>
+          {tickets.map((ticket, index) => (
+            <div key={index}>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Ticket_Type:
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  type="text"
+                  value={ticket.ticket_type}
+                  onChange={(e) =>
+                    inputTicketValue(index, "ticket_type", e.target.value)
+                  }
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Ticket_price:
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  type="text"
+                  value={ticket.ticket_price}
+                  onChange={(e) =>
+                    inputTicketValue(index, "ticket_price", e.target.value)
+                  }
+                />
+              </div>
+            </div>
+          ))}
+
           <div className="flex justify-end mt-2">
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold  py-2 px-2  rounded focus:outline-none focus:shadow-outline"
               type="button"
+              onClick={addTicket}
             >
               Add Ticket
             </button>
