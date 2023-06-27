@@ -39,13 +39,13 @@ const Card = () => {
               className="max-w-xs overflow-hidden rounded shadow-lg m-6"
             >
               <img
-                className="w-full object-cover"
+                className="w-full aspect-square object-cover"
                 src={event.images.poster_image}
                 alt=""
               />
               <div className="px-6 py-4">
                 <p className="text-sm mb-3 h-8 font-semibold">
-                  Name : {event.showschedule[0].location[0].name_show}
+                  {event.showschedule[0].location[0].name_show}
                 </p>
                 <p className="text-sm font-medium mb-3">
                   Date : {formatDate(event.showschedule[0].dates[0].localDate)}

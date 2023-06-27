@@ -5,6 +5,7 @@ import axios from 'axios'
 import { authenticate, getUser } from '../services/autherize'
 
 const Register = () => {
+  // สร้าง navigate ด้วย react-router-dom เพื่อให้เวลา กด submit แล้ว redirect ไปหน้า home
   const navigate = useNavigate();
 
   //create state users
