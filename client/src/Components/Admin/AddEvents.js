@@ -44,13 +44,17 @@ const AddEvents = () => {
   };
 
   const addDates = () => {
-    setShowSchedule((prevState) => [
-      ...prevState,
-      {
-        dates: [{ localDate: "", localTime: "" }],
-        location: [{ name_show: "", venue: "", state: "", city: "" }],
-      },
-    ]);
+    setShowSchedule((prevState) => {
+      const updatedShowSchedule = [...prevState];
+      updatedShowSchedule[0] = {
+        ...updatedShowSchedule[0],
+        dates: [
+          ...updatedShowSchedule[0].dates,
+          { localDate: "", localTime: "" },
+        ],
+      };
+      return updatedShowSchedule;
+    });
   };
 
   const inputLocationValue = (index, field, value) => {
@@ -62,12 +66,17 @@ const AddEvents = () => {
   };
 
   const addLocation = () => {
-    setShowSchedule((prevState) => [
-      ...prevState,
-      {
-        location: [{ name_show: "", venue: "", state: "", city: "" }],
-      },
-    ]);
+    setShowSchedule((prevState) => {
+      const updatedShowSchedule = [...prevState];
+      updatedShowSchedule[0] = {
+        ...updatedShowSchedule[0],
+        location: [
+          ...updatedShowSchedule[0].location,
+          { name_show: "", venue: "", state: "", city: "" },
+        ],
+      };
+      return updatedShowSchedule;
+    });
   };
 
   const inputTicketValue = (index, field, value) => {
@@ -162,7 +171,7 @@ const AddEvents = () => {
         </div>
         <hr />
         {/* Add Showschedule form */}
-        {JSON.stringify(showSchedule)}
+        {JSON.stringify(showSchedule[0].dates)}
         <div className="my-2">
           {/* Date */}
           <h1 className="text-center">Date</h1>
@@ -209,7 +218,7 @@ const AddEvents = () => {
 
           <hr />
           {/* Location */}
-          {JSON.stringify(showSchedule)}
+          {JSON.stringify(showSchedule[0].location)}
           <h1 className="mt-2 text-center">Location</h1>
           {showSchedule.map((show, index) => (
             <div key={index}>
