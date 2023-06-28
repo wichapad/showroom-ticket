@@ -35,12 +35,12 @@ const EventsSchema = mongoose.Schema({
       ticket_price: { type: Number, required: true },
     },
   ],
-  slug:{
-    type:String,
-    lowercase:true,
-    required:true
+  slug: {
+    type: String,
+    lowercase: true,
+    required: true
   }
-},{timestamps:true});
+}, { timestamps: true });
 
 const Events = mongoose.model("Events", EventsSchema);
 module.exports = Events;
