@@ -5,11 +5,13 @@ import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter } from 'react-router-dom';
 import MyRoute from './MyRoute';
+import AdminRoute from './AdminRoute';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <MyRoute />
+    <AdminRoute/>
   </BrowserRouter>
 );
 
