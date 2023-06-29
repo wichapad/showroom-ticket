@@ -136,102 +136,106 @@ const AddEvents = () => {
         </div>
         <hr />
         {/* Add Showschedule form */}
-
-        <div className="my-2 flex">
           {/* Date */}
-          {dates.map((item, index) => (
-            <div className="w-full pr-2" key={index}>
-              <h1 className="text-center">Date</h1>
-              <div>
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Date:
-                </label>
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  type="date"
-                  value={item.localDate}
-                  onChange={(e) =>
-                    inputDates(index, "localDate", e.target.value)
-                  }
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Time:
-                </label>
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  type="text"
-                  value={item.localTime}
-                  onChange={(e) =>
-                    inputDates(index, "localTime", e.target.value)
-                  }
-                />
-              </div>
-            </div>
-          ))}
-          {/* Location */}
-          {locations.map((item, index) => (
-            <div className="w-full" key={index}>
-              <h1 className="text-center">Locations</h1>
-              <div>
-                <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
-                    name_show:
-                  </label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    value={item.name_show}
-                    onChange={(e) =>
-                      inputLocation(index, "name_show", e.target.value)
-                    }
-                  />
-                </div>
+        <div className="flex ">
+          <div className="w-full pr-2">
+          <h1 className="text-center">Date</h1>
+            {dates.map((item, index) => (
+              <div key={index}>
                 <div>
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Venue:
-                  </label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    value={item.venue}
-                    onChange={(e) =>
-                      inputLocation(index, "venue", e.target.value)
-                    }
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
-                    State:
-                  </label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    value={item.state}
-                    onChange={(e) =>
-                      inputLocation(index, "state", e.target.value)
-                    }
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
-                    City:
-                  </label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    value={item.city}
-                    onChange={(e) =>
-                      inputLocation(index, "city", e.target.value)
-                    }
-                  />
+                  <div className=" pr-2">
+                    <label className="block text-gray-700 text-sm font-bold ">
+                      Date:
+                    </label>
+                    <input
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="date"
+                      value={item.localDate}
+                      onChange={(e) =>
+                        inputDates(index, "localDate", e.target.value)
+                      }
+                    />
+                  </div>
+                  <div >
+                    <label className="block text-gray-700 text-sm font-bold ">
+                      Time:
+                    </label>
+                    <input
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="text"
+                      value={item.localTime}
+                      onChange={(e) =>
+                        inputDates(index, "localTime", e.target.value)
+                      }
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div className="w-full">
+          <h1 className="text-center">Locations</h1>
+            {/* Location */}
+            {locations.map((item, index) => (
+              <div className="mb-2" key={index}>
+                <div className="grid grid-cols-2 gap-2">
+                  <div >
+                    <label className="block text-gray-700 text-sm font-bold">
+                      name_show:
+                    </label>
+                    <input
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="text"
+                      value={item.name_show}
+                      onChange={(e) =>
+                        inputLocation(index, "name_show", e.target.value)
+                      }
+                    />
+                  </div>
+                  <div >
+                    <label className="block text-gray-700 text-sm font-bold">
+                      Venue:
+                    </label>
+                    <input
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="text"
+                      value={item.venue}
+                      onChange={(e) =>
+                        inputLocation(index, "venue", e.target.value)
+                      }
+                    />
+                  </div>
+                  <div >
+                    <label className="block text-gray-700 text-sm font-bold">
+                      State:
+                    </label>
+                    <input
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="text"
+                      value={item.state}
+                      onChange={(e) =>
+                        inputLocation(index, "state", e.target.value)
+                      }
+                    />
+                  </div>
+                  <div >
+                    <label className="block text-gray-700 text-sm font-bold">
+                      City:
+                    </label>
+                    <input
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="text"
+                      value={item.city}
+                      onChange={(e) =>
+                        inputLocation(index, "city", e.target.value)
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-
         <div className="text-center mb-2">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold  py-2 px-8  rounded focus:outline-none focus:shadow-outline"
