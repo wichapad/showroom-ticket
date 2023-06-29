@@ -35,13 +35,28 @@ const AdminControl = () => {
             <p>{event.band.desctiption}</p>
             <p>{event.images.band_image}</p>
             <p>{event.images.poster_image}</p>
-            <p>{event.dates[0].localDate}</p>
-            <p>{event.locations[0].venue}</p>
-            <p>{event.ticket[0].ticket_type}</p>
-            <p>{event.ticket[0].price}</p>s
-            <hr/>
+            {event.dates.map((date,index) => (
+              <div key={index}>
+                <p>{formatDate(date.localDate)}</p>
+                <p>{date.localTime}</p>
+              </div>
+            ))}
+            {event.locations.map((location,index) => (
+              <div key={index}>
+                <p>{location.name_show}</p>
+                <p>{location.venue}</p>
+                <p>{location.state}</p>
+                <p>{location.city}</p>
+              </div>
+            ))}
+
+            {event.ticket.map((t,index) => (
+              <div key={index}>
+                <p >{t.ticket_type}</p>
+                <p >{t.ticket_price}</p>
+              </div>
+            ))}
           </div>
-          
         );
       })}
     </div>

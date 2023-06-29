@@ -1,8 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import logo from "../../images/showroomlogo.png";
+import { useNavigate } from 'react-router-dom'
 
 const AddEvents = () => {
+  const navigate = useNavigate()
   const [band, setBand] = useState({ artist: "", description: "", genre: "" });
   const [images, setImages] = useState({ band_image: "", poster_image: "" });
   const [dates, setDates] = useState([{ localDate: "", localTime: "" }]);
@@ -48,9 +50,10 @@ const AddEvents = () => {
       //ส่งข้อมูล ไปที่ฝั่ง server
       const response = await axios.post(
         `${process.env.REACT_APP_USERS}/api/events/addEvent`,
-        storeEvents
+        storeEvents,
       );
       console.log(response.data);
+      navigate('/admincontrol')
     } catch (error) {
       console.error(error);
     }
