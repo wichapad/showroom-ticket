@@ -45,14 +45,14 @@ const Card = () => {
               />
               <div className="px-6 py-4">
                 <p className="text-sm mb-3 h-8 font-semibold">
-                  {event.showschedule[0].location[0].name_show}
+                  {event.locations[0].name_show}
                 </p>
                 <p className="text-sm font-medium mb-3">
-                  Date : {formatDate(event.showschedule[0].dates[0].localDate)}
+                  Date : {formatDate(event.dates[0].localDate)}
                 </p>
                 <p className="text-gray-500 text-sm h-8">
-                  Location : {event.showschedule[0].location[0].venue},
-                  {event.showschedule[0].location[0].state}
+                  Location : {event.locations[0].venue},
+                  {event.locations[0].state}
                 </p>
               </div>
               <div className="flex justify-center my-2.5 px-3.5">
