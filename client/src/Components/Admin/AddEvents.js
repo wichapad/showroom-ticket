@@ -67,7 +67,7 @@ const AddEvents = () => {
           <div className="mb-2 w-full pr-2">
             <h1 className="text-center">Band</h1>
             <div>
-              <label className="block text-gray-700 text-sm font-bold mb-2">
+              <label className="block text-gray-700 text-sm font-bold ">
                 Artist:
               </label>
               <input
@@ -78,11 +78,11 @@ const AddEvents = () => {
               />
             </div>
             <div className="my-2">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
+              <label className="block text-gray-700 text-sm font-bold ">
                 Description:
               </label>
               <textarea
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
                 value={band.description}
                 onChange={(e) =>
@@ -91,7 +91,7 @@ const AddEvents = () => {
               />
             </div>
             <div>
-              <label className="block text-gray-700 text-sm font-bold mb-2">
+              <label className="block text-gray-700 text-sm font-bold ">
                 Genre:
               </label>
               <input
@@ -107,7 +107,7 @@ const AddEvents = () => {
           <div className="w-full">
             <h1 className="text-center">Image</h1>
             <div>
-              <label className="block text-gray-700 text-sm font-bold mb-2">
+              <label className="block text-gray-700 text-sm font-bold ">
                 Band_Image:
               </label>
               <input
@@ -120,7 +120,7 @@ const AddEvents = () => {
               />
             </div>
             <div className="my-2">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
+              <label className="block text-gray-700 text-sm font-bold ">
                 Poster_Image:
               </label>
               <input
@@ -136,19 +136,19 @@ const AddEvents = () => {
         </div>
         <hr />
         {/* Add Showschedule form */}
-          {/* Date */}
-        <div className="flex ">
-          <div className="w-full pr-2">
-          <h1 className="text-center">Date</h1>
+        {/* Date */}
+        <div className="flex my-2">
+          <div className="w-2/4 mr-2">
+            <h1 className="text-center">Date</h1>
             {dates.map((item, index) => (
-              <div key={index}>
+              <div className="mt-2" key={index}>
                 <div>
-                  <div className=" pr-2">
-                    <label className="block text-gray-700 text-sm font-bold ">
+                  <div>
+                    <label className="block text-gray-700 text-sm font-bold">
                       Date:
                     </label>
                     <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      className="shadow appearance-none border rounded w-full text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       type="date"
                       value={item.localDate}
                       onChange={(e) =>
@@ -156,12 +156,12 @@ const AddEvents = () => {
                       }
                     />
                   </div>
-                  <div >
-                    <label className="block text-gray-700 text-sm font-bold ">
+                  <div className="mt-2">
+                    <label className="block text-gray-700 text-sm font-bold">
                       Time:
                     </label>
                     <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      className="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       type="text"
                       value={item.localTime}
                       onChange={(e) =>
@@ -174,17 +174,17 @@ const AddEvents = () => {
             ))}
           </div>
           <div className="w-full">
-          <h1 className="text-center">Locations</h1>
+            <h1 className="text-center">Locations</h1>
             {/* Location */}
             {locations.map((item, index) => (
-              <div className="mb-2" key={index}>
-                <div className="grid grid-cols-2 gap-2">
-                  <div >
-                    <label className="block text-gray-700 text-sm font-bold">
+              <div className="mt-2" key={index}>
+                <div className="grid grid-cols-2">
+                  <div className="mr-2">
+                    <label className="block text-gray-700 text-sm font-bold ">
                       name_show:
                     </label>
                     <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      className="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       type="text"
                       value={item.name_show}
                       onChange={(e) =>
@@ -192,12 +192,12 @@ const AddEvents = () => {
                       }
                     />
                   </div>
-                  <div >
-                    <label className="block text-gray-700 text-sm font-bold">
+                  <div>
+                    <label className="block text-gray-700 text-sm font-bold ">
                       Venue:
                     </label>
                     <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      className="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       type="text"
                       value={item.venue}
                       onChange={(e) =>
@@ -205,12 +205,12 @@ const AddEvents = () => {
                       }
                     />
                   </div>
-                  <div >
-                    <label className="block text-gray-700 text-sm font-bold">
+                  <div className="mt-2 mr-2">
+                    <label className="block text-gray-700 text-sm font-bold ">
                       State:
                     </label>
                     <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      className="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       type="text"
                       value={item.state}
                       onChange={(e) =>
@@ -218,12 +218,12 @@ const AddEvents = () => {
                       }
                     />
                   </div>
-                  <div >
-                    <label className="block text-gray-700 text-sm font-bold">
+                  <div className="mt-2">
+                    <label className="block text-gray-700 text-sm font-bold ">
                       City:
                     </label>
                     <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      className="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       type="text"
                       value={item.city}
                       onChange={(e) =>
@@ -236,7 +236,7 @@ const AddEvents = () => {
             ))}
           </div>
         </div>
-        <div className="text-center mb-2">
+        <div className="text-center my-2">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold  py-2 px-8  rounded focus:outline-none focus:shadow-outline"
             type="button"
@@ -291,7 +291,7 @@ const AddEvents = () => {
             </div>
           </div>
         ))}
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center my-2">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold   py-2 px-8   rounded focus:outline-none focus:shadow-outline"
             type="button"
