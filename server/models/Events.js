@@ -1,46 +1,47 @@
 const mongoose = require("mongoose");
 
-const EventsSchema = mongoose.Schema({
-  band: {
-    artist: { type: String, required: true },
-    desctiption: { type: String },
-    genre: { type: String, required: true },
-  },
-  images: {
-    band_image: { type: String, required: true },
-    poster_image: { type: String, required: true },
-  },
+const EventsSchema = mongoose.Schema(
+  {
+    band: {
+      artist: { type: String },
+      description: { type: String },
+      genre: { type: String },
+    },
+    images: {
+      band_image: { type: String },
+      poster_image: { type: String },
+    },
 
-  showschedule: [
-    {
-      dates: [
-        {
-          localDate: { type: Date, required: true },
-          localTime: { type: String, required: true },
-        },
-      ],
-      location: [
-        {
-          name_show: { type: String, required: true },
-          venue: { type: String, required: true },
-          state: { type: String, required: true },
-          city: { type: String, required: true },
-        },
-      ],
+    dates: [
+      {
+        localDate: { type: Date },
+        localTime: { type: String },
+      },
+    ],
+
+    locations: [
+      {
+        name_show: { type: String },
+        venue: { type: String },
+        state: { type: String },
+        city: { type: String },
+      },
+    ],
+
+    ticket: [
+      {
+        ticket_type: { type: String },
+        ticket_price: { type: Number },
+      },
+    ],
+    slug: {
+      type: String,
+      lowercase: true,
+      required: true,
     },
-  ],
-  ticket: [
-    {
-      ticket_type: { type: String, required: true },
-      ticket_price: { type: Number, required: true },
-    },
-  ],
-  slug:{
-    type:String,
-    lowercase:true,
-    required:true
-  }
-},{timestamps:true});
+  },
+  { timestamps: true }
+);
 
 const Events = mongoose.model("Events", EventsSchema);
 module.exports = Events;

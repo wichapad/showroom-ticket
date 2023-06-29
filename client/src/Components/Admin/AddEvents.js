@@ -1,13 +1,13 @@
 import { useState } from "react";
+import axios from "axios";
+import logo from "../../images/showroomlogo.png";
 
 const AddEvents = () => {
   const [band, setBand] = useState({ artist: "", description: "", genre: "" });
   const [images, setImages] = useState({ band_image: "", poster_image: "" });
-  const [showSchedule, setShowSchedule] = useState([
-    {
-      dates: [{ localDate: "", localTime: "" }],
-      location: [{ name_show: "", venue: "", state: "", city: "" }],
-    },
+  const [dates, setDates] = useState([{ localDate: "", localTime: "" }]);
+  const [locations, setLocation] = useState([
+    { name_show: "", venue: "", state: "", city: "" },
   ]);
   const [ticket, setTicket] = useState([
     {
@@ -15,10 +15,53 @@ const AddEvents = () => {
       ticket_price: "",
     },
   ]);
+
+  const inputDates = (index, field, value) => {
+    const updateDates = [...dates];
+    updateDates[index][field] = value;
+    setDates(updateDates);
+  };
+  const inputLocation = (index, field, value) => {
+    const updateLocation = [...locations];
+    updateLocation[index][field] = value;
+    setDates(updateLocation);
+  };
+
+  const addSchedule = () => {
+    setDates([...dates, { localDate: "", localTime: "" }]);
+    setLocation([
+      ...locations,
+      { name_show: "", venue: "", state: "", city: "" },
+    ]);
+  };
+
+  const sendData = async () => {
+    try {
+      const storeEvents = {
+        band,
+        images,
+        dates,
+        locations,
+        ticket,
+      };
+
+      //ส่งข้อมูล ไปที่ฝั่ง server
+      const response = await axios.post(
+        `${process.env.REACT_APP_USERS}/api/events/addEvent`,
+        storeEvents
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <div className="flex flex-col justify-center  w-full max-w-2xl m-auto">
-      <h1 className="text-center">Showroom Events</h1>
-      <form className="bg-white shadow-md rounded px-6 pt-6 pb-8 mb-4">
+    <div className="flex flex-col justify-center  w-full max-w-2xl bg-white shadow-md rounded  m-auto">
+      <div className="flex justify-center">
+        <img className="w-40 mt-6 flex " src={logo} alt="showroom" />
+      </div>
+      <form onSubmit={sendData} className="px-6 pt-6 pb-8 mb-4">
         <div className="flex">
           {/* Add Band form */}
           <div className="mb-2 w-full pr-2">
@@ -93,10 +136,11 @@ const AddEvents = () => {
         </div>
         <hr />
         {/* Add Showschedule form */}
-        {showSchedule.map((schedule, index) => (
-          <div className="my-2 flex" key={index}>
-            {/* Date */}
-            <div className="w-full pr-2">
+
+        <div className="my-2 flex">
+          {/* Date */}
+          {dates.map((item, index) => (
+            <div className="w-full pr-2" key={index}>
               <h1 className="text-center">Date</h1>
               <div>
                 <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -105,13 +149,9 @@ const AddEvents = () => {
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   type="date"
-                  value={schedule.dates[0].localDate}
+                  value={item.localDate}
                   onChange={(e) =>
-                    setShowSchedule((prevSchedule) => {
-                      const updateSchedule = [...prevSchedule];
-                      updateSchedule[index].dates[0].localDate = e.target.value;
-                      return updateSchedule;
-                    })
+                    inputDates(index, "localDate", e.target.value)
                   }
                 />
               </div>
@@ -122,20 +162,18 @@ const AddEvents = () => {
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   type="text"
-                  value={schedule.dates[0].localTime}
+                  value={item.localTime}
                   onChange={(e) =>
-                    setShowSchedule((prevSchedule) => {
-                      const updateSchedule = [...prevSchedule];
-                      updateSchedule[index].dates[0].localTime = e.target.value;
-                      return updateSchedule;
-                    })
+                    inputDates(index, "localTime", e.target.value)
                   }
                 />
               </div>
             </div>
-            {/* Location */}
-            <div className="w-full">
-              <h1 className="text-center">Location</h1>
+          ))}
+          {/* Location */}
+          {locations.map((item, index) => (
+            <div className="w-full" key={index}>
+              <h1 className="text-center">Locations</h1>
               <div>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -144,14 +182,9 @@ const AddEvents = () => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
-                    value={schedule.location[0].name_show}
+                    value={item.name_show}
                     onChange={(e) =>
-                      setShowSchedule((prevSchedule) => {
-                        const updateSchedule = [...prevSchedule];
-                        updateSchedule[index].location[0].name_show =
-                          e.target.value;
-                        return updateSchedule;
-                      })
+                      inputLocation(index, "name_show", e.target.value)
                     }
                   />
                 </div>
@@ -162,14 +195,9 @@ const AddEvents = () => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
-                    value={schedule.location[0].venue}
+                    value={item.venue}
                     onChange={(e) =>
-                      setShowSchedule((prevSchedule) => {
-                        const updateSchedule = [...prevSchedule];
-                        updateSchedule[index].location[0].venue =
-                          e.target.value;
-                        return updateSchedule;
-                      })
+                      inputLocation(index, "venue", e.target.value)
                     }
                   />
                 </div>
@@ -180,14 +208,9 @@ const AddEvents = () => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
-                    value={schedule.location[0].state}
+                    value={item.state}
                     onChange={(e) =>
-                      setShowSchedule((prevSchedule) => {
-                        const updateSchedule = [...prevSchedule];
-                        updateSchedule[index].location[0].state =
-                          e.target.value;
-                        return updateSchedule;
-                      })
+                      inputLocation(index, "state", e.target.value)
                     }
                   />
                 </div>
@@ -198,33 +221,22 @@ const AddEvents = () => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
-                    value={schedule.location[0].city}
+                    value={item.city}
                     onChange={(e) =>
-                      setShowSchedule((prevSchedule) => {
-                        const updateSchedule = [...prevSchedule];
-                        updateSchedule[index].location[0].city = e.target.value;
-                        return updateSchedule;
-                      })
+                      inputLocation(index, "city", e.target.value)
                     }
                   />
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
         <div className="text-center mb-2">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold  py-2 px-8  rounded focus:outline-none focus:shadow-outline"
             type="button"
-            onClick={() =>
-              setShowSchedule((prevSchedule) => [
-                ...prevSchedule,
-                {
-                  dates: [{ localDate: "", localTime: "" }],
-                  location: [{ name_show: "", venue: "", state: "", city: "" }],
-                },
-              ])
-            }
+            onClick={addSchedule}
           >
             Add Schedule
           </button>
@@ -259,14 +271,14 @@ const AddEvents = () => {
                 </label>
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  type="text"
+                  type="number"
                   value={item.ticket_price}
                   onChange={(e) =>
                     setTicket((prevTicket) => {
                       const updateTicket = [...prevTicket];
-                      updateTicket[index].ticket_price = parseInt(
-                        e.target.value
-                      );
+                      updateTicket[index].ticket_price = Number([
+                        e.target.value,
+                      ]);
                       return updateTicket;
                     })
                   }
