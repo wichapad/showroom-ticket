@@ -31,11 +31,14 @@ const AdminControl = () => {
         return (
           <div key={event._id}>
             <p>{event.band.artist}</p>
-            <p>{event.band.desctiption}</p>
+            <p>{event.band.desciption}</p>
             <p>{event.band.desctiption}</p>
             <p>{event.images.band_image}</p>
             <p>{event.images.poster_image}</p>
-           
+            <p>{event.dates[0].localDate}</p>
+            <p>{event.locations[0].venue}</p>
+            <p>{event.ticket[0].ticket_type}</p>
+            <p>{event.ticket[0].price}</p>s
             <hr/>
           </div>
           
