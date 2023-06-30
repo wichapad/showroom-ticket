@@ -53,7 +53,6 @@ const AddEvents = () => {
         storeEvents,
       );
       console.log(response.data);
-      navigate('/admincontrol')
     } catch (error) {
       console.error(error);
     }
