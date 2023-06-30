@@ -4,9 +4,9 @@ import { BsSearch, BsChevronRight, BsChevronDown } from "react-icons/bs";
 
 const AdminControl = () => {
   const [events, setEvents] = useState([]);
-  const [showContent, setShowContent] = useState(false);
+  const [showContent, setShowContent] = useState(null); 
 
-  useEffect(() => {
+  useEffect(() => { //ดึงข้อมูล จาก database collection events
     axios
       .get(`${process.env.REACT_APP_USERS}/api/events`)
 
@@ -18,7 +18,7 @@ const AdminControl = () => {
         console.log(error);
       });
   }, []);
-  const formatDate = (dateString) => {
+  const formatDate = (dateString) => { //แปลงค่า วันที่
     const date = new Date(dateString);
     const day = date.getDate();
     const month = date.getMonth() + 1;
@@ -50,14 +50,20 @@ const AdminControl = () => {
             <td></td>
           </tr>
         </thead>
-        {events.map((event) => (
-          <tbody key={event._id} className="border-2 ">
+        {events.map((event) => ( // map ข้อมูลจาก database Events
+          <tbody key={event._id} className="border-2 shadow">
             <tr className="text-center border-b-2 h-10">
               <td
                 className="pl-2 w-8 cursor-pointer"
-                onClick={() => setShowContent(!showContent)}
+                onClick={() =>
+                  setShowContent(event._id === showContent ? null : event._id)
+                }
               >
-                {showContent ? <BsChevronDown /> : <BsChevronRight />}
+                {event._id === showContent ? (
+                  <BsChevronDown />
+                ) : (
+                  <BsChevronRight />
+                )}
               </td>
               <td className="text-blue-600">{event.band.artist}</td>
               <td>{formatDate(event.createdAt)}</td>
@@ -73,7 +79,7 @@ const AdminControl = () => {
                 </div>
               </td>
             </tr>
-            {showContent && (
+            {showContent === event._id && (  //ส่วนของ content จะซ่อนไว้หากกดเครื่องหมาย arrow ตรง table จะโชว์ ให้เห็น
               <td colSpan={5} className="py-2 px-4">
                 <div>
                   <p className="text-gray-500">
@@ -100,8 +106,8 @@ const AdminControl = () => {
                   </p>
                   <div>
                     Tour:
-                    {event.dates.map((date, index) => (
-                      <div className="flex border-2 mb-2 py-2" key={index}>
+                    {event.dates.map((date, index) => ( //map ข้อมูลจาก event ก่อน และเข้าถึง object Dates และ Location
+                      <div className="flex border-2 mb-2 pl-2 py-2" key={index}>
                         <p>{formatDate(date.localDate)}</p>
                         <p className="px-2">{date.localTime}</p>
                         <p>{event.locations[index].name_show},</p>
@@ -114,7 +120,7 @@ const AdminControl = () => {
                 </div>
 
                 <div className="flex">
-                  {event.ticket.map((t, index) => (
+                  {event.ticket.map((t, index) => ( //map ข้อมูลจาก event ก่อน และเข้าถึง object Ticket
                     <div className="px-2" key={index}>
                       <p>{t.ticket_type}</p>
                       <p>{t.ticket_price}</p>
@@ -126,39 +132,6 @@ const AdminControl = () => {
           </tbody>
         ))}
       </table>
-
-      {/* {events.map((event) => {
-        return (
-          <div key={event._id}>
-            <p>{event.band.artist}</p>
-            <p>{event.band.desciption}</p>
-            <p>{event.band.desctiption}</p>
-            <p>{event.images.band_image}</p>
-            <p>{event.images.poster_image}</p>
-            {event.dates.map((date,index) => (
-              <div key={index}>
-                <p>{formatDate(date.localDate)}</p>
-                <p>{date.localTime}</p>
-              </div>
-            ))}
-            {event.locations.map((location,index) => (
-              <div key={index}>
-                <p>{location.name_show}</p>
-                <p>{location.venue}</p>
-                <p>{location.state}</p>
-                <p>{location.city}</p>
-              </div>
-            ))}
-
-            {event.ticket.map((t,index) => (
-              <div key={index}>
-                <p >{t.ticket_type}</p>
-                <p >{t.ticket_price}</p>
-              </div>
-            ))}
-          </div>
-        );
-      })}*/}
     </div>
   );
 };

@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom'
 
 const AddEvents = () => {
   const navigate = useNavigate()
-  const [band, setBand] = useState({ artist: "", description: "", genre: "" });
+  //สร้าง state เก็บข้อมูลที่จะ input ค่ามา
+  const [band, setBand] = useState({ artist: "", description: "", genre: "" }); 
   const [images, setImages] = useState({ band_image: "", poster_image: "" });
   const [dates, setDates] = useState([{ localDate: "", localTime: "" }]);
   const [locations, setLocation] = useState([
@@ -18,8 +19,9 @@ const AddEvents = () => {
     },
   ]);
 
-  const inputDates = (index, field, value) => {
-    const updateDates = [...dates];
+  //สร้างinput เพื่อเก็บค่า dates และlocation แยกไว้ เพื่อนำไปใช้ใน onChange
+  const inputDates = (index, field, value) => {  //index เข้าถึง array dates ที่ต้องการ update field ใช้เรียก field ใน dates มี localdate, localtime ,value ค่าที่จะกำหนดไปใหม่
+    const updateDates = [...dates]; 
     updateDates[index][field] = value;
     setDates(updateDates);
   };
@@ -152,7 +154,7 @@ const AddEvents = () => {
                     </label>
                     <input
                       className="shadow appearance-none border rounded w-full text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      type="date"
+                      type="text"
                       value={item.localDate}
                       onChange={(e) =>
                         inputDates(index, "localDate", e.target.value)

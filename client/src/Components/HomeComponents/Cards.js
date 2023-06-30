@@ -50,6 +50,9 @@ const Card = () => {
                 <p className="text-sm font-medium mb-3">
                   Date : {formatDate(event.dates[0].localDate)}
                 </p>
+                <p className="text-sm font-medium mb-3">
+                  Time : {event.dates[0].localTime}
+                </p>
                 <p className="text-gray-500 text-sm h-8">
                   Location : {event.locations[0].venue},
                   {event.locations[0].state}
