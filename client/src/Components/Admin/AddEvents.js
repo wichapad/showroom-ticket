@@ -53,6 +53,7 @@ const AddEvents = () => {
         storeEvents,
       );
       console.log(response.data);
+      navigate("/admincontrol") //เมื่อกดส่งข้อมูล จะไปยังหน้า admincontrol
     } catch (error) {
       console.error(error);
     }
