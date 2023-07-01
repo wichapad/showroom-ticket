@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import logo from "../../images/showroomlogo.png";
-import { useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from "react-router-dom";
 
-const AddEvents = () => {
-  const navigate = useNavigate()
+const EditEvents = () => {
+  const navigate = useNavigate();
+  const { slug } = useParams();
   //สร้าง state เก็บข้อมูลที่จะ input ค่ามา
-  const [band, setBand] = useState({ artist: "", description: "", genre: "" }); 
+  const [band, setBand] = useState({ artist: "", description: "", genre: "" });
   const [images, setImages] = useState({ band_image: "", poster_image: "" });
   const [dates, setDates] = useState([{ localDate: "", localTime: "" }]);
   const [locations, setLocation] = useState([
@@ -20,8 +21,9 @@ const AddEvents = () => {
   ]);
 
   //สร้างinput เพื่อเก็บค่า dates และlocation แยกไว้ เพื่อนำไปใช้ใน onChange
-  const inputDates = (index, field, value) => {  //index เข้าถึง array dates ที่ต้องการ update field ใช้เรียก field ใน dates มี localdate, localtime ,value ค่าที่จะกำหนดไปใหม่
-    const updateDates = [...dates]; 
+  const inputDates = (index, field, value) => {
+    //index เข้าถึง array dates ที่ต้องการ update field ใช้เรียก field ใน dates มี localdate, localtime ,value ค่าที่จะกำหนดไปใหม่
+    const updateDates = [...dates];
     updateDates[index][field] = value;
     setDates(updateDates);
   };
@@ -39,26 +41,40 @@ const AddEvents = () => {
     ]);
   };
 
-  const sendData = async () => {
-    try {
-      const storeEvents = {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_USERS}/api/events/${slug}`
+        );
+        const { band, images, dates, locations, ticket } = response.data;
+        setBand(band);
+        setImages(images);
+        setDates(dates);
+        setLocation(locations);
+        setTicket(ticket);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [slug]);
+
+  const updateData = async () => {
+    await axios
+      .put(`${process.env.REACT_APP_USERS}/api/events/${slug}`, {
         band,
         images,
         dates,
         locations,
         ticket,
-      };
-
-      //ส่งข้อมูล ไปที่ฝั่ง server
-      const response = await axios.post(
-        `${process.env.REACT_APP_USERS}/api/events/addEvent`,
-        storeEvents,
-      );
-      console.log(response.data);
-      navigate("/admincontrol") //เมื่อกดส่งข้อมูล จะไปยังหน้า admincontrol
-    } catch (error) {
-      console.error(error);
-    }
+      })
+      .then((response) => {
+        navigate("/admincontrol");
+      })
+      .catch((error) => {
+        alert(error);
+      });
   };
 
   return (
@@ -66,7 +82,7 @@ const AddEvents = () => {
       <div className="flex justify-center">
         <img className="w-40 mt-6 flex " src={logo} alt="showroom" />
       </div>
-      <form onSubmit={sendData} className="px-6 pt-6 pb-8 mb-4">
+      <form onSubmit={updateData} className="px-6 pt-6 pb-8 mb-4">
         <div className="flex">
           {/* Add Band form */}
           <div className="mb-2 w-full pr-2">
@@ -332,4 +348,4 @@ const AddEvents = () => {
   );
 };
 
-export default AddEvents;
+export default EditEvents;
