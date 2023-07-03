@@ -1,25 +1,31 @@
 import { useState, useEffect } from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { BsSearch, BsChevronRight, BsChevronDown } from "react-icons/bs";
+import Swal from "sweetalert2";
 
 const AdminControl = () => {
+  // const { slug } = useParams();
+  // const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [showContent, setShowContent] = useState(null);
 
-  useEffect(() => {
+  const fetchData = () => {
     //ดึงข้อมูล จาก database collection events
     axios
       .get(`${process.env.REACT_APP_USERS}/api/events`)
-
       .then((response) => {
-        console.log(response.data.event);
         setEvents(response.data.event);
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
+
   const formatDate = (dateString) => {
     //แปลงค่า วันที่
     const date = new Date(dateString);
@@ -30,6 +36,35 @@ const AdminControl = () => {
       month < 10 ? "0" + month : month
     }-${year}`;
   };
+
+  const deleteData = async (eventSlug) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to delete data?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          "Deleted!",
+          "Your file has been deleted.",
+          "success"
+        );
+        axios
+          .delete(`${process.env.REACT_APP_USERS}/api/events/${eventSlug}`)
+          .then((response) => {
+            fetchData();
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    });
+  };
+
   return (
     <div className="flex flex-col justify-center w-full max-w-4xl mt-6 m-auto">
       <form>
@@ -63,7 +98,7 @@ const AdminControl = () => {
                 <td
                   className="pl-2 w-8 cursor-pointer "
                   onClick={() =>
-                    setShowContent(event._id === showContent  ? null : event._id)
+                    setShowContent(event._id === showContent ? null : event._id)
                   }
                 >
                   {event._id === showContent ? (
@@ -77,10 +112,16 @@ const AdminControl = () => {
                 <td>{formatDate(event.updatedAt)}</td>
                 <td>
                   <div className="flex justify-center text-xs items-center">
-                    <Link className="px-3 py-2 mr-2 text-white bg-green-500 rounded hover:bg-green-600 duration-300" to={`/admincontrol/${event.slug}`} >
+                    <Link
+                      className="px-3 py-2 mr-2 text-white bg-green-500 rounded hover:bg-green-600 duration-300"
+                      to={`/admincontrol/${event.slug}`}
+                    >
                       Edit
                     </Link>
-                    <button className="px-3 py-2 text-white bg-red-500 rounded hover:bg-red-600 duration-300">
+                    <button
+                      className="px-3 py-2 text-white bg-red-500 rounded hover:bg-red-600 duration-300"
+                      onClick={() => deleteData(event.slug)}
+                    >
                       Delete
                     </button>
                   </div>
@@ -88,7 +129,7 @@ const AdminControl = () => {
               </tr>
               {showContent === event._id && ( //ส่วนของ content จะซ่อนไว้หากกดเครื่องหมาย arrow ตรง table จะโชว์ ให้เห็น
                 <tr>
-                  <td colSpan={5} className="py-2 px-4 duration-500">
+                  <td colSpan={5} className="py-2 px-4 ">
                     <div>
                       <p className="text-gray-500">
                         Description:{" "}

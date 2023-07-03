@@ -6,7 +6,7 @@ import EditEvents from "./Components/Admin/EditEvents";
 const AdminRoute = () => {
   return (
     <Routes>
-      <Route path="/admin" element={<AddEvents />} />
+      <Route path="/admin/create" element={<AddEvents />} />
       <Route path="/admincontrol" element={<AdminControl />} />
       <Route path="/admincontrol/:slug" element={<EditEvents />} />
     </Routes>

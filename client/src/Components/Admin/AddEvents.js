@@ -1,12 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 import logo from "../../images/showroomlogo.png";
-import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
+
 
 const AddEvents = () => {
-  const navigate = useNavigate()
+
   //สร้าง state เก็บข้อมูลที่จะ input ค่ามา
-  const [band, setBand] = useState({ artist: "", description: "", genre: "" }); 
+  const [band, setBand] = useState({ artist: "", description: "", genre: "" });
   const [images, setImages] = useState({ band_image: "", poster_image: "" });
   const [dates, setDates] = useState([{ localDate: "", localTime: "" }]);
   const [locations, setLocation] = useState([
@@ -20,8 +21,9 @@ const AddEvents = () => {
   ]);
 
   //สร้างinput เพื่อเก็บค่า dates และlocation แยกไว้ เพื่อนำไปใช้ใน onChange
-  const inputDates = (index, field, value) => {  //index เข้าถึง array dates ที่ต้องการ update field ใช้เรียก field ใน dates มี localdate, localtime ,value ค่าที่จะกำหนดไปใหม่
-    const updateDates = [...dates]; 
+  const inputDates = (index, field, value) => {
+    //index เข้าถึง array dates ที่ต้องการ update field ใช้เรียก field ใน dates มี localdate, localtime ,value ค่าที่จะกำหนดไปใหม่
+    const updateDates = [...dates];
     updateDates[index][field] = value;
     setDates(updateDates);
   };
@@ -39,26 +41,30 @@ const AddEvents = () => {
     ]);
   };
 
-  const sendData = async () => {
-    try {
-      const storeEvents = {
-        band,
-        images,
-        dates,
-        locations,
-        ticket,
-      };
-
-      //ส่งข้อมูล ไปที่ฝั่ง server
-      const response = await axios.post(
-        `${process.env.REACT_APP_USERS}/api/events/addEvent`,
-        storeEvents,
-      );
-      console.log(response.data);
-      navigate("/admincontrol") //เมื่อกดส่งข้อมูล จะไปยังหน้า admincontrol
-    } catch (error) {
-      console.error(error);
-    }
+  const sendData = async (e) => {
+    e.preventDefault();
+    const storeEvents = {
+      band,
+      images,
+      dates,
+      locations,
+      ticket,
+    };
+    await axios
+      .post(`${process.env.REACT_APP_USERS}/api/events/addEvent`, storeEvents)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: err.response.data.error,
+          showConfirmButton: false,
+          timer: 1500
+        })
+       
+      });
   };
 
   return (
@@ -150,7 +156,7 @@ const AddEvents = () => {
                 <div>
                   <div>
                     <label className="block text-gray-700 text-sm font-bold">
-                      Date:
+                      Date: (MM-DD-YYYY)
                     </label>
                     <input
                       className="shadow appearance-none border rounded w-full text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

@@ -60,7 +60,8 @@ const EditEvents = () => {
     fetchData();
   }, [slug]);
 
-  const updateData = async () => {
+  const updateData = async (e) => {
+    e.preventDefault();
     await axios
       .put(`${process.env.REACT_APP_USERS}/api/events/${slug}`, {
         band,
