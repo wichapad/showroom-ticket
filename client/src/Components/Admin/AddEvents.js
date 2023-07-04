@@ -1,11 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import logo from "../../images/showroomlogo.png";
-import Swal from 'sweetalert2'
-
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const AddEvents = () => {
-
+  const navigate = useNavigate();
   //สร้าง state เก็บข้อมูลที่จะ input ค่ามา
   const [band, setBand] = useState({ artist: "", description: "", genre: "" });
   const [images, setImages] = useState({ band_image: "", poster_image: "" });
@@ -53,17 +53,24 @@ const AddEvents = () => {
     await axios
       .post(`${process.env.REACT_APP_USERS}/api/events/addEvent`, storeEvents)
       .then((response) => {
-        console.log(response.data);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Save data success",
+          showConfirmButton: true,
+          timer: 3000,
+        });
+
+        navigate("/admincontrol");
       })
       .catch((err) => {
         Swal.fire({
-          position: 'center',
-          icon: 'error',
+          position: "center",
+          icon: "error",
           title: err.response.data.error,
           showConfirmButton: false,
-          timer: 1500
-        })
-       
+          timer: 3000,
+        });
       });
   };
 

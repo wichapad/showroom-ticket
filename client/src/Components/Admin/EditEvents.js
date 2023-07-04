@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import logo from "../../images/showroomlogo.png";
 import { useParams, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 const EditEvents = () => {
   const navigate = useNavigate();
@@ -71,6 +72,14 @@ const EditEvents = () => {
         ticket,
       })
       .then((response) => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: "Edit data success",
+          showConfirmButton: false,
+          timer: 3000
+        })
+       
         navigate("/admincontrol");
       })
       .catch((error) => {

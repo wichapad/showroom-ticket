@@ -48,11 +48,7 @@ const AdminControl = () => {
       reverseButtons: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          "Deleted!",
-          "Your file has been deleted.",
-          "success"
-        );
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
         axios
           .delete(`${process.env.REACT_APP_USERS}/api/events/${eventSlug}`)
           .then((response) => {
@@ -68,6 +64,12 @@ const AdminControl = () => {
   return (
     <div className="flex flex-col justify-center w-full max-w-4xl mt-6 m-auto">
       <form>
+        <Link
+          className="px-3 py-2 mr-2 text-white bg-green-500 rounded hover:bg-green-600 duration-300"
+          to={`/create`}
+        >
+          Add
+        </Link>
         <div className="relative mb-4">
           <div className="absolute inset-y-0 left-0 flex items-center text-gray-500 pl-3">
             <BsSearch />
