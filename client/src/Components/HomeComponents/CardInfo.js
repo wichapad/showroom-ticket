@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "../Navbar";
 const CardInfo = () => {
   const { slug } = useParams();
-  const [singleEvent, setSingleEvent] = useState([]);
+  const [singleEvent, setSingleEvent] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,14 +24,15 @@ const CardInfo = () => {
   return (
     <>
       <Navbar />
-      <div className=" flex flex-wrap justify-center  mx-auto ">
-        <div className="home-background max-w-screen-xl">
-          {singleEvent.map((event, index) => (
-            <div key={index}>
-              <img src={event.images.band_image} alt=""/>
+      <div className="max-w-screen-xl mx-auto ">
+        {singleEvent && (
+          <div>
+            <img src={singleEvent.images.poster_image}/>
+            <div className="w-96">
+              <img src={singleEvent.images.band_image} alt="" />
             </div>
-          ))}
-        </div>
+          </div>
+        )}
       </div>
     </>
   );
