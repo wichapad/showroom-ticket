@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { BsSearch, BsChevronRight, BsChevronDown } from "react-icons/bs";
+import { BsSearch, BsChevronRight, BsChevronDown,BsPlusLg } from "react-icons/bs";
 import Swal from "sweetalert2";
 
 const AdminControl = () => {
-  // const { slug } = useParams();
-  // const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [showContent, setShowContent] = useState(null);
 
@@ -63,13 +61,17 @@ const AdminControl = () => {
 
   return (
     <div className="flex flex-col justify-center w-full max-w-4xl mt-6 m-auto">
-      <form>
-        <Link
-          className="px-3 py-2 mr-2 text-white bg-green-500 rounded hover:bg-green-600 duration-300"
+      {/* div add data */}
+      <div className="flex justify-end my-2">
+      <Link
+          className="px-3 py-2 text-white text-right bg-blue-400 rounded hover:bg-blue-500 duration-300"
           to={`/create`}
         >
-          Add
+          <BsPlusLg/>
         </Link>
+      </div>
+      {/* form search data */}
+      <form>
         <div className="relative mb-4">
           <div className="absolute inset-y-0 left-0 flex items-center text-gray-500 pl-3">
             <BsSearch />
@@ -80,7 +82,8 @@ const AdminControl = () => {
           />
         </div>
       </form>
-
+      
+      {/* Table show data */}
       <table className="  text-sm">
         <thead className="bg-slate-100 border-2 rounded  h-10">
           <tr className="text-gray-500">
@@ -91,12 +94,14 @@ const AdminControl = () => {
             <td></td>
           </tr>
         </thead>
+        {/* loop events show data header band.artist , createdated ,updatedated */}
         {events.map(
           (
-            event // map ข้อมูลจาก database Events
+            event // 
           ) => (
             <tbody key={event._id} className="border-2 shadow">
               <tr className="text-center border-b-2 h-10">
+                {/* arrow hide show info data */}
                 <td
                   className="pl-2 w-8 cursor-pointer "
                   onClick={() =>
@@ -113,6 +118,8 @@ const AdminControl = () => {
                 <td>{formatDate(event.createdAt)}</td>
                 <td>{formatDate(event.updatedAt)}</td>
                 <td>
+
+                  {/* div edit and delete data */}
                   <div className="flex justify-center text-xs items-center">
                     <Link
                       className="px-3 py-2 mr-2 text-white bg-green-500 rounded hover:bg-green-600 duration-300"
@@ -129,7 +136,8 @@ const AdminControl = () => {
                   </div>
                 </td>
               </tr>
-              {showContent === event._id && ( //ส่วนของ content จะซ่อนไว้หากกดเครื่องหมาย arrow ตรง table จะโชว์ ให้เห็น
+              {/* Info data will hide onClick arrow will show info */}
+              {showContent === event._id && (
                 <tr>
                   <td colSpan={5} className="py-2 px-4 ">
                     <div>
