@@ -1,3 +1,5 @@
+// แสดง รายการสินค้า ต่างๆที่วางขายในเพจ
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCube, Pagination } from "swiper";
 import "swiper/css";

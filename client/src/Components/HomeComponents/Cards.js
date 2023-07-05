@@ -1,3 +1,5 @@
+//  แสดงข้อมูลที่ส่งมาจาก database โดย จะให้ไปแสดงใน home component จะแสดง รูปภาพ และชื่อ
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -35,7 +37,7 @@ const Card = () => {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         {events.map((event) => {
           return (
-            <Link key={event._id} to={event.slug}>
+            <Link key={event._id} to={`/events/${event.slug}`}>
               <div
                 className=" relative bg-gray-900 rounded-md m-4 group"
               >

@@ -13,7 +13,7 @@ const MyRoute = () => {
       <Route path="/login" element={<Login />} />
       
       {/* evnets */}
-      <Route path="/:slug" element={<CardInfo />} />
+      <Route path="/events/:slug" element={<CardInfo />} />
     </Routes>
   );
 };

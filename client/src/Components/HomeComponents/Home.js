@@ -1,3 +1,4 @@
+// ดึง card slide news footer component มาแสดง
 import React from "react";
 import Card from "./Cards";
 import Slide from "./slides";
@@ -6,7 +7,7 @@ import Footer from "./Footer";
 
 const Home = () => {
   return (
-    <div className=" flex flex-wrap justify-center  mx-auto ">
+    <div className=" flex flex-wrap justify-center mx-auto ">
       <div className="home-background max-w-screen-xl">
         <img
           className=" home-background-img "

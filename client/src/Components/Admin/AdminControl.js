@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { BsSearch, BsChevronRight, BsChevronDown,BsPlusLg } from "react-icons/bs";
+import {
+  BsSearch,
+  BsChevronRight,
+  BsChevronDown,
+  BsPlusLg,
+} from "react-icons/bs";
 import Swal from "sweetalert2";
 
 const AdminControl = () => {
@@ -24,8 +29,8 @@ const AdminControl = () => {
     fetchData();
   }, []);
 
+  //แปลงค่า วันที่
   const formatDate = (dateString) => {
-    //แปลงค่า วันที่
     const date = new Date(dateString);
     const day = date.getDate();
     const month = date.getMonth() + 1;
@@ -63,11 +68,11 @@ const AdminControl = () => {
     <div className="flex flex-col justify-center w-full max-w-4xl mt-6 m-auto">
       {/* div add data */}
       <div className="flex justify-end my-2">
-      <Link
+        <Link
           className="px-3 py-2 text-white text-right bg-blue-400 rounded hover:bg-blue-500 duration-300"
           to={`/create`}
         >
-          <BsPlusLg/>
+          <BsPlusLg />
         </Link>
       </div>
       {/* form search data */}
@@ -82,7 +87,7 @@ const AdminControl = () => {
           />
         </div>
       </form>
-      
+
       {/* Table show data */}
       <table className="  text-sm">
         <thead className="bg-slate-100 border-2 rounded  h-10">
@@ -97,7 +102,7 @@ const AdminControl = () => {
         {/* loop events show data header band.artist , createdated ,updatedated */}
         {events.map(
           (
-            event // 
+            event //
           ) => (
             <tbody key={event._id} className="border-2 shadow">
               <tr className="text-center border-b-2 h-10">
@@ -118,7 +123,6 @@ const AdminControl = () => {
                 <td>{formatDate(event.createdAt)}</td>
                 <td>{formatDate(event.updatedAt)}</td>
                 <td>
-
                   {/* div edit and delete data */}
                   <div className="flex justify-center text-xs items-center">
                     <Link

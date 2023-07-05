@@ -163,11 +163,12 @@ const AddEvents = () => {
                 <div>
                   <div>
                     <label className="block text-gray-700 text-sm font-bold">
-                      Date: (MM-DD-YYYY)
+                      Date:
                     </label>
                     <input
                       className="shadow appearance-none border rounded w-full text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       type="text"
+                      placeholder="MM-DD-YYYY"
                       value={item.localDate}
                       onChange={(e) =>
                         inputDates(index, "localDate", e.target.value)
@@ -181,6 +182,7 @@ const AddEvents = () => {
                     <input
                       className="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       type="text"
+                      placeholder="00:00"
                       value={item.localTime}
                       onChange={(e) =>
                         inputDates(index, "localTime", e.target.value)
