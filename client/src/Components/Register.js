@@ -86,22 +86,24 @@ const Register = () => {
               value={username}
               onChange={inputValue("username")} />
           </div>
-          <div className="form-input">
+          <div className="form-input relative">
             <label className="mb-2" >
               Password
             </label>
             <input id="password" type={showPassword ? "text" : "password"}
               value={password}
               onChange={inputValue("password")} />
+              <button className='absolute bottom-4 right-4' type='button' onClick={togglePassword}>{showPassword ? <BsEyeFill/> : <BsEyeSlashFill/>}</button>
           </div>
-          <button type='button' onClick={togglePassword}>{showPassword ? <BsEyeFill/> : <BsEyeSlashFill/>}</button>
-          <div className="form-input mb-8">
+          
+          <div className="form-input mb-8 relative">
             <label className="mb-2" >
               Confirm Password
             </label>
             <input id="confirm" type="password"
               value={confirmPassword}
               onChange={inputValue("confirmPassword")} />
+              <button className='absolute bottom-4 right-4' type='button' onClick={togglePassword}>{showPassword ? <BsEyeFill/> : <BsEyeSlashFill/>}</button>
           </div>
           <div className="flex items-center justify-center">
             <input type="submit" value="Sign Up" className="button-container mb-8 cursor-pointer" />
