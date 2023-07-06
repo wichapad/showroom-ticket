@@ -3,11 +3,12 @@ import logo from '../images/showroomlogowhite.png'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { authenticate, getUser } from '../services/autherize'
+import {BsEyeFill,BsEyeSlashFill} from 'react-icons/bs'
 
 const Register = () => {
   // สร้าง navigate ด้วย react-router-dom เพื่อให้เวลา กด submit แล้ว redirect ไปหน้า home
   const navigate = useNavigate();
-
+  const [showPassword,setShowPassword] = useState(false)
   //create state users
   const [users, setUsers] = useState({
     email: "",
@@ -52,6 +53,11 @@ const Register = () => {
     // eslint-disable-next-line
   }, [])
 
+  const togglePassword = () =>{
+    setShowPassword(!showPassword)
+  }
+  
+
   return (
     <>
       <nav className="bg-white border-gray-200 bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
@@ -84,10 +90,11 @@ const Register = () => {
             <label className="mb-2" >
               Password
             </label>
-            <input id="password" type="password"
+            <input id="password" type={showPassword ? "text" : "password"}
               value={password}
               onChange={inputValue("password")} />
           </div>
+          <button type='button' onClick={togglePassword}>{showPassword ? <BsEyeFill/> : <BsEyeSlashFill/>}</button>
           <div className="form-input mb-8">
             <label className="mb-2" >
               Confirm Password

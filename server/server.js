@@ -4,7 +4,6 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const cors = require('cors')
 require("dotenv").config();
-const eventsData =require('./Data/EventsData')
 
 app.use(express.json())
 app.use(express.urlencoded())

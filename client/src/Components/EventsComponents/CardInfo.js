@@ -108,14 +108,14 @@ const CardInfo = () => {
                         <p>{singleEvent.locations[index].name_show}</p>
                       </div>
 
-                      <div className=" text-sm">
+                      <div className="flex text-sm">
                         <p className="text-gray-400">
                           Venue:{" "}
                           <span className="text-black">
                             {singleEvent.locations[index].venue}
                           </span>
                         </p>
-                        <p className="text-gray-400">
+                        <p className="mx-2 text-gray-400">
                           State:{" "}
                           <span className="text-black">
                             {singleEvent.locations[index].state}
