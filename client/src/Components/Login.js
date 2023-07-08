@@ -39,7 +39,7 @@ const Login = () => {
 
     return (
         <>
-            <nav className="bg-white border-gray-200 bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
+            <nav className="relative z-50 bg-white border-gray-200 bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="/" className="flex items-center">
                         <img src={logo} className="h-5 mr-3" alt="Showroom Logo" />

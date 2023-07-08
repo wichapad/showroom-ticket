@@ -18,13 +18,23 @@ exports.login = (req, res) => {
           return res.status(500).json({ error: "Internal server error" });
         }
         if (result) {
-          // password macth กัน
-          const token = JWT.sign(
-            { _id: user._id },
-            process.env.ACCESS_JWT_SECRET,
-            { expiresIn: "1d" }
-          );
-          return res.status(200).json({ token, _id: user._id });
+          if (email === "showroom@gmail.com") {
+            // create token admin
+            const adminToken = JWT.sign(
+              { _id: user._id },
+              process.env.ACCESS_JWT_SECRET,
+              { expiresIn: "1d" }
+            );
+            return res.status(200).json({ adminToken, _id: user._id });
+          } else {
+            // password macth กัน
+            const clientToken = JWT.sign(
+              { _id: user._id },
+              process.env.ACCESS_JWT_SECRET,
+              { expiresIn: "1d" }
+            );
+            return res.status(200).json({ clientToken, _id: user._id });
+          }
         } else {
           //password not match
           return res.status(400).json({ error: "Invalid password" });
