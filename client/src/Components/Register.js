@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import logo from "../images/showroomlogowhite.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { authenticate, getUser } from "../services/autherize";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
+import { authenticate } from "../services/autherize";
 
 const Register = () => {
   // สร้าง navigate ด้วย react-router-dom เพื่อให้เวลา กด submit แล้ว redirect ไปหน้า home
@@ -48,19 +48,12 @@ const Register = () => {
         password,
       })
       .then((response) => {
-        authenticate(response, () => {
-          navigate("/");
-        });
+        authenticate(response, () => navigate('/'))
       })
       .catch((err) => {
         alert(err.response.data.error);
       });
   };
-
-  useEffect(() => {
-    getUser() && navigate("/");
-    // eslint-disable-next-line
-  }, []);
 
   const togglePassword = (field) => {
     if (field === "password") {
@@ -72,7 +65,7 @@ const Register = () => {
 
   return (
     <>
-      <nav className="bg-white z-50 border-gray-200 bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
+      <nav className="relative bg-white z-50 border-gray-200 bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="/" className="flex items-center">
             <img src={logo} className="h-5 mr-3" alt="Flowbite Logo" />
@@ -125,7 +118,7 @@ const Register = () => {
             <label className="mb-2">Confirm Password</label>
             <input
               id="confirm"
-              type={showPassword ? "text" : "password"}
+              type={showConfirmPassword ? "text" : "password"}
               value={confirmPassword}
               onChange={inputValue("confirmPassword")}
             />
@@ -136,7 +129,7 @@ const Register = () => {
                 togglePassword("confirm");
               }}
             >
-              {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
+              {showConfirmPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
             </button>
           </div>
           <div className="flex items-center justify-center">

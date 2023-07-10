@@ -3,7 +3,7 @@ const News = () => {
   return (
 
     <div className="max-w-screen-lg p-4">
-      <div className="border-b-2 border-black my-4">
+      <div className=" my-4">
         <span className="text-2xl">Showroom News</span>
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">

@@ -79,7 +79,7 @@ const CardInfo = () => {
               </div>
             </div>
             {/* tour */}
-            <div className="m-2 w-36 border-b border-black">
+            <div className="m-2 w-36 border-b-2 border-black">
               <p className="text-2xl font-bold uppercase">list events</p>
             </div>
             <div className="m-2 md:p-2 border rounded shadow md:max-w-screen-lg ">
@@ -142,7 +142,7 @@ const CardInfo = () => {
               ))}
             </div>
             <div className="m-2">
-              <div className="w-20 border-b border-black">
+              <div className="w-20 border-b-2 border-black">
                 <p className="text-2xl font-bold uppercase">About</p>
               </div>
               <div className="mt-4 max-w-screen-lg">

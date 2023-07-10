@@ -180,13 +180,13 @@ const AdminControl = () => {
                               className="flex border-2 mb-2 pl-2 py-2 rounded"
                               key={index}
                             >
-                              <p>{formatDate(date.localDate)}</p>
+                              <p>{date.localDate}</p>
                               <p className="px-2">{date.localTime}</p>
-                              <p>{event.locations[index].name_show},</p>
+                              <p>{event.locations[index].name_show}</p>
                               <p className="px-2">
-                                {event.locations[index].venue},
+                                {event.locations[index].venue}
                               </p>
-                              <p>{event.locations[index].state},</p>
+                              <p>{event.locations[index].state}</p>
                               <p className="pl-2">
                                 {event.locations[index].city}
                               </p>

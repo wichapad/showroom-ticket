@@ -31,26 +31,24 @@ const Card = () => {
 
   return (
     <div className="max-w-screen-xl  mx-4">
-      <div className="border-b-2 border-black w-full my-4">
-        <span className="text-2xl">Showroom Events</span>
+      <div className=" w-full my-4">
+        <span className="text-2xl">Showroom Concert</span>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         {events.map((event) => {
           return (
-            <Link key={event._id} to={`/events/${event.slug}`}>
-              <div
-                className=" relative bg-gray-900 rounded-md m-4 group"
-              >
+            <div key={event._id} className=" relative bg-gray-900 rounded-md m-4 group">
+              <Link  to={`/events/${event.slug}`}>
                 <img
                   className="absulute w-full aspect-video rounded-md  object-cover hover:opacity-50 duration-300"
                   src={event.images.band_image}
                   alt=""
                 />
-                <div className="absolute opacity-0 left-4 bottom-4 text-white group-hover:opacity-100">
-                  <p className="">{event.band.artist}</p>
-                </div>
+              </Link>
+              <div className="absolute opacity-0 left-4 bottom-4 text-white group-hover:opacity-100">
+                <p className="">{event.band.artist}</p>
               </div>
-            </Link>
+            </div>
           );
         })}
       </div>

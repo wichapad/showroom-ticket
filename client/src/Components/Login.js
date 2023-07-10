@@ -1,6 +1,6 @@
 import logo from '../images/showroomlogowhite.png'
 import { useState, useEffect } from 'react'
-import { authenticate, getUser } from '../services/autherize'
+import { authenticate, getAdminToken, getClientToken } from '../services/autherize'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 const Login = () => {
@@ -24,8 +24,14 @@ const Login = () => {
         await axios
             .post(`${process.env.REACT_APP_USERS}/auth/login`, { email, password })
             .then((response) => {
-                // login success
+                 if(response.data.isAdmin){
+                    //login admin success
+                    authenticate(response, () => navigate('/'))
+                 } else{
+                      // login client success
                 authenticate(response, () => navigate('/'))
+                 }
+              
             }).catch(err => {
                 alert(err.response.data.error)
             })
@@ -33,9 +39,11 @@ const Login = () => {
 
     // ตรวจสอบ token ว่ามีเก็บอยู่ใน session storage ไหม
     useEffect(()=>{
-        getUser() && navigate("/")
+        if (getClientToken() || getAdminToken()) {
+            navigate('/')
+        }
         // eslint-disable-next-line
-    },[])
+    },[navigate])
 
     return (
         <>

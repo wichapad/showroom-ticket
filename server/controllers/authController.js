@@ -1,7 +1,8 @@
 const JWT = require("jsonwebtoken");
-// const expressJWT = require('express-jwt')
 const Users = require("../models/Users");
 const bcrypt = require("bcrypt");
+
+
 
 exports.login = (req, res) => {
   const { email, password } = req.body;
@@ -18,13 +19,28 @@ exports.login = (req, res) => {
           return res.status(500).json({ error: "Internal server error" });
         }
         if (result) {
-          // password macth กัน
-          const token = JWT.sign(
-            { _id: user._id },
-            process.env.ACCESS_JWT_SECRET,
-            { expiresIn: "1d" }
-          );
-          return res.status(200).json({ token, _id: user._id });
+          let adminToken;
+          let clientToken;
+          //Admin Token
+          if (email === "showroom@gmail.com") {
+            adminToken = JWT.sign(
+              { _id: user._id },
+              process.env.ADMIN_JWT_SECRET,
+              { expiresIn: "1d" }
+            );
+          } else {
+            //Client Token
+            clientToken = JWT.sign(
+              { _id: user._id },
+              process.env.CLIENT_JWT_SECRET,
+              { expiresIn: "1d" }
+            );
+          }
+          if (email === "showroom@gmail.com") {
+            return res.status(200).json({ adminToken, _id: user._id });
+          } else {
+            return res.status(200).json({ clientToken, _id: user._id });
+          }
         } else {
           //password not match
           return res.status(400).json({ error: "Invalid password" });
@@ -35,9 +51,4 @@ exports.login = (req, res) => {
       return res.status(500).json({ error: "Invalid server error" });
     });
 };
-//สร้าง middleware เพื่อมาตรวจสอบ token
-// exports.requireLogin = expressJWT({
-//     secret:process.env.ACCESS_JWT_SECRET,
-//     algorithms:['HS256'],
-//     userProperty:'auth'
-// })
+

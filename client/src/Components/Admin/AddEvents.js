@@ -73,9 +73,21 @@ const AddEvents = () => {
         });
       });
   };
+  const backPage = () => {
+    navigate("/admincontrol");
+  };
 
   return (
     <div className="flex flex-col justify-center  w-full max-w-2xl bg-white shadow-md rounded  m-auto">
+      <div className="flex items-center justify-start mt-2 ml-4 ">
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold  py-2 px-4  rounded focus:outline-none focus:shadow-outline"
+          type="button"
+          onClick={backPage}
+        >
+          Back
+        </button>
+      </div>
       <div className="flex justify-center">
         <img className="w-40 mt-6 flex " src={logo} alt="showroom" />
       </div>
@@ -167,7 +179,7 @@ const AddEvents = () => {
                     </label>
                     <input
                       className="shadow appearance-none border rounded w-full text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      type="text"
+                      type="date"
                       placeholder="MM-DD-YYYY"
                       value={item.localDate}
                       onChange={(e) =>
