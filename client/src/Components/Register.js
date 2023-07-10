@@ -72,7 +72,7 @@ const Register = () => {
 
   return (
     <>
-      <nav className="relative z-50 bg-white border-gray-200 bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
+      <nav className="bg-white z-50 border-gray-200 bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="/" className="flex items-center">
             <img src={logo} className="h-5 mr-3" alt="Flowbite Logo" />
@@ -125,7 +125,7 @@ const Register = () => {
             <label className="mb-2">Confirm Password</label>
             <input
               id="confirm"
-              type={showConfirmPassword ? "text" : "password"}
+              type={showPassword ? "text" : "password"}
               value={confirmPassword}
               onChange={inputValue("confirmPassword")}
             />
@@ -136,7 +136,7 @@ const Register = () => {
                 togglePassword("confirm");
               }}
             >
-              {showConfirmPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
+              {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
             </button>
           </div>
           <div className="flex items-center justify-center">

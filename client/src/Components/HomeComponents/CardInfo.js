@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../Navbar";
-import Footer from "../HomeComponents/Footer";
+import Footer from "./Footer";
 import { BsFillCalendarEventFill, BsFillClockFill } from "react-icons/bs";
 
 const CardInfo = () => {
