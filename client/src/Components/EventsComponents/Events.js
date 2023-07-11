@@ -1,9 +1,10 @@
 //  แสดงข้อมูลที่ส่งมาจาก database โดย จะให้ไปแสดงใน home component จะแสดง รูปภาพ และชื่อ
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar";
+import Footer from '../HomeComponents/Footer'
+
 const Events = () => {
   const [events, setEvents] = useState([]);
 
@@ -50,6 +51,7 @@ const Events = () => {
           })}
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

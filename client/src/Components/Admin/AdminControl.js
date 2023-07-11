@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 const AdminControl = () => {
   const [events, setEvents] = useState([]);
   const [showContent, setShowContent] = useState(null);
+  const [word, setWord] = useState("");
 
   const fetchData = () => {
     //ดึงข้อมูล จาก database collection events
@@ -40,6 +41,7 @@ const AdminControl = () => {
     }-${year}`;
   };
 
+  // button delete data by Slugname
   const deleteData = async (eventSlug) => {
     Swal.fire({
       title: "Are you sure?",
@@ -63,6 +65,12 @@ const AdminControl = () => {
       }
     });
   };
+  // Search Data by artist name
+  const searchData = (artists) => {
+    return artists.filter((item) => {
+      return item.band.artist.toLowerCase().includes(word.toLowerCase());
+    });
+  };
 
   return (
     <div className="flex flex-col justify-center w-full max-w-4xl mt-6 m-auto">
@@ -84,6 +92,9 @@ const AdminControl = () => {
           <input
             type="search"
             className="block w-full pl-10 border-slate-300 shadow"
+            placeholder="Search Artist..."
+            value={word}
+            onChange={(e) => setWord(e.target.value)}
           />
         </div>
       </form>
@@ -100,7 +111,7 @@ const AdminControl = () => {
           </tr>
         </thead>
         {/* loop events show data header band.artist , createdated ,updatedated */}
-        {events.map(
+        {searchData(events).map(
           (
             event //
           ) => (
