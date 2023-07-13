@@ -17,9 +17,10 @@ const AdminControl = () => {
   const fetchData = () => {
     //ดึงข้อมูล จาก database collection events
     axios
-      .get(`${process.env.REACT_APP_USERS}/api/events`)
+      .get(`${process.env.REACT_APP_USERS}/admin/events`)
       .then((response) => {
         setEvents(response.data.event);
+        
       })
       .catch((error) => {
         console.log(error);
@@ -55,7 +56,7 @@ const AdminControl = () => {
       if (result.isConfirmed) {
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
         axios
-          .delete(`${process.env.REACT_APP_USERS}/api/events/${eventSlug}`)
+          .delete(`${process.env.REACT_APP_USERS}/admin/events/${eventSlug}`)
           .then((response) => {
             fetchData();
           })

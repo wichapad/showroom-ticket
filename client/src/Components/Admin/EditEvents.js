@@ -46,7 +46,7 @@ const EditEvents = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_USERS}/api/events/${slug}`
+          `${process.env.REACT_APP_USERS}/admin/events/${slug}`
         );
         const { band, images, dates, locations, ticket } = response.data;
         setBand(band);
@@ -64,7 +64,7 @@ const EditEvents = () => {
   const updateData = async (e) => {
     e.preventDefault();
     await axios
-      .put(`${process.env.REACT_APP_USERS}/api/events/${slug}`, {
+      .put(`${process.env.REACT_APP_USERS}/admin/events/${slug}`, {
         band,
         images,
         dates,

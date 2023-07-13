@@ -51,7 +51,7 @@ const AddEvents = () => {
       ticket,
     };
     await axios
-      .post(`${process.env.REACT_APP_USERS}/api/events/addEvent`, storeEvents)
+      .post(`${process.env.REACT_APP_USERS}/admin/events/addEvent`, storeEvents)
       .then((response) => {
         Swal.fire({
           position: "center",

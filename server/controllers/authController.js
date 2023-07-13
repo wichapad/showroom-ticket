@@ -1,6 +1,9 @@
-const JWT = require("jsonwebtoken");
+// สร้าง token ระหว่าง Admin กับ Client
+
+const JWT = require("jsonwebtoken"); //สร้าง token
 const Users = require("../models/Users");
 const bcrypt = require("bcrypt");
+const { expressjwt: expressjwt } = require("express-jwt"); //ตรวจสอบ token
 
 exports.login = (req, res) => {
   const { email, password } = req.body;
@@ -43,3 +46,12 @@ exports.login = (req, res) => {
       return res.status(500).json({ error: "Invalid server error" });
     });
 };
+
+// ตรวจสอบ token ที่ส่งมา
+exports.requireAdmin = expressjwt({
+  secret: process.env.ADMIN_JWT_SECRET,
+  algorithms: ["HS256"],
+  userProperty: "auth",
+});
+
+
