@@ -1,26 +1,25 @@
 // ดึง card slide news footer component มาแสดง
 import React from "react";
 import Card from "./Cards";
-import Slide from "./slides";
+import ShopHome from "./ShopHome";
 import News from "./News";
 import Footer from "./Footer";
+import Header from "./Header";
 
 const Home = () => {
   return (
-    <div className=" flex flex-wrap justify-center mx-auto ">
-      <div className="home-background max-w-screen-xl">
-        <img
-          className=" home-background-img "
-          src="https://images.unsplash.com/photo-1577648875929-894904f7b051?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-          alt="bg-home"
-        />
+    <div className=" flex flex-wrap mx-auto ">
+      <Header />
+      <div className="mt-4 mx-4">
+        <span className="text-2xl border-b-2 border-gray-900">
+          Showroom Concert
+        </span>
       </div>
       <Card />
-      <Slide />
+      <ShopHome />
       <News />
       <Footer />
     </div>
-
   );
 };
 

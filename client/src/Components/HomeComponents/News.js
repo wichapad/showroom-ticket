@@ -1,102 +1,122 @@
 // แสดง ข่าวสาร ต่างๆ
 const News = () => {
   return (
-    <div className="flex flex-col w-full">
-      <div className="my-4 mx-4">
-        <span className="text-2xl">Showroom News</span>
+    <div className=" w-full">
+      <div className="mt-4 mx-4">
+        <span className="text-2xl border-b-2 border-gray-900">Showroom News</span>
       </div>
-      <div className="flex justify-center p-4">
-        <div className="max-w-screen-md">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {/* item 1 */}
-            <div className="flex flex-col shadow-lg rounded  col-span-full">
-              <div className="flex-1">
-                <img
-                  className="object-cover rounded h-72 w-full"
-                  src="https://static.euronews.com/articles/stories/07/20/94/68/773x435_cmsv2_853c1552-18e0-5511-8eb9-acb5a9b089a0-7209468.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="p-4 text-sm flex-1">
-                <p className="text-gray-900 my-2">
-                  Bad Blood: The Taylor Swift Ticketmaster fiasco gets political
-                </p>
+      <div className="p-4">
+        <div className="grid grid-cols-1 gap-2 md:grid-cols-4 lg:grid-cols-12">
+          {/* item 1 */}
+          <div className="shadow-lg rounded md:col-span-4 lg:col-span-6 row-span-3">
+            <div className="">
+              <img
+                className="object-cover rounded w-full"
+                src="https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                alt=""
+              />
+            </div>
+            <div className="p-2 text-sm">
+              <p className="text-gray-500 my-2">
+                Lorem Ipsum has been the industry's standard dummy text ever
+                since the 1500s, when an unknown.Lorem Ipsum
+              </p>
 
-                <div className="">
-                  <span className="font-semibold underline cursor-pointer">
-                    See Detail
-                  </span>
-                </div>
+              <div className="">
+                <span className="font-semibold underline cursor-pointer">
+                  See Detail
+                </span>
               </div>
             </div>
+          </div>
 
-            {/* item 2 */}
-            <div className="flex flex-col shadow-lg rounded">
-              <div className="flex-1">
-                <img
-                  className="object-cover rounded sm:h-72 lg:h-full w-full"
-                  src="https://static.euronews.com/articles/stories/06/21/49/36/773x435_cmsv2_54522c06-3fcc-5bcf-bf2b-d356a051a7f9-6214936.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="p-4 text-sm flex-1">
-                <p className="text-gray-500 my-2">
-                  Astroworld: How could the crowd surge have been prevented?
-                  Euronews talks to the safety experts
-                </p>
+          {/* item 2 */}
+          <div className="shadow-lg rounded flex md:block col-span-2 lg:col-span-3">
+            <div className="w-80 md:w-full">
+              <img
+                className="object-cover rounded w-full"
+                src="https://images.unsplash.com/photo-1504242425842-802eea352df7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                alt=""
+              />
+            </div>
+            <div className="p-2 text-sm md:p-4">
+              <p className="text-gray-500 ">
+                Lorem Ipsum has been the industry's standard dummy text ever
+                since the 1500s, when an unknown.Lorem Ipsum
+              </p>
 
-                <div className="">
-                  <span className="font-semibold underline cursor-pointer">
-                    See Detail
-                  </span>
-                </div>
+              <div className="">
+                <span className="font-semibold underline cursor-pointer">
+                  See Detail
+                </span>
               </div>
             </div>
+          </div>
 
-            {/* item 3 */}
-            <div className="flex flex-col shadow-lg rounded">
-              <div className="flex-1">
-                <img
-                  className="object-cover rounded sm:h-72 lg:h-full w-full"
-                  src="https://static.euronews.com/articles/stories/06/18/39/70/773x435_cmsv2_ed109f06-3010-5866-834b-a980a6e340d9-6183970.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="p-4 text-sm flex-1">
-                <p className="text-gray-500 my-2">
-                  Under new guidance, crowd surfing will not be permitted and
-                  nightclub goers must form a socially distanced queue to buy
-                  drinks.
-                </p>
+          {/* item 3 */}
+          <div className=" shadow-lg rounded flex md:block col-span-2 lg:col-span-3">
+            <div className="w-80 md:w-full">
+              <img
+                className="object-cover rounded  w-full"
+                src="https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80"
+                alt=""
+              />
+            </div>
+            <div className="p-2 text-sm md:p-4">
+              <p className="text-gray-500 ">
+                Lorem Ipsum has been the industry's standard dummy text ever
+                since the 1500s, when an unknown.Lorem Ipsum
+              </p>
 
-                <div className="">
-                  <span className="font-semibold underline cursor-pointer">
-                    See Detail
-                  </span>
-                </div>
+              <div className="">
+                <span className="font-semibold underline cursor-pointer">
+                  See Detail
+                </span>
               </div>
             </div>
+          </div>
 
-            {/* item 4 */}
-            <div className="flex flex-col shadow-lg rounded">
-              <div className="flex-1">
-                <img
-                  className="object-cover rounded sm:h-72 lg:h-full w-full"
-                  src="https://images.unsplash.com/photo-1661956603025-8310b2e3036d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                  alt=""
-                />
+          {/* item 4 */}
+          <div className="shadow-lg rounded flex md:block col-span-2 lg:col-span-3">
+            <div className="w-80 md:w-full">
+              <img
+                className="object-cover rounded  w-full"
+                src="https://images.unsplash.com/photo-1501527410-63b3b08336a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                alt=""
+              />
+            </div>
+            <div className="p-2 text-sm md:p-4">
+              <p className="text-gray-500 ">
+                Lorem Ipsum has been the industry's standard dummy text ever
+                since the 1500s, when an unknown.Lorem Ipsum
+              </p>
+
+              <div className="">
+                <span className="font-semibold underline cursor-pointer">
+                  See Detail
+                </span>
               </div>
-              <div className="p-4 text-sm flex-1">
-                <p className="text-gray-500 my-2">
-                  Lorem Ipsum has been the industry's standard dummy text ever
-                  since the 1500s, when an unknown.Lorem Ipsum
-                </p>
+            </div>
+          </div>
+          {/* item 5 */}
+          <div className="shadow-lg rounded flex md:block col-span-2 lg:col-span-3">
+            <div className="w-80 md:w-full">
+              <img
+                className="object-cover rounded  w-full"
+                src="https://images.unsplash.com/photo-1567593810070-7a3d471af022?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
+                alt=""
+              />
+            </div>
+            <div className="p-2 text-sm md:p-4">
+              <p className="text-gray-500">
+                Lorem Ipsum has been the industry's standard dummy text ever
+                since the 1500s, when an unknown.Lorem Ipsum
+              </p>
 
-                <div className="">
-                  <span className="font-semibold underline cursor-pointer">
-                    See Detail
-                  </span>
-                </div>
+              <div className="">
+                <span className="font-semibold underline cursor-pointer">
+                  See Detail
+                </span>
               </div>
             </div>
           </div>

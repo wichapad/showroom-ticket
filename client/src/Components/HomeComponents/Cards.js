@@ -30,10 +30,7 @@ const Card = () => {
   // };
 
   return (
-    <div className="max-w-screen-xl  mx-4">
-      <div className=" w-full my-4">
-        <span className="text-2xl">Showroom Concert</span>
-      </div>
+    <div className="max-w-screen-xl ">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         {events.map((event) => {
           return (
