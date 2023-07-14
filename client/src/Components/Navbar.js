@@ -1,6 +1,6 @@
 import logo from "../images/showroomlogowhite.png";
 import { Link, useNavigate } from "react-router-dom";
-import { getAdminToken, getClientToken, logout } from "../services/autherize";
+import { getAdminId, getClientId, logout } from "../services/autherize";
 import { FaBars } from "react-icons/fa";
 import { useState } from "react";
 const Navbar = () => {
@@ -63,7 +63,7 @@ const Navbar = () => {
           id="navbar-default"
         >
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:border-gray-700">
-            {!getClientToken() && !getAdminToken() ? (
+            {!getClientId() && !getAdminId() ? (
               <>
                 <li>
                   <Link
@@ -84,7 +84,7 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                {getAdminToken() && (
+                {getAdminId() && (
                   <li>
                     <Link
                       to="/admincontrol"

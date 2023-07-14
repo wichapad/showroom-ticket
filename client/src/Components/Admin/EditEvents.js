@@ -3,6 +3,7 @@ import axios from "axios";
 import logo from "../../images/showroomlogo.png";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+// import { getAdminToken } from "../../services/autherize";
 
 const EditEvents = () => {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const EditEvents = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_USERS}/admin/events/${slug}`
+          `${process.env.REACT_APP_USERS}/api/events/${slug}`
         );
         const { band, images, dates, locations, ticket } = response.data;
         setBand(band);
@@ -64,13 +65,21 @@ const EditEvents = () => {
   const updateData = async (e) => {
     e.preventDefault();
     await axios
-      .put(`${process.env.REACT_APP_USERS}/admin/events/${slug}`, {
-        band,
-        images,
-        dates,
-        locations,
-        ticket,
-      })
+      .put(
+        `${process.env.REACT_APP_USERS}/admin/events/${slug}`,
+        {
+          band,
+          images,
+          dates,
+          locations,
+          ticket,
+        },
+        {
+          headers: {
+            authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGFiYWIyYmYyZTIwOTY3NjdlMDcxYTkiLCJpYXQiOjE2ODkyNDUxMzAsImV4cCI6MTY4OTMzMTUzMH0.9ui65nofLaHfkTxCF_Y3L_OTcP9DlZIho8cLPGm1aeU`,
+          },
+        }
+      )
       .then((response) => {
         Swal.fire({
           position: "center",
@@ -364,8 +373,6 @@ const EditEvents = () => {
           </button>
         </div>
       </form>
-
-     
     </div>
   );
 };

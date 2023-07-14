@@ -133,7 +133,7 @@ const CardInfo = () => {
                   <div className="mt-2 md:mt-0">
                    <div>
                    <button  className="uppercase text-sm font-bold py-2 px-4 text-gray-200 rounded-md bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95">
-                      Buy Ticket
+                      Get Ticket
                     </button>
                     
                    </div>

@@ -8,6 +8,8 @@ import {
   BsPlusLg,
 } from "react-icons/bs";
 import Swal from "sweetalert2";
+import logo from "../../images/showroomlogo.png";
+// import { getAdminToken } from "../../services/autherize";
 
 const AdminControl = () => {
   const [events, setEvents] = useState([]);
@@ -17,10 +19,9 @@ const AdminControl = () => {
   const fetchData = () => {
     //ดึงข้อมูล จาก database collection events
     axios
-      .get(`${process.env.REACT_APP_USERS}/admin/events`)
+      .get(`${process.env.REACT_APP_USERS}/api/events`)
       .then((response) => {
         setEvents(response.data.event);
-        
       })
       .catch((error) => {
         console.log(error);
@@ -56,7 +57,11 @@ const AdminControl = () => {
       if (result.isConfirmed) {
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
         axios
-          .delete(`${process.env.REACT_APP_USERS}/admin/events/${eventSlug}`)
+          .delete(`${process.env.REACT_APP_USERS}/admin/events/${eventSlug}`, {
+            headers: {
+              authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGFiYWIyYmYyZTIwOTY3NjdlMDcxYTkiLCJpYXQiOjE2ODkyNDUxMzAsImV4cCI6MTY4OTMzMTUzMH0.9ui65nofLaHfkTxCF_Y3L_OTcP9DlZIho8cLPGm1aeU`,
+            },
+          })
           .then((response) => {
             fetchData();
           })
@@ -75,14 +80,28 @@ const AdminControl = () => {
 
   return (
     <div className="flex flex-col justify-center w-full max-w-4xl mt-6 m-auto">
-      {/* div add data */}
-      <div className="flex justify-end my-2">
-        <Link
-          className="px-3 py-2 text-white text-right bg-blue-400 rounded hover:bg-blue-500 duration-300"
-          to={`/create`}
-        >
-          <BsPlusLg />
-        </Link>
+      <div className="flex justify-between items-center my-2">
+        {/* Back to page */}
+        <div>
+          <Link
+            className="px-3 py-2 text-white text-right bg-blue-400 rounded hover:bg-blue-500 duration-300"
+            to={`/`}
+          >
+            Back Page
+          </Link>
+        </div>
+        <div>
+          <img className="w-40  flex " src={logo} alt="showroom" />
+        </div>
+        {/* div add data */}
+        <div className="flex">
+          <Link
+            className="px-3 py-2 text-white text-right bg-blue-400 rounded hover:bg-blue-500 duration-300"
+            to={`/create`}
+          >
+            <BsPlusLg />
+          </Link>
+        </div>
       </div>
       {/* form search data */}
       <form>

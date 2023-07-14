@@ -2,8 +2,8 @@ import logo from "../images/showroomlogowhite.png";
 import { useState, useEffect } from "react";
 import {
   authenticate,
-  getAdminToken,
-  getClientToken,
+  getAdminId,
+  getClientId,
 } from "../services/autherize";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -38,7 +38,7 @@ const Login = () => {
 
   // ตรวจสอบ token ว่ามีเก็บอยู่ใน session storage ไหม
   useEffect(() => {
-    if (getAdminToken() || getClientToken()) {
+    if (getAdminId() || getClientId()) {
       navigate("/");
     }
     // eslint-disable-next-line

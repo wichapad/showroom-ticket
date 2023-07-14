@@ -3,6 +3,7 @@ import axios from "axios";
 import logo from "../../images/showroomlogo.png";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+// import { getAdminToken } from "../../services/autherize";
 
 const AddEvents = () => {
   const navigate = useNavigate();
@@ -51,7 +52,13 @@ const AddEvents = () => {
       ticket,
     };
     await axios
-      .post(`${process.env.REACT_APP_USERS}/admin/events/addEvent`, storeEvents)
+      .post(
+        `${process.env.REACT_APP_USERS}/admin/events/addEvent`,
+        storeEvents,
+        {
+          headers: { authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGFiYWIyYmYyZTIwOTY3NjdlMDcxYTkiLCJpYXQiOjE2ODkyNDUxMzAsImV4cCI6MTY4OTMzMTUzMH0.9ui65nofLaHfkTxCF_Y3L_OTcP9DlZIho8cLPGm1aeU` },
+        }
+      )
       .then((response) => {
         Swal.fire({
           position: "center",
