@@ -17,13 +17,34 @@ const eventsRoute = require('./routes/events');
 const adminRoute = require('./routes/admin');
 const { requireAdmin } = require("./controllers/authController");
 
+// mongoDB Database
 mongoose
     .connect(process.env.DATABASE, {
         useNewUrlParser: true,
         useUnifiedTopology: false,
     })
-    .then(() => console.log("Connect database success"))
+    .then(() => console.log("Connect mongoDB database success"))
     .catch((error) => console.log(error))
+
+
+// PostgreSQL Database
+const { Pool } =require('pg')
+
+const pool = new Pool({
+  host: "localhost",
+  user: "postgres",
+  port: 5432,
+  password: process.env.PASSWORD_POSTGRES,
+  database: "postgres",
+});
+
+pool.query('SELECT NOW()', (err, res) => {
+  if (err) {
+    console.error('Error connecting to the database:', err);
+  } else {
+    console.log('Connect postgreSQL database success');
+  }
+});
 
 
 app.use(users)
