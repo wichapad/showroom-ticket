@@ -87,10 +87,70 @@ exports.createUsers = async (req, res) => {
   try {
     const { email, password, name, phone, address, city, zipcode } = req.body;
     const hashedPassword = await hashPassword(password);
-    const query = `INSERT INTO users(email, password, name, phone, address, city, zipcode) VALUE ($1,$2,$3,$4,$5,$6,$7) RETURNING`;
+    const query = `INSERT INTO users(email, password, name, phone, address, city, zipcode) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *`;
     const values = [email, hashedPassword, name, phone, address, city, zipcode];
     const result = await pool.query(query, values);
     res.json(result.rows[0]);
+  } catch (error) {
+    res.status(500).json({ error: "internal server error" });
+  }
+};
+
+// ดูข้อมูล one user ใน database ด้วย email
+exports.getUserByEmail = async (req, res) => {
+  try {
+    const { email } = req.params;
+    const query = `SELECT * FROM users WHERE email = $1`;
+    const value = [email];
+    const result = await pool.query(query, value);
+    if (result.rows.length > 0) {
+      const user = result.rows[0];
+      res.json(user);
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "internal server error" });
+  }
+};
+
+//Update ข้อมูล user ใน database ผ่าน email
+exports.updateUsersByEmail = async (req, res) => {
+  try {
+    const { email } = req.params;
+    const { name, phone, address, city, zipcode } = req.body;
+    const query = `UPDATE users 
+        set name=$1 ,phone=$2 ,address=$3,city=$4,zipcode=$5
+        WHERE email =$6
+        RETURNING *
+        `;
+    const values = [name, phone, address, city, zipcode, email];
+    const result = await pool.query(query, values);
+    if (result.rows.length > 0) {
+      const updateUser = result.rows[0];
+      res.json(updateUser);
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "internal server error" });
+  }
+};
+
+// ลบข้อมูล user
+exports.deleteUsers = async (req, res) => {
+  try {
+    const { email } = req.params;
+    const query = `DELETE FROM users
+        WHERE email = $1 RETURNING *`;
+    const values = [email];
+    const result = await pool.query(query, values);
+    if (result.rows.length > 0) {
+      const deleteUsers = result.rows[0];
+      res.json({ message: "Delete successfully", deleteUsers });
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
   } catch (error) {
     res.status(500).json({ error: "internal server error" });
   }
