@@ -3,59 +3,29 @@
 export const authenticate = (response, next) => {
   if (window !== "undefined") {
     if (response.data.adminToken) {
-      // sessionStorage.setItem(
-      //   "adminToken",
-      //   JSON.stringify(response.data.adminToken)
-      // );
-      sessionStorage.setItem("admin_id", JSON.stringify(response.data._id));
+      localStorage.setItem("admin_token", JSON.stringify(response.data.adminToken));
     }
     if (response.data.clientToken) {
-      // sessionStorage.setItem(
-      //   "clientToken",
-      //   JSON.stringify(response.data.clientToken)
-      // );
-      sessionStorage.setItem("client_id", JSON.stringify(response.data._id));
+      localStorage.setItem("client_token", JSON.stringify(response.data.clientToken));
     }
   }
   next();
 };
 
-// ดึง adminToken
-// export const getAdminToken = () => {
-//   if (window !== "undefined") {
-//     if (sessionStorage.getItem("adminToken")) {
-//       return JSON.parse(sessionStorage.getItem("adminToken"));
-//     } else {
-//       return false;
-//     }
-//   }
-// };
-
 export const getAdminId = () => {
   if (window !== "undefined") {
-    if (sessionStorage.getItem("admin_id")) {
-      return JSON.parse(sessionStorage.getItem("admin_id"));
+    if (localStorage.getItem("admin_token")) {
+      return JSON.parse(localStorage.getItem("admin_token"));
     } else {
       return false;
     }
   }
 };
 
-// ดึง clientToken
-// export const getClientToken = () => {
-//   if (window !== "undefined") {
-//     if (sessionStorage.getItem("clientToken")) {
-//       return JSON.parse(sessionStorage.getItem("clientToken"));
-//     } else {
-//       return false;
-//     }
-//   }
-// };
-
 export const getClientId = () => {
   if (window !== "undefined") {
-    if (sessionStorage.getItem("client_id")) {
-      return JSON.parse(sessionStorage.getItem("client_id"));
+    if (localStorage.getItem("client_token")) {
+      return JSON.parse(localStorage.getItem("client_token"));
     } else {
       return false;
     }
@@ -64,10 +34,9 @@ export const getClientId = () => {
 
 export const logout = (next) => {
   if (window !== "undefined") {
-    // sessionStorage.removeItem("adminToken");
-    // sessionStorage.removeItem("clientToken");
-    sessionStorage.removeItem("admin_id");
-    sessionStorage.removeItem("client_id");
+   
+    localStorage.removeItem("admin_token");
+    localStorage.removeItem("client_token");
   }
   next();
 };

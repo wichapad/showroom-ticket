@@ -1,14 +1,12 @@
 import logo from "../images/showroomlogowhite.png";
 import { useState, useEffect } from "react";
-import {
-  authenticate,
-  getAdminId,
-  getClientId,
-} from "../services/autherize";
+import { authenticate, getAdminId, getClientId } from "../services/autherize";
 import { useNavigate } from "react-router-dom";
+import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import axios from "axios";
 const Login = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   //create state users
   const [users, setUsers] = useState({
@@ -26,7 +24,15 @@ const Login = () => {
   const submitUser = async (e) => {
     e.preventDefault();
     await axios
-      .post(`${process.env.REACT_APP_USERS}/auth/login`, { email, password })
+      .post(
+        `${process.env.REACT_APP_USERS}/auth/login`,
+        { email, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then((response) => {
         // login success
         authenticate(response, () => navigate("/"));
@@ -43,6 +49,12 @@ const Login = () => {
     }
     // eslint-disable-next-line
   }, []);
+
+  const togglePassword = (field) => {
+    if (field === "password") {
+      setShowPassword(!showPassword);
+    }
+  };
 
   return (
     <>
@@ -68,14 +80,23 @@ const Login = () => {
               onChange={inputValue("email")}
             />
           </div>
-          <div className="form-input mb-8">
+          <div className="form-input relative">
             <label className="mb-2">Password</label>
             <input
               id="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               value={password}
               onChange={inputValue("password")}
             />
+            <button
+              className="absolute bottom-4 right-4"
+              type="button"
+              onClick={() => {
+                togglePassword("password");
+              }}
+            >
+              {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
+            </button>
           </div>
           <div className="flex items-center justify-center">
             <input

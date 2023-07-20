@@ -8,7 +8,7 @@ import {
   BsPlusLg,
 } from "react-icons/bs";
 import Swal from "sweetalert2";
-import logo from "../../images/showroomlogo.png";
+import logo from "../../../images/showroomlogo.png";
 // import { getAdminToken } from "../../services/autherize";
 
 const AdminControl = () => {
@@ -59,7 +59,7 @@ const AdminControl = () => {
         axios
           .delete(`${process.env.REACT_APP_USERS}/admin/events/${eventSlug}`, {
             headers: {
-              authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGFiYWIyYmYyZTIwOTY3NjdlMDcxYTkiLCJpYXQiOjE2ODkyNDUxMzAsImV4cCI6MTY4OTMzMTUzMH0.9ui65nofLaHfkTxCF_Y3L_OTcP9DlZIho8cLPGm1aeU`,
+              authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODk3NDEwNDAsImV4cCI6MTY4OTgyNzQ0MH0.NgzgmjJyamDqD45HORTzw-L-ktwwmrTqD_rvkqfVojA`,
             },
           })
           .then((response) => {

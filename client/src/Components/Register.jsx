@@ -1,9 +1,8 @@
-import {  useState } from "react";
+import { useState } from "react";
 import logo from "../images/showroomlogowhite.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
-import { authenticate } from "../services/autherize";
 
 const Register = () => {
   // สร้าง navigate ด้วย react-router-dom เพื่อให้เวลา กด submit แล้ว redirect ไปหน้า home
@@ -14,11 +13,24 @@ const Register = () => {
   //create state users
   const [users, setUsers] = useState({
     email: "",
-    username: "",
     password: "",
     confirmPassword: "",
+    name: "",
+    phone: "",
+    address: "",
+    city: "",
+    zipcode: "",
   });
-  const { email, username, password, confirmPassword } = users;
+  const {
+    email,
+    password,
+    confirmPassword,
+    name,
+    phone,
+    address,
+    city,
+    zipcode,
+  } = users;
 
   //กำหนดค่าให้ state
   const inputValue = (name) => (event) => {
@@ -28,6 +40,32 @@ const Register = () => {
   //function submit register
   const submitData = async (e) => {
     e.preventDefault();
+
+    await axios
+      .post(
+        `${process.env.REACT_APP_USERS}/users/create`,
+        {
+          email: email,
+          password: password,
+          confirmPassword: confirmPassword,
+          name: name,
+          phone: phone,
+          address: address,
+          city: city,
+          zipcode: zipcode,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        navigate("/login");
+      })
+      .catch((err) => {
+        alert(err.response.data.error);
+      });
 
     //password length < 6
     if (password.length < 6) {
@@ -40,19 +78,6 @@ const Register = () => {
       alert("Passwords do not match");
       return;
     }
-
-    await axios
-      .post(`${process.env.REACT_APP_USERS}/users/register`, {
-        email,
-        username,
-        password,
-      })
-      .then((response) => {
-        authenticate(response, () => navigate('/'))
-      })
-      .catch((err) => {
-        alert(err.response.data.error);
-      });
   };
 
   const togglePassword = (field) => {
@@ -72,7 +97,7 @@ const Register = () => {
           </a>
         </div>
       </nav>
-      <div className="flex items-center justify-center h-screen bg-slate-50">
+      <div className="flex items-center justify-center  bg-slate-50">
         <form
           onSubmit={submitData}
           className="bg-white shadow-md rounded w-96 px-8 py-10"
@@ -91,8 +116,8 @@ const Register = () => {
             <input
               id="user"
               type="text"
-              value={username}
-              onChange={inputValue("username")}
+              value={name}
+              onChange={inputValue("name")}
             />
           </div>
           <div className="form-input relative">
@@ -131,6 +156,42 @@ const Register = () => {
             >
               {showConfirmPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
             </button>
+          </div>
+          <div className="form-input">
+            <label className="mb-2">Phone</label>
+            <input
+              id="phone"
+              type="text"
+              value={phone}
+              onChange={inputValue("phone")}
+            />
+          </div>
+          <div className="form-input">
+            <label className="mb-2">Address</label>
+            <input
+              id="address"
+              type="text"
+              value={address}
+              onChange={inputValue("address")}
+            />
+          </div>
+          <div className="form-input">
+            <label className="mb-2">City</label>
+            <input
+              id="city"
+              type="text"
+              value={city}
+              onChange={inputValue("city")}
+            />
+          </div>
+          <div className="form-input">
+            <label className="mb-2">Zipcode</label>
+            <input
+              id="zipcode"
+              type="text"
+              value={zipcode}
+              onChange={inputValue("zipcode")}
+            />
           </div>
           <div className="flex items-center justify-center">
             <input

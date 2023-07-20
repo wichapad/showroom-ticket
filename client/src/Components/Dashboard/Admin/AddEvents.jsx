@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
-import logo from "../../images/showroomlogo.png";
-import { useParams, useNavigate } from "react-router-dom";
+import logo from "../../../images/showroomlogo.png";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 // import { getAdminToken } from "../../services/autherize";
 
-const EditEvents = () => {
+const AddEvents = () => {
   const navigate = useNavigate();
-  const { slug } = useParams();
   //สร้าง state เก็บข้อมูลที่จะ input ค่ามา
   const [band, setBand] = useState({ artist: "", description: "", genre: "" });
   const [images, setImages] = useState({ band_image: "", poster_image: "" });
@@ -43,56 +42,42 @@ const EditEvents = () => {
     ]);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_USERS}/api/events/${slug}`
-        );
-        const { band, images, dates, locations, ticket } = response.data;
-        setBand(band);
-        setImages(images);
-        setDates(dates);
-        setLocation(locations);
-        setTicket(ticket);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, [slug]);
-
-  const updateData = async (e) => {
+  const sendData = async (e) => {
     e.preventDefault();
+    const storeEvents = {
+      band,
+      images,
+      dates,
+      locations,
+      ticket,
+    };
     await axios
-      .put(
-        `${process.env.REACT_APP_USERS}/admin/events/${slug}`,
+      .post(
+        `${process.env.REACT_APP_USERS}/admin/events/addEvent`,
+        storeEvents,
         {
-          band,
-          images,
-          dates,
-          locations,
-          ticket,
-        },
-        {
-          headers: {
-            authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGFiYWIyYmYyZTIwOTY3NjdlMDcxYTkiLCJpYXQiOjE2ODkyNDUxMzAsImV4cCI6MTY4OTMzMTUzMH0.9ui65nofLaHfkTxCF_Y3L_OTcP9DlZIho8cLPGm1aeU`,
-          },
+          headers: { authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODk3NDEwNDAsImV4cCI6MTY4OTgyNzQ0MH0.NgzgmjJyamDqD45HORTzw-L-ktwwmrTqD_rvkqfVojA` },
         }
       )
       .then((response) => {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Edit data success",
-          showConfirmButton: false,
+          title: "Save data success",
+          showConfirmButton: true,
           timer: 3000,
         });
 
         navigate("/admincontrol");
       })
-      .catch((error) => {
-        alert(error);
+      .catch((err) => {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: err.response.data.error,
+          showConfirmButton: false,
+          timer: 3000,
+        });
       });
   };
   const backPage = () => {
@@ -113,7 +98,7 @@ const EditEvents = () => {
       <div className="flex justify-center">
         <img className="w-40 mt-6 flex " src={logo} alt="showroom" />
       </div>
-      <form onSubmit={updateData} className="px-6 pt-6 pb-8 mb-4">
+      <form onSubmit={sendData} className="px-6 pt-6 pb-8 mb-4">
         <div className="flex">
           {/* Add Band form */}
           <div className="mb-2 w-full pr-2">
@@ -377,4 +362,4 @@ const EditEvents = () => {
   );
 };
 
-export default EditEvents;
+export default AddEvents;
