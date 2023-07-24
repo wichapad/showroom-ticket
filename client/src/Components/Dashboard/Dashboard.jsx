@@ -1,12 +1,13 @@
+import AllEvents from "./Events/AllEvents";
 import NavDashboard from "./NavDashboard";
 
 const Dashboard = () => {
   return (
     <div>
-        <NavDashboard/>
-        <h1>Dashboard</h1>
+      <NavDashboard />
+      <AllEvents />
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

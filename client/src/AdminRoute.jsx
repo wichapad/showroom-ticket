@@ -1,9 +1,9 @@
 import { getAdminId } from "./services/autherize";
 import { useNavigate, Route, Routes } from "react-router-dom";
-import AddEvents from "./Components/Dashboard/Admin/AddEvents";
-import AdminControl from "./Components/Dashboard/Admin/AdminControl";
-import EditEvents from "./Components/Dashboard/Admin/EditEvents";
+import AddEvents from "./Components/Dashboard/Events/AddEvents";
+import EditEvents from "./Components/Dashboard/Events/EditEvents";
 import Dashboard from "./Components/Dashboard/Dashboard";
+import AllEvents from "./Components/Dashboard/Events/AllEvents";
 
 const AdminRoute = () => {
   const navigate = useNavigate();
@@ -12,9 +12,11 @@ const AdminRoute = () => {
       {getAdminId() ? (
         <>
           <Route path="/dashboard" element={<Dashboard />} />
+
+          {/* events */}
           <Route path="/create" element={<AddEvents />} />
-          <Route path="/admincontrol" element={<AdminControl />} />
-          <Route path="/admincontrol/:slug" element={<EditEvents />} />
+          <Route path="/allevents" element={<AllEvents />} />
+          <Route path="/allevents/:slug" element={<EditEvents />} />
         </>
       ) : (
         () => {
