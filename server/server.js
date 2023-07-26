@@ -14,8 +14,8 @@ app.use(cors())
 const users = require('./routes/users');
 const authRoute = require('./routes/auth');
 const eventsRoute = require('./routes/events');
-const adminRoute = require('./routes/admin');
-const { requireAdmin } = require("./controllers/authController");
+// const adminRoute = require('./routes/admin');
+// const { requireAdmin } = require("./controllers/authController");
 
 // mongoDB Database
 mongoose
@@ -42,7 +42,7 @@ pool.query('SELECT NOW()', (err, res) => {
 app.use(users)
 app.use(authRoute)
 app.use('/api', eventsRoute)
-app.use('/admin', requireAdmin,adminRoute)
+// app.use('/admin', requireAdmin,adminRoute)
 
 
 
