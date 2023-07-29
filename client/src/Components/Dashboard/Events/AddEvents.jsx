@@ -1,92 +1,94 @@
-import { useState } from "react";
-import axios from "axios";
+// import { useState } from "react";
+// import axios from "axios";
 
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+// import Swal from "sweetalert2";
+// import { useNavigate } from "react-router-dom";
 // import { getAdminToken } from "../../services/autherize";
 
-const AddEvents = ({ isVisible }) => {
-  const navigate = useNavigate();
-  //สร้าง state เก็บข้อมูลที่จะ input ค่ามา
-  const [band, setBand] = useState({ artist: "", description: "", genre: "" });
-  const [images, setImages] = useState({ band_image: "", poster_image: "" });
-  const [dates, setDates] = useState([{ localDate: "", localTime: "" }]);
-  const [locations, setLocation] = useState([
-    { name_show: "", venue: "", state: "", city: "" },
-  ]);
-  const [ticket, setTicket] = useState([
-    {
-      ticket_type: "",
-      ticket_price: "",
-    },
-  ]);
+const AddEvents = () => {
+ 
+  // const navigate = useNavigate();
+  // //สร้าง state เก็บข้อมูลที่จะ input ค่ามา
+  // const [band, setBand] = useState({ artist: "", description: "", genre: "" });
+  // const [images, setImages] = useState({ band_image: "", poster_image: "" });
+  // const [dates, setDates] = useState([{ localDate: "", localTime: "" }]);
+  // const [locations, setLocation] = useState([
+  //   { name_show: "", venue: "", state: "", city: "" },
+  // ]);
+  // const [ticket, setTicket] = useState([
+  //   {
+  //     ticket_type: "",
+  //     ticket_price: "",
+  //   },
+  // ]);
 
-  //สร้างinput เพื่อเก็บค่า dates และlocation แยกไว้ เพื่อนำไปใช้ใน onChange
-  const inputDates = (index, field, value) => {
-    //index เข้าถึง array dates ที่ต้องการ update field ใช้เรียก field ใน dates มี localdate, localtime ,value ค่าที่จะกำหนดไปใหม่
-    const updateDates = [...dates];
-    updateDates[index][field] = value;
-    setDates(updateDates);
-  };
-  const inputLocation = (index, field, value) => {
-    const updateLocation = [...locations];
-    updateLocation[index][field] = value;
-    setLocation(updateLocation);
-  };
+  // //สร้างinput เพื่อเก็บค่า dates และlocation แยกไว้ เพื่อนำไปใช้ใน onChange
+  // const inputDates = (index, field, value) => {
+  //   //index เข้าถึง array dates ที่ต้องการ update field ใช้เรียก field ใน dates มี localdate, localtime ,value ค่าที่จะกำหนดไปใหม่
+  //   const updateDates = [...dates];
+  //   updateDates[index][field] = value;
+  //   setDates(updateDates);
+  // };
+  // const inputLocation = (index, field, value) => {
+  //   const updateLocation = [...locations];
+  //   updateLocation[index][field] = value;
+  //   setLocation(updateLocation);
+  // };
 
-  const addSchedule = () => {
-    setDates([...dates, { localDate: "", localTime: "" }]);
-    setLocation([
-      ...locations,
-      { name_show: "", venue: "", state: "", city: "" },
-    ]);
-  };
+  // const addSchedule = () => {
+  //   setDates([...dates, { localDate: "", localTime: "" }]);
+  //   setLocation([
+  //     ...locations,
+  //     { name_show: "", venue: "", state: "", city: "" },
+  //   ]);
+  // };
 
-  const sendData = async (e) => {
-    e.preventDefault();
-    const storeEvents = {
-      band,
-      images,
-      dates,
-      locations,
-      ticket,
-    };
-    await axios
-      .post(
-        `${process.env.REACT_APP_USERS}/admin/events/addEvent`,
-        storeEvents,
-        {
-          headers: {
-            authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODk3NDEwNDAsImV4cCI6MTY4OTgyNzQ0MH0.NgzgmjJyamDqD45HORTzw-L-ktwwmrTqD_rvkqfVojA`,
-          },
-        }
-      )
-      .then((response) => {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Save data success",
-          showConfirmButton: true,
-          timer: 3000,
-        });
+  // const sendData = async (e) => {
+  //   e.preventDefault();
+  //   const storeEvents = {
+  //     band,
+  //     images,
+  //     dates,
+  //     locations,
+  //     ticket,
+  //   };
+  //   await axios
+  //     .post(
+  //       `${process.env.REACT_APP_USERS}/admin/events/addEvent`,
+  //       storeEvents,
+  //       {
+  //         headers: {
+  //           authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODk3NDEwNDAsImV4cCI6MTY4OTgyNzQ0MH0.NgzgmjJyamDqD45HORTzw-L-ktwwmrTqD_rvkqfVojA`,
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       Swal.fire({
+  //         position: "center",
+  //         icon: "success",
+  //         title: "Save data success",
+  //         showConfirmButton: true,
+  //         timer: 3000,
+  //       });
 
-        navigate("/AllEvents");
-      })
-      .catch((err) => {
-        Swal.fire({
-          position: "center",
-          icon: "error",
-          title: err.response.data.error,
-          showConfirmButton: false,
-          timer: 3000,
-        });
-      });
-  };
-  const backPage = () => {
-    navigate("/admincontrol");
-  };
+  //       navigate("/AllEvents");
+  //     })
+  //     .catch((err) => {
+  //       Swal.fire({
+  //         position: "center",
+  //         icon: "error",
+  //         title: err.response.data.error,
+  //         showConfirmButton: false,
+  //         timer: 3000,
+  //       });
+  //     });
+  // };
+  // const backPage = () => {
+  //   navigate("/admincontrol");
+  // };
 
   return (
+    <div>Add</div>
     // <div className="flex flex-col justify-center  w-full max-w-2xl bg-white shadow-md rounded  m-auto">
     //   <div className="flex items-center justify-start mt-2 ml-4 ">
     //     <button
@@ -381,14 +383,7 @@ const AddEvents = ({ isVisible }) => {
     //     </div>
     //   </div>
     // </div>
-    <div
-    className={`${
-      isVisible ? "translate-x-0" : "translate-x-full"
-    } fixed top-0 right-0 h-full w-full bg-white transition-transform ease-in-out duration-300`}
-    style={{ width: "350px" }}
-  >
-      
-    </div>
+   
   );
 };
 
