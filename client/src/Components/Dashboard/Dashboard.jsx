@@ -2,6 +2,7 @@ import { useState } from "react";
 import AllEvents from "./Events/AllEvents";
 import NavDashboard from "./Navbar/NavDashboard";
 import SideMenubar from "./Navbar/SideMenubar";
+import { ApiProvider } from "../UseContext/ApiContext";
 
 const Dashboard = () => {
   const [isSidebarOpen, setSideBarOpen] = useState(false);
@@ -12,11 +13,13 @@ const Dashboard = () => {
   return (
     <div>
       <NavDashboard onToggleBar={toggleMenu} />
-      <div className=" pt-[3.5rem] flex whitespace-nowrap">
+      <div className=" pt-[3.2rem] flex">
         <SideMenubar isOpen={isSidebarOpen} />
 
         <div className="flex-grow">
-          <AllEvents />
+          <ApiProvider>
+            <AllEvents />
+          </ApiProvider>
         </div>
       </div>
     </div>

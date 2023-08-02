@@ -1,6 +1,6 @@
 // ดึง card slide news footer component มาแสดง
 import React from "react";
-import Card from "./EventsHome";
+import Events from "../EventsComponents/Events";
 import ShopHome from "./ShopHome";
 import News from "./News";
 import Footer from "./Footer";
@@ -15,7 +15,7 @@ const Home = () => {
           Showroom Concert
         </span>
       </div>
-      <Card />
+      <Events />
       <ShopHome />
       <News />
       <Footer />

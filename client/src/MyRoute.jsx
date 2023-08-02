@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import App from "./App";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
-import Events from "./Components/EventsComponents/Events";
+import Events from "./Components/EventsComponents/EventsPage";
 import EventInfo from "./Components/EventsComponents/EventInfo";
 import Shop from "./Components/ShopComponent/Shop";
 

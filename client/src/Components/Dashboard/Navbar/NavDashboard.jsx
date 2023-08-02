@@ -21,7 +21,7 @@ const NavDashboard = ({ onToggleBar }) => {
           >
             {!isSidebarOpen ? <HiMenuAlt1 /> : <HiX />}
           </button>
-          <a href="/dashboard" className="flex items-center">
+          <a href="/" className="flex items-center">
             <img src={logo} className="h-5" alt="Flowbite Logo" />
           </a>
         </div>
@@ -34,7 +34,7 @@ const NavDashboard = ({ onToggleBar }) => {
               <input
                 type="text"
                 id="mobile-search"
-                className="pl-10 text-md leading-[1.25rem] font-normal focus:ring-1  focus:ring-gray-800"
+                className="py-2 pl-[2.5rem] rounded-lg   text-md font-normal "
                 placeholder="Search"
               />
             </div>

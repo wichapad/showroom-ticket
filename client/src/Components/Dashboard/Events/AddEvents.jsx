@@ -1,389 +1,221 @@
-// import { useState } from "react";
-// import axios from "axios";
+import axios from "axios";
+import { useContext, useState } from "react";
+import { HiX } from "react-icons/hi";
+import { ApiContext } from "../../UseContext/ApiContext";
 
-// import Swal from "sweetalert2";
-// import { useNavigate } from "react-router-dom";
-// import { getAdminToken } from "../../services/autherize";
+const AddEvents = ({ isVisible, handleCreate }) => {
+  const { artistsList, venuesList } = useContext(ApiContext);
+  const [closeCreate, setCloseCreate] = useState(false);
+  const [eventList, setEventList] = useState([
+    {
+      event_name: "",
+      event_date: "",
+      event_time: "",
+      artist_id: "",
+      venue_id: "",
+    },
+  ]);
 
-const AddEvents = () => {
- 
-  // const navigate = useNavigate();
-  // //สร้าง state เก็บข้อมูลที่จะ input ค่ามา
-  // const [band, setBand] = useState({ artist: "", description: "", genre: "" });
-  // const [images, setImages] = useState({ band_image: "", poster_image: "" });
-  // const [dates, setDates] = useState([{ localDate: "", localTime: "" }]);
-  // const [locations, setLocation] = useState([
-  //   { name_show: "", venue: "", state: "", city: "" },
-  // ]);
-  // const [ticket, setTicket] = useState([
-  //   {
-  //     ticket_type: "",
-  //     ticket_price: "",
-  //   },
-  // ]);
+  // function ใส่ค่า form  ของ state Eventlist
+  const inputEventList = (index) => (e) => {
+    const { name, value } = e.target;
+    const newList = [...eventList];
+    newList[index][name] = value;
+    setEventList(newList);
+  };
 
-  // //สร้างinput เพื่อเก็บค่า dates และlocation แยกไว้ เพื่อนำไปใช้ใน onChange
-  // const inputDates = (index, field, value) => {
-  //   //index เข้าถึง array dates ที่ต้องการ update field ใช้เรียก field ใน dates มี localdate, localtime ,value ค่าที่จะกำหนดไปใหม่
-  //   const updateDates = [...dates];
-  //   updateDates[index][field] = value;
-  //   setDates(updateDates);
-  // };
-  // const inputLocation = (index, field, value) => {
-  //   const updateLocation = [...locations];
-  //   updateLocation[index][field] = value;
-  //   setLocation(updateLocation);
-  // };
+  // increase form EventList ชุดใหม่
+  const addFields = (e) => {
+    e.preventDefault();
+    setEventList([
+      ...eventList,
+      {
+        event_name: "",
+        event_date: "",
+        event_time: "",
+      },
+    ]);
+  };
 
-  // const addSchedule = () => {
-  //   setDates([...dates, { localDate: "", localTime: "" }]);
-  //   setLocation([
-  //     ...locations,
-  //     { name_show: "", venue: "", state: "", city: "" },
-  //   ]);
-  // };
+  // remove Form Listevent ชุดใหม่ ที่เพิ่มเข้ามา
+  const removeEventList = (index) => {
+    const newList = [...eventList];
+    newList.splice(index, 1);
+    setEventList(newList);
+  };
 
-  // const sendData = async (e) => {
-  //   e.preventDefault();
-  //   const storeEvents = {
-  //     band,
-  //     images,
-  //     dates,
-  //     locations,
-  //     ticket,
-  //   };
-  //   await axios
-  //     .post(
-  //       `${process.env.REACT_APP_USERS}/admin/events/addEvent`,
-  //       storeEvents,
-  //       {
-  //         headers: {
-  //           authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODk3NDEwNDAsImV4cCI6MTY4OTgyNzQ0MH0.NgzgmjJyamDqD45HORTzw-L-ktwwmrTqD_rvkqfVojA`,
-  //         },
-  //       }
-  //     )
-  //     .then((response) => {
-  //       Swal.fire({
-  //         position: "center",
-  //         icon: "success",
-  //         title: "Save data success",
-  //         showConfirmButton: true,
-  //         timer: 3000,
-  //       });
+  const submitForm = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_USERS}/api/events/create`,
+        eventList
+      );
+      setEventList([
+        {
+          event_name: "",
+          event_date: "",
+          event_time: "",
+          artist_id: "",
+          venue_id: "",
+        },
+      ]);
+    } catch (error) {
+      console.log("Error creating event", error);
+    }
+  };
 
-  //       navigate("/AllEvents");
-  //     })
-  //     .catch((err) => {
-  //       Swal.fire({
-  //         position: "center",
-  //         icon: "error",
-  //         title: err.response.data.error,
-  //         showConfirmButton: false,
-  //         timer: 3000,
-  //       });
-  //     });
-  // };
-  // const backPage = () => {
-  //   navigate("/admincontrol");
-  // };
+  //close Add event page
+  const toggleClose = () => {
+    setCloseCreate(!closeCreate);
+    handleCreate();
+  };
 
   return (
-    <div>Add</div>
-    // <div className="flex flex-col justify-center  w-full max-w-2xl bg-white shadow-md rounded  m-auto">
-    //   <div className="flex items-center justify-start mt-2 ml-4 ">
-    //     <button
-    //       className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold  py-2 px-4  rounded focus:outline-none focus:shadow-outline"
-    //       type="button"
-    //       onClick={backPage}
-    //     >
-    //       Back
-    //     </button>
-    //   </div>
-    //   <div className="flex justify-center">
-    //     <img className="w-40 mt-6 flex " src={logo} alt="showroom" />
-    //   </div>
-    //   <form onSubmit={sendData} className="px-6 pt-6 pb-8 mb-4">
-    //     <div className="flex">
-    //       {/* Add Band form */}
-    //       <div className="mb-2 w-full pr-2">
-    //         <h1 className="text-center">Band</h1>
-    //         <div>
-    //           <label className="block text-gray-700 text-sm font-bold ">
-    //             Artist:
-    //           </label>
-    //           <input
-    //             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //             type="text"
-    //             value={band.artist}
-    //             onChange={(e) => setBand({ ...band, artist: e.target.value })}
-    //           />
-    //         </div>
-    //         <div className="my-2">
-    //           <label className="block text-gray-700 text-sm font-bold ">
-    //             Description:
-    //           </label>
-    //           <textarea
-    //             className="shadow appearance-none border rounded w-full py-2 px-3 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //             type="text"
-    //             value={band.description}
-    //             onChange={(e) =>
-    //               setBand({ ...band, description: e.target.value })
-    //             }
-    //           />
-    //         </div>
-    //         <div>
-    //           <label className="block text-gray-700 text-sm font-bold ">
-    //             Genre:
-    //           </label>
-    //           <input
-    //             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //             type="text"
-    //             value={band.genre}
-    //             onChange={(e) => setBand({ ...band, genre: e.target.value })}
-    //           />
-    //         </div>
-    //       </div>
-    //       {/* Add Image form */}
+    <div
+      className={`${
+        isVisible ? "translate-x-0" : "translate-x-full"
+      } fixed top-0 right-0 h-full  w-full overflow-y-auto bg-white  transition-transform ease-in-out duration-300`}
+      style={{ width: "300px" }}
+    >
+      <div className="p-2">
+        <div className="flex justify-between px-2">
+          <p className="text-gray-500  uppercase">Add new Event</p>
+          <button
+            onClick={toggleClose}
+            className="block text-2xl text-gray-700"
+          >
+            {" "}
+            <HiX />
+          </button>
+        </div>
 
-    //       <div className="w-full">
-    //         <h1 className="text-center">Image</h1>
-    //         <div>
-    //           <label className="block text-gray-700 text-sm font-bold ">
-    //             Band_Image:
-    //           </label>
-    //           <input
-    //             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //             type="text"
-    //             value={images.band_image}
-    //             onChange={(e) =>
-    //               setImages({ ...images, band_image: e.target.value })
-    //             }
-    //           />
-    //         </div>
-    //         <div className="my-2">
-    //           <label className="block text-gray-700 text-sm font-bold ">
-    //             Poster_Image:
-    //           </label>
-    //           <input
-    //             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //             type="text"
-    //             value={images.poster_image}
-    //             onChange={(e) =>
-    //               setImages({ ...images, poster_image: e.target.value })
-    //             }
-    //           />
-    //         </div>
-    //       </div>
-    //     </div>
-    //     <hr />
-    //     {/* Add Showschedule form */}
-    //     {/* Date */}
-    //     <div className="flex my-2">
-    //       <div className="w-2/4 mr-2">
-    //         <h1 className="text-center">Date</h1>
-    //         {dates.map((item, index) => (
-    //           <div className="mt-2" key={index}>
-    //             <div>
-    //               <div>
-    //                 <label className="block text-gray-700 text-sm font-bold">
-    //                   Date:
-    //                 </label>
-    //                 <input
-    //                   className="shadow appearance-none border rounded w-full text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //                   type="date"
-    //                   placeholder="MM-DD-YYYY"
-    //                   value={item.localDate}
-    //                   onChange={(e) =>
-    //                     inputDates(index, "localDate", e.target.value)
-    //                   }
-    //                 />
-    //               </div>
-    //               <div className="mt-2">
-    //                 <label className="block text-gray-700 text-sm font-bold">
-    //                   Time:
-    //                 </label>
-    //                 <input
-    //                   className="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //                   type="text"
-    //                   placeholder="00:00"
-    //                   value={item.localTime}
-    //                   onChange={(e) =>
-    //                     inputDates(index, "localTime", e.target.value)
-    //                   }
-    //                 />
-    //               </div>
-    //             </div>
-    //           </div>
-    //         ))}
-    //       </div>
-    //       <div className="w-full">
-    //         <h1 className="text-center">Locations</h1>
-    //         {/* Location */}
-    //         {locations.map((item, index) => (
-    //           <div className="mt-2" key={index}>
-    //             <div className="grid grid-cols-2">
-    //               <div className="mr-2">
-    //                 <label className="block text-gray-700 text-sm font-bold ">
-    //                   name_show:
-    //                 </label>
-    //                 <input
-    //                   className="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //                   type="text"
-    //                   value={item.name_show}
-    //                   onChange={(e) =>
-    //                     inputLocation(index, "name_show", e.target.value)
-    //                   }
-    //                 />
-    //               </div>
-    //               <div>
-    //                 <label className="block text-gray-700 text-sm font-bold ">
-    //                   Venue:
-    //                 </label>
-    //                 <input
-    //                   className="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //                   type="text"
-    //                   value={item.venue}
-    //                   onChange={(e) =>
-    //                     inputLocation(index, "venue", e.target.value)
-    //                   }
-    //                 />
-    //               </div>
-    //               <div className="mt-2 mr-2">
-    //                 <label className="block text-gray-700 text-sm font-bold ">
-    //                   State:
-    //                 </label>
-    //                 <input
-    //                   className="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //                   type="text"
-    //                   value={item.state}
-    //                   onChange={(e) =>
-    //                     inputLocation(index, "state", e.target.value)
-    //                   }
-    //                 />
-    //               </div>
-    //               <div className="mt-2">
-    //                 <label className="block text-gray-700 text-sm font-bold ">
-    //                   City:
-    //                 </label>
-    //                 <input
-    //                   className="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //                   type="text"
-    //                   value={item.city}
-    //                   onChange={(e) =>
-    //                     inputLocation(index, "city", e.target.value)
-    //                   }
-    //                 />
-    //               </div>
-    //             </div>
-    //           </div>
-    //         ))}
-    //       </div>
-    //     </div>
-    //     <div className="text-center my-2">
-    //       <button
-    //         className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold  py-2 px-8  rounded focus:outline-none focus:shadow-outline"
-    //         type="button"
-    //         onClick={addSchedule}
-    //       >
-    //         Add Schedule
-    //       </button>
-    //     </div>
+        <div className="p-2 w-full">
+          <form onSubmit={submitForm}>
+            {eventList.map((event, index) => (
+              <div key={index}>
+                <div>
+                  {index > 0 && (
+                    <div className="flex justify-end">
+                      {" "}
+                      <button
+                        type="button"
+                        onClick={() => removeEventList(index)}
+                        className="block mt-2 px-2"
+                      >
+                        <HiX />
+                      </button>
+                    </div>
+                  )}
+                  <div>
+                    <label className="block text-left font-light text-sm pb-1">
+                      Event Name
+                    </label>
+                    <input
+                      className="py-2 px-3 rounded border border-gray-300 focus:border-gray-700  "
+                      type="text"
+                      name="event_name"
+                      value={event.event_name}
+                      onChange={inputEventList(index)}
+                    />
+                  </div>
+                  <div className="flex justify-between mt-4">
+                    <div className="pr-2">
+                      <label className="block text-left font-light text-sm pb-1">
+                        Date
+                      </label>
+                      <input
+                        className="py-2 px-3 rounded border border-gray-300 focus:border-gray-700  "
+                        type="date"
+                        pattern="\d{4}-\d{2}-\d{2}"
+                        required
+                        name="event_date"
+                        value={event.event_date}
+                        onChange={inputEventList(index)}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-left font-light text-sm pb-1">
+                        Time
+                      </label>
+                      <input
+                        className="py-2 px-3 rounded border border-gray-300 focus:border-gray-700  "
+                        type="time"
+                        name="event_time"
+                        value={event.event_time}
+                        onChange={inputEventList(index)}
+                      />
+                    </div>
+                  </div>
+                </div>
 
-    //     <hr />
-    //     {/* Add Ticket form */}
-    //     {ticket.map((item, index) => (
-    //       <div className="my-2" key={index}>
-    //         <h1 className="text-center mb-2">Ticket</h1>
-    //         <div className="flex">
-    //           <div className="w-full pr-2">
-    //             <label className="block text-gray-700 text-sm font-bold mb-2">
-    //               Ticket_Type:
-    //             </label>
-    //             <input
-    //               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //               type="text"
-    //               value={item.ticket_type}
-    //               onChange={(e) =>
-    //                 setTicket((prevTicket) => {
-    //                   const updateTicket = [...prevTicket];
-    //                   updateTicket[index].ticket_type = e.target.value;
-    //                   return updateTicket;
-    //                 })
-    //               }
-    //             />
-    //           </div>
-    //           <div className="w-full">
-    //             <label className="block text-gray-700 text-sm font-bold mb-2">
-    //               Ticket_price:
-    //             </label>
-    //             <input
-    //               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //               type="number"
-    //               value={item.ticket_price}
-    //               onChange={(e) =>
-    //                 setTicket((prevTicket) => {
-    //                   const updateTicket = [...prevTicket];
-    //                   updateTicket[index].ticket_price = Number([
-    //                     e.target.value,
-    //                   ]);
-    //                   return updateTicket;
-    //                 })
-    //               }
-    //             />
-    //           </div>
-    //         </div>
-    //       </div>
-    //     ))}
-    //     <div className="flex justify-center my-2">
-    //       <button
-    //         className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold   py-2 px-8   rounded focus:outline-none focus:shadow-outline"
-    //         type="button"
-    //         onClick={() =>
-    //           setTicket((prevTicket) => [
-    //             ...prevTicket,
-    //             {
-    //               ticket_type: "",
-    //               ticket_price: "",
-    //             },
-    //           ])
-    //         }
-    //       >
-    //         Add Ticket
-    //       </button>
-    //     </div>
-    //     <hr />
-    //     {/* Submit Data */}
-    //     <div className="flex items-center justify-end mt-4 ">
-    //       <button
-    //         className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold  py-2 px-10  rounded focus:outline-none focus:shadow-outline"
-    //         type="submit"
-    //       >
-    //         Save Data
-    //       </button>
-    //     </div>
-    //   </form>
-    // </div>
-
-    // <div class="fixed w-screen h-screen flex items-center justify-center">
-    //   <div
-    //     id="slideover-container"
-    //     class="w-full h-full fixed inset-0 invisible"
-    //   >
-    //     <div
-    //       id="slideover-bg"
-    //       class="w-full h-full duration-500 ease-out transition-all inset-0 absolute bg-gray-900 opacity-0"
-    //     ></div>
-    //     <div
-    //       id="slideover"
-    //       class="w-96 bg-white h-full absolute right-0 duration-300 ease-out transition-all translate-x-full"
-    //     >
-    //       <div class="absolute cursor-pointer text-gray-600 top-0 w-8 h-8 flex items-center justify-center right-0 mt-5 mr-5">
-
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
-   
+                <div className="flex mt-4">
+                  <div className="pr-2">
+                    <label className="block text-left font-light text-sm pb-1">
+                      Artist
+                    </label>
+                    <select
+                      name="artist_id"
+                      value={event.artist_id}
+                      onChange={inputEventList(index)}
+                      className="p-1 w-[130px]  text-sm rounded border border-gray-300 focus:border-gray-700  outline-none appearance-none"
+                    >
+                      <option value="">Select artist</option>
+                      {artistsList.map((artist) => (
+                        <option key={artist.artist_id} value={artist.artist_id}>
+                          {artist.artist_name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-left font-light text-sm pb-1">
+                      Venue
+                    </label>
+                    <select
+                      name="venue_id"
+                      value={event.venue_id}
+                      onChange={inputEventList(index)}
+                      className="p-1 w-[130px]  text-sm rounded border border-gray-300 focus:border-gray-700  outline-none appearance-none"
+                    >
+                      <option value="">Select venue</option>
+                      {venuesList.map((venue) => (
+                        <option key={venue.venue_id} value={venue.venue_id}>
+                          {venue.venue_name}, {venue.venue_city},{" "}
+                          {venue.venue_state}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            ))}
+            <div className="text-center mt-4">
+              <button
+                className=" py-2 px-3 text-sm rounded-lg border border-purple-600  text-purple-600"
+                onClick={addFields}
+              >
+                Add Event
+              </button>
+            </div>
+            <div className="flex justify-center mt-4">
+              <button
+                type="submit"
+                className="bg-blue-700 hover:bg-blue-800 px-6 py-2 mr-6 rounded-lg text-white duration-300"
+              >
+                Create
+              </button>
+              <button
+                className="bg-red-500 hover:bg-red-600 px-6 py-2 rounded-lg text-white duration-300"
+                onClick={toggleClose}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 

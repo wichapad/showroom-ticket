@@ -8,7 +8,7 @@
 // const router = express.Router();
 
 
-// router.post("/events/addevent", storeEvents);
-// router.put("/events/:slug", updateEvents);
-// router.delete("/events/:slug", removeEvents);
+// // router.post("/events/addevent", storeEvents);
+// // router.put("/events/:slug", updateEvents);
+// // router.delete("/events/:slug", removeEvents);
 // module.exports = router;

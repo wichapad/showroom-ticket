@@ -1,3 +1,123 @@
+// SQL 
+const pool = require("../database");
+
+exports.createEvent = async (req, res) => {
+  try {
+    const events = req.body;
+    const createdEvents = await Promise.all(
+      events.map(async (event) => {
+        const { event_name, event_date, event_time, artist_id, venue_id } =
+          event;
+        const query = `INSERT INTO event (event_name, event_date, event_time, artist_id, venue_id) VALUES ($1,$2,$3,$4,$5) RETURNING *`;
+        const values = [
+          event_name,
+          event_date,
+          event_time,
+          artist_id,
+          venue_id,
+        ];
+        const result = await pool.query(query, values);
+        return result.rows[0];
+      })
+    );
+    res.json(createdEvents);
+  } catch (error) {
+    res.status(500).json({ error: "internal server error" });
+  }
+};
+
+// Get all data join table artist event venue
+exports.getEvent = (req, res) => {
+  const query = `SELECT
+  a.artist_id,
+  a.artist_name,
+  g.genre_name,
+  a.artist_image,
+  a.slug,
+  json_agg(json_build_object('event_id', e.event_id ,'event_name', e.event_name, 'date',e.event_date,'time' ,e.event_time)) AS event,
+  json_agg(json_build_object('venue_id', v.venue_id, 'venue_name', v.venue_name, 'city',v.venue_city,'state' ,v.venue_state)) AS venue
+  FROM artist a
+  JOIN event e ON a.artist_id = e.artist_id
+  JOIN venue v ON e.venue_id = v.venue_id
+  JOIN genre g ON a.genre_id = g.genre_id
+  GROUP BY
+  a.artist_id,
+  a.artist_name,
+  g.genre_name,
+  a.artist_image,
+  a.slug;
+  `;
+
+  pool.query(query, (err, result) => {
+    if (err) {
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      res.json(result.rows);
+    }
+  });
+};
+// Get all data artists from sql
+exports.getArtists = (req, res) => {
+  const query = `SELECT * FROM artist;`;
+  pool.query(query, (err, result) => {
+    if (err) {
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      res.json(result.rows);
+    }
+  });
+};
+
+// Get all data venues from sql
+exports.getVenues = (req, res) => {
+  const query = `SELECT * FROM venue;`;
+  pool.query(query, (err, result) => {
+    if (err) {
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      res.json(result.rows);
+    }
+  });
+};
+
+// Get single data by slug join table artist event venue
+exports.singleEvent = (req, res) => {
+  const slug = req.params.slug;
+  const query = `SELECT 
+  a.artist_id,
+  a.artist_name,
+  g.genre_name,
+  a.artist_image,
+  a.slug,
+  json_agg(json_build_object('event_name', e.event_name, 'date',e.event_date,'time' ,e.event_time)) AS event,
+  json_agg(json_build_object('venue_name', v.venue_name, 'city',v.venue_city,'state' ,v.venue_state)) AS venue
+  FROM artist a
+  JOIN event e ON a.artist_id = e.artist_id
+  JOIN venue v ON e.venue_id = v.venue_id
+  JOIN genre g ON a.genre_id = g.genre_id
+  WHERE a.slug = $1
+  GROUP BY
+  a.artist_id,
+  a.artist_name,
+  g.genre_name,
+  a.artist_image,
+  a.slug; ;
+  `;
+  pool.query(query, [slug], (err, result) => {
+    if (err) {
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      if (result.rows.length === 0) {
+        res.status(404).json({ error: "Event not found" });
+      } else {
+        res.json(result.rows);
+      }
+    }
+  });
+};
+
+// NoSQL
+
 // const slugify = require("slugify");
 // const Events = require("../models/Events");
 
@@ -81,35 +201,3 @@
 //     });
 //   }
 // };
-
-const pool = require("../database");
-
-exports.getEvent = (req, res) => {
-  const query = `SELECT
-  a.artist_id,
-  a.artist_name,
-  g.genre_name,
-  a.artist_image,
-  a.slug,
-  json_agg(json_build_object('event_name', e.event_name, 'date',e.event_date,'time' ,e.event_time)) AS events,
-  json_agg(json_build_object('venue_name', v.venue_name, 'city',v.venue_city,'state' ,v.venue_state)) AS venues
-  FROM artist a
-  JOIN event e ON a.artist_id = e.artist_id
-  JOIN venue v ON e.venue_id = v.venue_id
-  JOIN genre g ON a.genre_id = g.genre_id
-  GROUP BY
-  a.artist_id,
-  a.artist_name,
-  g.genre_name,
-  a.artist_image,
-  a.slug;
-  `;
-
-  pool.query(query, (err, result) => {
-    if (err) {
-      res.status(500).json({ error: "Internal server error" });
-    } else {
-      res.json(result.rows);
-    }
-  });
-};

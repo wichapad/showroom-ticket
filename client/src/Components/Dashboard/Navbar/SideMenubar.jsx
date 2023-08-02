@@ -36,7 +36,7 @@ const SideMunubar = ({ isOpen }) => {
                   <input
                     type="text"
                     id="mobile-search"
-                    className="pl-[2.5rem] leading-[1.25rem] text-md font-normal "
+                    className="py-2 pl-[2.5rem] rounded-lg shadow text-md font-normal "
                     placeholder="Search"
                   />
                 </div>
