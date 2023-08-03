@@ -1,8 +1,7 @@
 import { useState } from "react";
-import AllEvents from "./Events/AllEvents";
-import NavDashboard from "./Navbar/NavDashboard";
-import SideMenubar from "./Navbar/SideMenubar";
-import { ApiProvider } from "../UseContext/ApiContext";
+import AllEvents from "../Events/AllEvents";
+import NavDashboard from "../../../Navbar/NavDashboard";
+import SideMenubar from "../../../Navbar/SideMenubar";
 
 const Dashboard = () => {
   const [isSidebarOpen, setSideBarOpen] = useState(false);
@@ -17,9 +16,7 @@ const Dashboard = () => {
         <SideMenubar isOpen={isSidebarOpen} />
 
         <div className="flex-grow">
-          <ApiProvider>
-            <AllEvents />
-          </ApiProvider>
+          <AllEvents />
         </div>
       </div>
     </div>

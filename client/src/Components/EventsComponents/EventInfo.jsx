@@ -23,6 +23,7 @@ const EventInfo = () => {
   };
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, []);
 
   //แปลงค่า วันที่

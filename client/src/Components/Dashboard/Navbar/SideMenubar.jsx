@@ -9,6 +9,7 @@ import {
 } from "react-icons/hi";
 import { FaGithub, FaMicrophone } from "react-icons/fa";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const SideMunubar = ({ isOpen }) => {
   const [productBar, setProductBar] = useState(false);
@@ -20,10 +21,11 @@ const SideMunubar = ({ isOpen }) => {
     } else if (menu === "user") {
       setUserBar(!userBar);
     }
-   
   };
   return (
-    <div className={`fixed z-20 md:visible md:static  ${isOpen ? "" : "hidden"}`}>
+    <div
+      className={`fixed z-20 md:visible md:static  ${isOpen ? "" : "hidden"}`}
+    >
       <div className="w-[230px] h-[100vh] overflow-auto  rounded-b-r bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
         <ul className="p-2">
           <li>
@@ -59,7 +61,7 @@ const SideMunubar = ({ isOpen }) => {
           <li>
             <div className="flex p-2 items-center text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
               <FaMicrophone className="text-2xl  mr-2" />
-              <p className="text-lg text-white font-light">Events</p>
+              <Link to="/dashboard/events" className="text-lg text-white font-light">Events</Link>
             </div>
           </li>
 

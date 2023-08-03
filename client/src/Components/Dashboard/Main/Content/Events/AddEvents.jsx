@@ -1,10 +1,11 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { HiX } from "react-icons/hi";
+import { ApiContext } from "../../../../UseContext/ApiContext";
 
-const UpdateEvent = ({ isVisible, handleUpdate }) => {
-  const [closeUpdate, setCloseUpdate] = useState(false);
-
+const AddEvents = ({ isVisible, handleCreate }) => {
+  const { artistsList, venuesList } = useContext(ApiContext);
+  const [closeCreate, setCloseCreate] = useState(false);
   const [eventList, setEventList] = useState([
     {
       event_name: "",
@@ -14,9 +15,6 @@ const UpdateEvent = ({ isVisible, handleUpdate }) => {
       venue_id: "",
     },
   ]);
-
-  const [artistsList, setArtistsList] = useState([]);
-  const [venuesList, setVenuesList] = useState([]);
 
   // function ใส่ค่า form  ของ state Eventlist
   const inputEventList = (index) => (e) => {
@@ -46,38 +44,31 @@ const UpdateEvent = ({ isVisible, handleUpdate }) => {
     setEventList(newList);
   };
 
-  // fetch API database artist
-  const fetchDataArtists = () => {
-    axios
-      .get(`${process.env.REACT_APP_USERS}/api/artists`)
-      .then((response) => {
-        setArtistsList(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  // fetch API database venue
-  const fetchDataVenues = () => {
-    axios
-      .get(`${process.env.REACT_APP_USERS}/api/venues`)
-      .then((response) => {
-        setVenuesList(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const submitForm = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_USERS}/api/events/create`,
+        eventList
+      );
+      setEventList([
+        {
+          event_name: "",
+          event_date: "",
+          event_time: "",
+          artist_id: "",
+          venue_id: "",
+        },
+      ]);
+    } catch (error) {
+      console.log("Error creating event", error);
+    }
   };
 
-  // Call fetchDataArtists,fetchDataVenues
-  useEffect(() => {
-    fetchDataArtists();
-    fetchDataVenues();
-  }, []);
-
+  //close Add event page
   const toggleClose = () => {
-    setCloseUpdate(!closeUpdate);
-    handleUpdate();
+    setCloseCreate(!closeCreate);
+    handleCreate();
   };
 
   return (
@@ -89,7 +80,7 @@ const UpdateEvent = ({ isVisible, handleUpdate }) => {
     >
       <div className="p-2">
         <div className="flex justify-between px-2">
-          <p className="text-gray-500  uppercase">Update Event</p>
+          <p className="text-gray-500  uppercase">Add new Event</p>
           <button
             onClick={toggleClose}
             className="block text-2xl text-gray-700"
@@ -100,7 +91,7 @@ const UpdateEvent = ({ isVisible, handleUpdate }) => {
         </div>
 
         <div className="p-2 w-full">
-          <form >
+          <form onSubmit={submitForm}>
             {eventList.map((event, index) => (
               <div key={index}>
                 <div>
@@ -212,7 +203,7 @@ const UpdateEvent = ({ isVisible, handleUpdate }) => {
                 type="submit"
                 className="bg-blue-700 hover:bg-blue-800 px-6 py-2 mr-6 rounded-lg text-white duration-300"
               >
-                Update
+                Create
               </button>
               <button
                 className="bg-red-500 hover:bg-red-600 px-6 py-2 rounded-lg text-white duration-300"
@@ -228,4 +219,4 @@ const UpdateEvent = ({ isVisible, handleUpdate }) => {
   );
 };
 
-export default UpdateEvent;
+export default AddEvents;

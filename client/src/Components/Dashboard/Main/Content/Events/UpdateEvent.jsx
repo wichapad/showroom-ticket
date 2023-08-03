@@ -1,11 +1,11 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { HiX } from "react-icons/hi";
-import { ApiContext } from "../../UseContext/ApiContext";
+import { ApiContext } from "../../../../UseContext/ApiContext";
 
-const AddEvents = ({ isVisible, handleCreate }) => {
+const UpdateEvent = ({ isVisible, handleUpdate }) => {
   const { artistsList, venuesList } = useContext(ApiContext);
-  const [closeCreate, setCloseCreate] = useState(false);
+  const [closeUpdate, setCloseUpdate] = useState(false);
   const [eventList, setEventList] = useState([
     {
       event_name: "",
@@ -44,31 +44,9 @@ const AddEvents = ({ isVisible, handleCreate }) => {
     setEventList(newList);
   };
 
-  const submitForm = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post(
-        `${process.env.REACT_APP_USERS}/api/events/create`,
-        eventList
-      );
-      setEventList([
-        {
-          event_name: "",
-          event_date: "",
-          event_time: "",
-          artist_id: "",
-          venue_id: "",
-        },
-      ]);
-    } catch (error) {
-      console.log("Error creating event", error);
-    }
-  };
-
-  //close Add event page
   const toggleClose = () => {
-    setCloseCreate(!closeCreate);
-    handleCreate();
+    setCloseUpdate(!closeUpdate);
+    handleUpdate();
   };
 
   return (
@@ -80,7 +58,7 @@ const AddEvents = ({ isVisible, handleCreate }) => {
     >
       <div className="p-2">
         <div className="flex justify-between px-2">
-          <p className="text-gray-500  uppercase">Add new Event</p>
+          <p className="text-gray-500  uppercase">Update Event</p>
           <button
             onClick={toggleClose}
             className="block text-2xl text-gray-700"
@@ -91,7 +69,7 @@ const AddEvents = ({ isVisible, handleCreate }) => {
         </div>
 
         <div className="p-2 w-full">
-          <form onSubmit={submitForm}>
+          <form>
             {eventList.map((event, index) => (
               <div key={index}>
                 <div>
@@ -203,7 +181,7 @@ const AddEvents = ({ isVisible, handleCreate }) => {
                 type="submit"
                 className="bg-blue-700 hover:bg-blue-800 px-6 py-2 mr-6 rounded-lg text-white duration-300"
               >
-                Create
+                Update
               </button>
               <button
                 className="bg-red-500 hover:bg-red-600 px-6 py-2 rounded-lg text-white duration-300"
@@ -219,4 +197,4 @@ const AddEvents = ({ isVisible, handleCreate }) => {
   );
 };
 
-export default AddEvents;
+export default UpdateEvent;
