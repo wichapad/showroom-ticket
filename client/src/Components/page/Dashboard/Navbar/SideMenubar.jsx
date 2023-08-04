@@ -48,7 +48,12 @@ const SideMunubar = ({ isOpen }) => {
           <li className="my-2">
             <div className="flex p-2 items-center text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
               <HiChartPie className="text-2xl mr-2" />
-              <p className="text-lg text-white font-light">Dashboard</p>
+              <Link
+                to="/"
+                className="text-lg text-white font-light"
+              >
+                Dashboard
+              </Link>
             </div>
           </li>
           {/* Inbox Menu*/}
@@ -61,7 +66,12 @@ const SideMunubar = ({ isOpen }) => {
           <li>
             <div className="flex p-2 items-center text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
               <FaMicrophone className="text-2xl  mr-2" />
-              <Link to="/dashboard/events" className="text-lg text-white font-light">Events</Link>
+              <Link
+                to="/dashboard/allevents"
+                className="text-lg text-white font-light"
+              >
+                Events
+              </Link>
             </div>
           </li>
 

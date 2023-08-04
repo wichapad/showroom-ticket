@@ -2,8 +2,9 @@
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import Navbar from "../Navbar";
-import Footer from "../HomeComponents/Footer";
+import Navbar from "../../Navbar/Navbar";
+import Footer from "../HomePage/Footer";
+// import Footer from "../HomeComponents/Footer";
 import { BsFillCalendarEventFill, BsFillClockFill } from "react-icons/bs";
 
 const EventInfo = () => {
@@ -73,7 +74,6 @@ const EventInfo = () => {
       <Navbar />
       <div>
         {/* Header */}
-
         {singleEvent.map((event) => (
           <div key={event.artist_id}>
             <div className="relative flex bg-black overflow-hidden">

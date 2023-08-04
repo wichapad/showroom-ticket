@@ -1,5 +1,5 @@
 import React from 'react'
-import Video from "../../images/Spotify(fan made).mp4";
+import Video from "../../../images/Spotify(fan made).mp4";
 const Header = () => {
   return (
     <div className="relative home-background max-w-screen-xl">

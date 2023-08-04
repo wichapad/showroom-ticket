@@ -1,12 +1,10 @@
 import { useState } from "react";
-import logo from "../images/showroomlogowhite.png";
-import { useNavigate } from "react-router-dom";
+import logo from "../../images/showroomlogowhite.png";
 import axios from "axios";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 
 const Register = () => {
   // สร้าง navigate ด้วย react-router-dom เพื่อให้เวลา กด submit แล้ว redirect ไปหน้า home
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -61,7 +59,7 @@ const Register = () => {
         }
       )
       .then((response) => {
-        navigate("/login");
+        window.location = "/login";
       })
       .catch((err) => {
         alert(err.response.data.error);
@@ -97,14 +95,15 @@ const Register = () => {
           </a>
         </div>
       </nav>
-      <div className="flex items-center justify-center  bg-slate-50">
+      <div className="flex items-center justify-center  bg-slate-100">
         <form
           onSubmit={submitData}
-          className="bg-white shadow-md rounded w-96 px-8 py-10"
+          className="bg-white shadow-md rounded w-[350px] m-4  px-8 py-10"
         >
           <div className="form-input">
             <label className="mb-2">Email</label>
             <input
+              className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
               id="email"
               type="email"
               value={email}
@@ -114,6 +113,7 @@ const Register = () => {
           <div className="form-input">
             <label className="mb-2">Username</label>
             <input
+              className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
               id="user"
               type="text"
               value={name}
@@ -123,13 +123,14 @@ const Register = () => {
           <div className="form-input relative">
             <label className="mb-2">Password</label>
             <input
+              className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
               id="password"
               type={showPassword ? "text" : "password"}
               value={password}
               onChange={inputValue("password")}
             />
             <button
-              className="absolute bottom-4 right-4"
+              className="absolute bottom-3 right-4"
               type="button"
               onClick={() => {
                 togglePassword("password");
@@ -142,13 +143,14 @@ const Register = () => {
           <div className="form-input mb-8 relative">
             <label className="mb-2">Confirm Password</label>
             <input
+              className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
               id="confirm"
               type={showConfirmPassword ? "text" : "password"}
               value={confirmPassword}
               onChange={inputValue("confirmPassword")}
             />
             <button
-              className="absolute bottom-4 right-4"
+              className="absolute bottom-3 right-4"
               type="button"
               onClick={() => {
                 togglePassword("confirm");
@@ -160,6 +162,7 @@ const Register = () => {
           <div className="form-input">
             <label className="mb-2">Phone</label>
             <input
+              className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
               id="phone"
               type="text"
               value={phone}
@@ -169,6 +172,7 @@ const Register = () => {
           <div className="form-input">
             <label className="mb-2">Address</label>
             <input
+              className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
               id="address"
               type="text"
               value={address}
@@ -178,6 +182,7 @@ const Register = () => {
           <div className="form-input">
             <label className="mb-2">City</label>
             <input
+              className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
               id="city"
               type="text"
               value={city}
@@ -187,6 +192,7 @@ const Register = () => {
           <div className="form-input">
             <label className="mb-2">Zipcode</label>
             <input
+              className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
               id="zipcode"
               type="text"
               value={zipcode}

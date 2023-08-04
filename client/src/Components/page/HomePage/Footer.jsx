@@ -1,4 +1,4 @@
-import logo from "../../images/showroomlogowhite.png";
+import logo from "../../../images/showroomlogowhite.png";
 import { Link } from "react-router-dom";
 
 const Footer = () => {

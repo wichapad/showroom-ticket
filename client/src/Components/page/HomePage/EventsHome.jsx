@@ -1,11 +1,9 @@
-//  แสดงข้อมูลที่ส่งมาจาก database โดย จะให้ไปแสดงใน home component จะแสดง รูปภาพ และชื่อ
 import React, { useContext } from "react";
+import { ApiContext } from "../../UseContext/ApiContext";
 import { Link } from "react-router-dom";
-import { ApiContext } from "../UseContext/ApiContext";
 
-const Events = () => {
+const EventsHome = () => {
   const { itemsEvent } = useContext(ApiContext);
-
   return (
     <div className="max-w-screen-xl ">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
@@ -33,4 +31,4 @@ const Events = () => {
   );
 };
 
-export default Events;
+export default EventsHome;

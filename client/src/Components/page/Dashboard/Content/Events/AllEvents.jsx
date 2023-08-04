@@ -3,9 +3,6 @@ import { BsSearch, BsChevronRight, BsChevronDown } from "react-icons/bs";
 import UpdateEvent from "./UpdateEvent";
 import AddEvents from "./AddEvents";
 import { ApiContext } from "../../../../UseContext/ApiContext";
-import NavDashboard from "../../../Navbar/NavDashboard";
-
-// import { getAdminToken } from "../../services/autherize";
 
 const AllEvents = () => {
   // get api UseContext
@@ -33,7 +30,6 @@ const AllEvents = () => {
 
   return (
     <>
-   
       <div className="flex flex-col">
         <div className="flex justify-between items-center p-2">
           <div>

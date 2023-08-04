@@ -1,9 +1,12 @@
-// แสดง ข่าวสาร ต่างๆ
-const News = () => {
+import React from "react";
+
+const NewsHome = () => {
   return (
     <div className=" w-full">
       <div className="mt-4 mx-4">
-        <span className="text-2xl border-b-2 border-gray-900">Showroom News</span>
+        <span className="text-2xl border-b-2 border-gray-900">
+          Showroom News
+        </span>
       </div>
       <div className="p-4">
         <div className="grid grid-cols-1 gap-2 md:grid-cols-4 lg:grid-cols-12">
@@ -126,4 +129,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default NewsHome;

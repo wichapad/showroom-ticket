@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logo from "../../../images/showroomlogowhite.png";
+import logo from "../../../../images/showroomlogowhite.png";
 import { HiOutlineSearch, HiMenuAlt1, HiX } from "react-icons/hi";
 
 const NavDashboard = ({ onToggleBar }) => {

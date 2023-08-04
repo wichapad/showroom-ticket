@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "../Navbar";
-import Footer from '../HomeComponents/Footer'
+import Navbar from '../../Navbar/Navbar'
+import Footer from "../HomePage/Footer";
 
 const shop = () => {
   return (
     <div>
-      <Navbar />
+      <Navbar/>
       <div className="flex justify-center pt-20 pb-4">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           <div className=" w-[230px] bg-white  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
