@@ -1,5 +1,5 @@
 // ดึง card slide news footer component มาแสดง
-import React, { useContext } from "react";
+
 import ShopHome from "./ShopHome";
 import Footer from "./Footer";
 import Header from "./Header";

@@ -75,7 +75,7 @@ const AddEvents = ({ isVisible, handleCreate }) => {
     <div
       className={`${
         isVisible ? "translate-x-0" : "translate-x-full"
-      } fixed top-0 right-0 h-full  w-full overflow-y-auto bg-white  transition-transform ease-in-out duration-300`}
+      } fixed top-0 right-0 h-full  w-full overflow-y-auto bg-white  `}
       style={{ width: "300px" }}
     >
       <div className="p-2">
