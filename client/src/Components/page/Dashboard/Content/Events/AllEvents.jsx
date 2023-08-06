@@ -3,7 +3,7 @@ import { BsSearch, BsChevronRight, BsChevronDown } from "react-icons/bs";
 import UpdateEvent from "./UpdateEvent";
 import AddEvents from "./AddEvents";
 import { ApiContext } from "../../../../UseContext/ApiContext";
-import NavDashboard from "../../Navbar/NavDashboard";
+import { NavLink } from "react-router-dom";
 
 const AllEvents = () => {
   // get api UseContext
@@ -30,10 +30,8 @@ const AllEvents = () => {
   };
 
   return (
-    <div className="flex">
-    <NavDashboard/>
-      <div className="flex-grow">
-      <div className="flex flex-col pt-[3.5rem] md:pl-[16rem] ">
+    <>
+      <div className="flex flex-col">
         <div className="flex justify-between items-center p-2 ">
           <div>
             <form className="w-[300px]">
@@ -122,12 +120,13 @@ const AllEvents = () => {
                           handleUpdate={handleUpdate}
                         />
                       </div>
-                      <button
+                      <NavLink
+                        to={`/dashboard/events/${item.slug}`}
                         className="px-3 py-2 mr-2 text-sm text-white bg-blue-700 rounded hover:bg-blue-800 duration-300"
                         onClick={handleUpdate}
                       >
                         Update
-                      </button>
+                      </NavLink>
                       <button className="px-3 py-2 text-sm text-white bg-red-500 rounded hover:bg-red-600 duration-300">
                         Delete
                       </button>
@@ -169,8 +168,7 @@ const AllEvents = () => {
           </table>
         </div>
       </div>
-      </div>
-    </div>
+    </>
   );
 };
 

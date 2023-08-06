@@ -2,33 +2,42 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { HiX } from "react-icons/hi";
 import { ApiContext } from "../../../../UseContext/ApiContext";
+import { useParams } from "react-router-dom";
 
 const UpdateEvent = ({ isVisible, handleUpdate }) => {
+  const { slug } = useParams();
   const { artistsList, venuesList } = useContext(ApiContext);
   const [closeUpdate, setCloseUpdate] = useState(false);
-  const [eventList, setEventList] = useState([
-    {
-      event_name: "",
-      event_date: "",
-      event_time: "",
-      artist_id: "",
-      venue_id: "",
-    },
-  ]);
+  const [updateEvent, setUpdateEvent] = useState([]);
+
+  const fetchData = () => {
+    axios
+      .get(`${process.env.REACT_APP_USERS}/api/events/${slug}`)
+      .then((response) => {
+        setUpdateEvent(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [slug]);
 
   // function ใส่ค่า form  ของ state Eventlist
   const inputEventList = (index) => (e) => {
     const { name, value } = e.target;
-    const newList = [...eventList];
+    const newList = [...updateEvent];
     newList[index][name] = value;
-    setEventList(newList);
+    setUpdateEvent(newList);
   };
 
   // increase form EventList ชุดใหม่
   const addFields = (e) => {
     e.preventDefault();
-    setEventList([
-      ...eventList,
+    setUpdateEvent([
+      ...updateEvent,
       {
         event_name: "",
         event_date: "",
@@ -39,9 +48,9 @@ const UpdateEvent = ({ isVisible, handleUpdate }) => {
 
   // remove Form Listevent ชุดใหม่ ที่เพิ่มเข้ามา
   const removeEventList = (index) => {
-    const newList = [...eventList];
+    const newList = [...updateEvent];
     newList.splice(index, 1);
-    setEventList(newList);
+    setUpdateEvent(newList);
   };
 
   const toggleClose = () => {
@@ -70,7 +79,7 @@ const UpdateEvent = ({ isVisible, handleUpdate }) => {
 
         <div className="p-2 w-full">
           <form>
-            {eventList.map((event, index) => (
+            {updateEvent.map((event, index) => (
               <div key={index}>
                 <div>
                   {index > 0 && (

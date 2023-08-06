@@ -1,18 +1,18 @@
 import { useState } from "react";
-import logo from "../../../../images/showroomlogowhite.png";
+import logo from "../../../../../images/showroomlogowhite.png";
 import { HiOutlineSearch, HiMenuAlt1, HiX } from "react-icons/hi";
-import SideMunubar from "./SideMenubar";
 
-const NavDashboard = () => {
+const NavDashboard = ({ onToggleBar }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+    onToggleBar(!isSidebarOpen);
   };
 
   return (
-    <div className="fixed w-full z-50">
-      <div className="relative z-[999] flex justify-between items-center p-2 bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
+    <div className="fixed z-40 w-full">
+      <div className="flex justify-between items-center p-2 bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
         <div className="flex items-center px-2">
           <button
             className="text-2xl text-white mr-4 "
@@ -47,7 +47,6 @@ const NavDashboard = () => {
           <div className="bg-gray-900 w-[35px] h-[35px] rounded-full"></div>
         </div>
       </div>
-      <SideMunubar isOpen={isSidebarOpen} />
     </div>
   );
 };

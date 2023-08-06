@@ -24,9 +24,9 @@ const SideMunubar = ({ isOpen }) => {
   };
   return (
     <>
-      <div className={`fixed  md:block ${isOpen ? "" : "hidden"}`}>
+      <div className={`fixed z-20 md:static ${isOpen ? "" : "hidden"}`}>
         <aside className="relative z-20 w-[250px] h-[100vh] overflow-auto  rounded-b-r bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
-          <ul className="mt-2 p-[3px]">
+          <ul className="mt-2 p-2">
             <li>
               <form className="md:hidden">
                 <label>
@@ -45,7 +45,7 @@ const SideMunubar = ({ isOpen }) => {
               </form>
             </li>
             <li>
-              <Link to="/dashboard">
+              <Link to="/dashboard/chart">
                 <div className="flex text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
                   <div className="flex items-center px-2 py-3">
                     <div>
@@ -68,15 +68,20 @@ const SideMunubar = ({ isOpen }) => {
               </div>
             </li>
             <li>
-              <div className="flex p-2 items-center text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
-                <FaMicrophone className="text-2xl  mr-2" />
-                <Link
-                  to="/dashboard/events"
-                  className="text-lg text-white font-light"
-                >
-                  Events
-                </Link>
-              </div>
+            <Link to="/dashboard/events">
+                <div className="flex text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
+                  <div className="flex items-center px-2 py-3">
+                    <div>
+                      <FaMicrophone className=" text-2xl mr-2" />
+                    </div>
+                    <div>
+                      <div className="text-lg text-white font-light">
+                        Events
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
             </li>
 
             {/* Products Menu*/}
@@ -93,7 +98,7 @@ const SideMunubar = ({ isOpen }) => {
                     <HiShoppingBag className="text-2xl  mr-2" />
                     <p className="text-lg text-white font-light">Products</p>
                   </div>
-                  <HiChevronDown />
+                  <HiChevronDown className="text-xl"/>
                 </button>
               </div>
 
@@ -130,7 +135,7 @@ const SideMunubar = ({ isOpen }) => {
                     <HiUsers className="text-2xl  mr-2" />
                     <p className="text-lg text-white font-light">Users</p>
                   </div>
-                  <HiChevronDown />
+                  <HiChevronDown className="text-xl"/>
                 </button>
               </div>
 
