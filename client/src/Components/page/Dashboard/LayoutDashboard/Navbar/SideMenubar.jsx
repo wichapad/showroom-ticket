@@ -9,12 +9,14 @@ import {
 } from "react-icons/hi";
 import { FaGithub, FaMicrophone } from "react-icons/fa";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Blackdrop from "./Blackdrop";
 
 const SideMunubar = ({ isOpen }) => {
   const [productBar, setProductBar] = useState(false);
   const [userBar, setUserBar] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
+
   const toggleSubmenu = (menu) => {
     if (menu === "product") {
       setProductBar(!productBar);
@@ -22,11 +24,20 @@ const SideMunubar = ({ isOpen }) => {
       setUserBar(!userBar);
     }
   };
+
+  const hoverSidebar = () => setShowSidebar(!showSidebar);
   return (
     <>
-      <div className={`fixed z-20 md:static ${isOpen ? "" : "hidden"}`}>
-        <aside className="relative z-20 w-[250px] h-[100vh] overflow-auto  rounded-b-r bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
-          <ul className="mt-2 p-2">
+      <div
+        className={`fixed z-20 md:static md:block ${isOpen ? "" : "hidden"}`}
+      >
+        <aside
+          className={`relative z-20 ${
+            showSidebar ? "md:w-[250px]" : "md:w-[50px] md:hover:w-[250px]"
+          } w-[250px] h-[100vh] overflow-auto  rounded-b-r bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800`}
+          style={{ transition: "width 0.2s ease-in-out" }}
+        >
+          <ul className="mt-2 px-[0.35rem] py-2">
             <li>
               <form className="md:hidden">
                 <label>
@@ -45,11 +56,11 @@ const SideMunubar = ({ isOpen }) => {
               </form>
             </li>
             <li>
-              <Link to="/dashboard/chart">
+              <NavLink to="/dashboard">
                 <div className="flex text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
                   <div className="flex items-center px-2 py-3">
                     <div>
-                      <HiChartPie className=" text-2xl mr-2" />
+                      <HiChartPie className=" text-2xl mr-3" />
                     </div>
                     <div>
                       <div className="text-lg text-white font-light">
@@ -58,21 +69,29 @@ const SideMunubar = ({ isOpen }) => {
                     </div>
                   </div>
                 </div>
-              </Link>
+              </NavLink>
             </li>
             {/* Inbox Menu*/}
             <li>
-              <div className="flex p-2 items-center text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
-                <HiInboxIn className="text-2xl  mr-2" />
-                <p className="text-lg text-white font-light">Inbox</p>
-              </div>
-            </li>
-            <li>
-            <Link to="/dashboard/events">
+              <NavLink to="#">
                 <div className="flex text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
                   <div className="flex items-center px-2 py-3">
                     <div>
-                      <FaMicrophone className=" text-2xl mr-2" />
+                      <HiInboxIn className=" text-2xl mr-3" />
+                    </div>
+                    <div>
+                      <div className="text-lg text-white font-light">Inbox</div>
+                    </div>
+                  </div>
+                </div>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/dashboard/events">
+                <div className="flex text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
+                  <div className="flex items-center px-2 py-3">
+                    <div>
+                      <FaMicrophone className=" text-2xl mr-3" />
                     </div>
                     <div>
                       <div className="text-lg text-white font-light">
@@ -81,12 +100,12 @@ const SideMunubar = ({ isOpen }) => {
                     </div>
                   </div>
                 </div>
-              </Link>
+              </NavLink>
             </li>
 
             {/* Products Menu*/}
-            <li className="my-2">
-              <div className="flex p-2  text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
+            <li>
+              <div className="flex px-2 py-3  text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
                 <button
                   className="flex justify-between items-center w-full"
                   type="button"
@@ -95,10 +114,10 @@ const SideMunubar = ({ isOpen }) => {
                   }}
                 >
                   <div className="flex">
-                    <HiShoppingBag className="text-2xl  mr-2" />
+                    <HiShoppingBag className="text-2xl  mr-3" />
                     <p className="text-lg text-white font-light">Products</p>
                   </div>
-                  <HiChevronDown className="text-xl"/>
+                  <HiChevronDown className="text-xl" />
                 </button>
               </div>
 
@@ -115,7 +134,9 @@ const SideMunubar = ({ isOpen }) => {
                   </li>
                   <li>
                     <div className="flex p-2 justify-between items-center text-slate-200 hover: transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
-                      <p className="pl-8 text-lg text-white font-light">Shop</p>
+                      <p className="pl-8 text-lg text-white font-light">
+                        Merch
+                      </p>
                     </div>
                   </li>
                 </ul>
@@ -123,7 +144,7 @@ const SideMunubar = ({ isOpen }) => {
             </li>
             {/* Users Menu*/}
             <li>
-              <div className="flex p-2  text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
+              <div className="flex px-2 py-3  text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
                 <button
                   className="flex justify-between items-center w-full"
                   type="button"
@@ -132,10 +153,10 @@ const SideMunubar = ({ isOpen }) => {
                   }}
                 >
                   <div className="flex">
-                    <HiUsers className="text-2xl  mr-2" />
+                    <HiUsers className="text-2xl  mr-3" />
                     <p className="text-lg text-white font-light">Users</p>
                   </div>
-                  <HiChevronDown className="text-xl"/>
+                  <HiChevronDown className="text-xl" />
                 </button>
               </div>
 
@@ -153,20 +174,38 @@ const SideMunubar = ({ isOpen }) => {
                 </ul>
               )}
             </li>
-            <div className="my-2 border opacity-25"></div>
+            <div className="my-2 border opacity-25 "></div>
             <li>
-              <div className="flex p-2 items-center text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
-                <FaGithub className="text-2xl  mr-2" />
-                <p className="text-lg text-white font-light">
-                  GitHub Repository
-                </p>
-              </div>
+              <NavLink to="#">
+                <div className="flex text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
+                  <div className="flex items-center px-2 py-3">
+                    <div>
+                      <FaGithub className=" text-2xl mr-3" />
+                    </div>
+                    <div>
+                      <div className="text-lg whitespace-nowrap text-white font-light">
+                        Github Repository
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </NavLink>
             </li>
-            <li className="my-2">
-              <div className="flex p-2 items-center text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
-                <HiSupport className="text-2xl  mr-2" />
-                <p className="text-lg text-white font-light">Support</p>
-              </div>
+            <li>
+              <NavLink to="#">
+                <div className="flex text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
+                  <div className="flex items-center px-2 py-3">
+                    <div>
+                      <HiSupport className=" text-2xl mr-3" />
+                    </div>
+                    <div>
+                      <div className="text-lg text-white font-light">
+                        Support
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </NavLink>
             </li>
           </ul>
         </aside>

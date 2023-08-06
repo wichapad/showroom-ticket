@@ -1,4 +1,4 @@
-// SQL 
+// SQL
 const pool = require("../database");
 
 exports.createEvent = async (req, res) => {
@@ -21,6 +21,36 @@ exports.createEvent = async (req, res) => {
       })
     );
     res.json(createdEvents);
+  } catch (error) {
+    res.status(500).json({ error: "internal server error" });
+  }
+};
+
+exports.updateEvent = async (req, res) => {
+  try {
+    const events = req.body;
+    const slug = req.params.slug;
+    const updateEvents = await Promise.all(
+      events.map(async (event) => {
+        const { event_name, event_date, event_time, artist_id, venue_id } =
+          event;
+        const query = `UPDATE event 
+        SET event_name = $1, event_date = $2, event_time = $3, artist_id = $4, venue_id = $5 
+        WHERE slug = $6 
+        RETURNING *`;
+        const values = [
+          event_name,
+          event_date,
+          event_time,
+          artist_id,
+          venue_id,
+          slug,
+        ];
+        const result = await pool.query(query, values);
+        return result.rows[0];
+      })
+    );
+    res.json(updateEvents);
   } catch (error) {
     res.status(500).json({ error: "internal server error" });
   }
@@ -101,7 +131,7 @@ exports.singleEvent = (req, res) => {
   a.artist_name,
   g.genre_name,
   a.artist_image,
-  a.slug; ;
+  a.slug; 
   `;
   pool.query(query, [slug], (err, result) => {
     if (err) {

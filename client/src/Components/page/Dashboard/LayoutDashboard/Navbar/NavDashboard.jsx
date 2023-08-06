@@ -19,7 +19,7 @@ const NavDashboard = ({ onToggleBar }) => {
             type="button"
             onClick={toggleSidebar}
           >
-            {!isSidebarOpen ? <HiMenuAlt1 /> : <HiX />}
+            {!isSidebarOpen ? <HiMenuAlt1 className="md:hidden"/> : <HiX className="md:hidden"/>}
           </button>
           <a href="/" className="flex items-center">
             <img src={logo} className="h-5" alt="Flowbite Logo" />
