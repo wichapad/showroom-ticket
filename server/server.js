@@ -14,6 +14,7 @@ app.use(cors());
 const users = require("./routes/users");
 const authRoute = require("./routes/auth");
 const eventsRoute = require("./routes/events");
+const ticketRoute = require("./routes/ticket");
 // const adminRoute = require('./routes/admin');
 // const { requireAdmin } = require("./controllers/authController");
 
@@ -40,6 +41,7 @@ pool.query("SELECT NOW()", (err, res) => {
 app.use(users);
 app.use(authRoute);
 app.use("/api", eventsRoute);
+app.use("/api", ticketRoute);
 
 const port = process.env.PORT;
 

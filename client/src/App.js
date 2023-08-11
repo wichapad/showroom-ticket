@@ -1,8 +1,9 @@
 import "./App.css";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./Components/page/HomePage/Home";
 import Events from "./Components/page/EventsPage/Events";
 import EventInfo from "./Components/page/EventsPage/EventInfo";
+import Seat from "./Components/page/EventsPage/Ticket/Seat";
 import Shop from "./Components/page/ShopPage/Shop";
 import Login from "./Components/Auth/Login";
 import Register from "./Components/Auth/Register";
@@ -19,6 +20,7 @@ const App = () => {
       <Route path="/" element={<Home />} />
       <Route path="/events" element={<Events />} />
       <Route path="/events/:slug" element={<EventInfo />} />
+      <Route path="/booking/:slug" element={<Seat />} />
       <Route path="/shop" element={<Shop />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />

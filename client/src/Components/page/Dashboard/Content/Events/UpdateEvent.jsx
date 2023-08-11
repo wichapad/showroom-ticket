@@ -10,27 +10,30 @@ const UpdateEvent = ({ isVisible, handleUpdate }) => {
   const [closeUpdate, setCloseUpdate] = useState(false);
   const [updateEvent, setUpdateEvent] = useState([]);
 
-  const fetchData = () => {
-    axios
-      .get(`${process.env.REACT_APP_USERS}/api/events/${slug}`)
-      .then((response) => {
-        setUpdateEvent(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `${process.env.REACT_APP_USERS}/api/events/${slug}`
+  //     );
 
-  useEffect(() => {
-    fetchData();
-  }, [slug]);
+  //     const artistData = response.data[0];
+  //     setUpdateEvent(artistData.event);
+  //     console.log(artistData.event);
+  //   } catch (error) {
+  //     console.log("Error creating event", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, [slug]);
 
   // function ใส่ค่า form  ของ state Eventlist
   const inputEventList = (index) => (e) => {
     const { name, value } = e.target;
-    const newList = [...updateEvent];
-    newList[index][name] = value;
-    setUpdateEvent(newList);
+    const updatedEvents = [...updateEvent];
+    updatedEvents[index][name] = value;
+    setUpdateEvent(updatedEvents);
   };
 
   // increase form EventList ชุดใหม่
@@ -42,20 +45,32 @@ const UpdateEvent = ({ isVisible, handleUpdate }) => {
         event_name: "",
         event_date: "",
         event_time: "",
+        artist_id: "",
+        venue_id: "",
       },
     ]);
   };
 
   // remove Form Listevent ชุดใหม่ ที่เพิ่มเข้ามา
   const removeEventList = (index) => {
-    const newList = [...updateEvent];
-    newList.splice(index, 1);
-    setUpdateEvent(newList);
+    const updatedEvents = [...updateEvent];
+    updatedEvents.splice(index, 1);
+    setUpdateEvent(updatedEvents);
   };
 
   const toggleClose = () => {
     setCloseUpdate(!closeUpdate);
     handleUpdate();
+  };
+
+  const submitForm = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(`${process.env.REACT_APP_USERS}/api/events/${slug}`,updateEvent);
+      console.log('Update successfully');
+    } catch (error) {
+      console.log("Error updating events", error);
+    }
   };
 
   return (
@@ -116,8 +131,8 @@ const UpdateEvent = ({ isVisible, handleUpdate }) => {
                         type="date"
                         pattern="\d{4}-\d{2}-\d{2}"
                         required
-                        name="event_date"
-                        value={event.event_date}
+                        name="date"
+                        value={event.date}
                         onChange={inputEventList(index)}
                       />
                     </div>
@@ -128,8 +143,8 @@ const UpdateEvent = ({ isVisible, handleUpdate }) => {
                       <input
                         className="py-2 px-3 rounded border border-gray-300 focus:border-gray-700  "
                         type="time"
-                        name="event_time"
-                        value={event.event_time}
+                        name="time"
+                        value={event.time}
                         onChange={inputEventList(index)}
                       />
                     </div>

@@ -14,9 +14,9 @@ const LayoutDashboard = () => {
   return (
     <div>
       <NavDashboard onToggleBar={toggleMenu} />
-      <div className="flex pt-[3.2rem] overflow-hidden">
+      <div className="flex  pt-[3.2rem]">
         <SideMenubar isOpen={isSidebarOpen} />
-        <div className="flex-grow">
+        <div className="w-full ml-[4rem]">
           <main>
           <Outlet/>
           </main>

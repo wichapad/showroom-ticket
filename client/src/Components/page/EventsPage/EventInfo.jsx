@@ -1,5 +1,5 @@
 //  แสดงข้อมูลแบบ single ขอข้อมูลที่ส่งมาจาก database
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Navbar from "../../Navbar/Navbar";
@@ -10,6 +10,7 @@ import { BsFillCalendarEventFill, BsFillClockFill } from "react-icons/bs";
 const EventInfo = () => {
   const { slug } = useParams();
   const [singleEvent, setSingleEvent] = useState([]);
+  const [tickeBtn,setTicketBtn] = useState(false)
 
   const fetchData = () => {
     axios
@@ -139,9 +140,12 @@ const EventInfo = () => {
                     </div>
                     <div className="my-2">
                       <div>
-                        <button className="uppercase text-sm font-bold py-3 px-4 text-gray-200 rounded-md bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95">
+                        <NavLink
+                          to={`/booking/${slug}`}
+                          className="uppercase text-sm font-bold py-3 px-4 text-gray-200 rounded-md bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95"
+                        >
                           Get Ticket
-                        </button>
+                        </NavLink>
                       </div>
                     </div>
                   </div>

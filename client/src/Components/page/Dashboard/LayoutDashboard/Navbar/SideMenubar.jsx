@@ -24,12 +24,13 @@ const SideMunubar = ({ isOpen }) => {
       setUserBar(!userBar);
     }
   };
-
+  // eslint-disable-next-line 
   const hoverSidebar = () => setShowSidebar(!showSidebar);
+
   return (
     <>
       <div
-        className={`fixed z-20 md:static md:block ${isOpen ? "" : "hidden"}`}
+        className={`fixed z-20  md:flex ${isOpen ? "" : "hidden"}`}
       >
         <aside
           className={`relative z-20 ${

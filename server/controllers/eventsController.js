@@ -29,14 +29,19 @@ exports.createEvent = async (req, res) => {
 exports.updateEvent = async (req, res) => {
   try {
     const events = req.body;
-    const slug = req.params.slug;
     const updateEvents = await Promise.all(
       events.map(async (event) => {
-        const { event_name, event_date, event_time, artist_id, venue_id } =
-          event;
+        const {
+          event_id,
+          event_name,
+          event_date,
+          event_time,
+          artist_id,
+          venue_id,
+        } = event;
         const query = `UPDATE event 
         SET event_name = $1, event_date = $2, event_time = $3, artist_id = $4, venue_id = $5 
-        WHERE slug = $6 
+        WHERE event_id = $6
         RETURNING *`;
         const values = [
           event_name,
@@ -44,7 +49,7 @@ exports.updateEvent = async (req, res) => {
           event_time,
           artist_id,
           venue_id,
-          slug,
+          event_id,
         ];
         const result = await pool.query(query, values);
         return result.rows[0];
@@ -113,14 +118,14 @@ exports.getVenues = (req, res) => {
 // Get single data by slug join table artist event venue
 exports.singleEvent = (req, res) => {
   const slug = req.params.slug;
-  const query = `SELECT 
+  const query = `SELECT
   a.artist_id,
   a.artist_name,
   g.genre_name,
   a.artist_image,
   a.slug,
-  json_agg(json_build_object('event_name', e.event_name, 'date',e.event_date,'time' ,e.event_time)) AS event,
-  json_agg(json_build_object('venue_name', v.venue_name, 'city',v.venue_city,'state' ,v.venue_state)) AS venue
+  json_agg(json_build_object('event_id', e.event_id ,'event_name', e.event_name, 'date',e.event_date,'time' ,e.event_time)) AS event,
+  json_agg(json_build_object('venue_id', v.venue_id, 'venue_name', v.venue_name, 'city',v.venue_city,'state' ,v.venue_state)) AS venue
   FROM artist a
   JOIN event e ON a.artist_id = e.artist_id
   JOIN venue v ON e.venue_id = v.venue_id
