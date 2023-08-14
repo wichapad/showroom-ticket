@@ -25,14 +25,50 @@ const Seat = () => {
     ticketData();
   }, [slug]);
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const monthString = [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AUG",
+      "SEP",
+      "OCT",
+      "NOV",
+      "DEC",
+    ];
+    const day = date.getDate();
+    const monthIndex = date.getMonth();
+    const month = monthString[monthIndex];
+    const year = date.getFullYear();
+    return `${month}  ${day < 10 ? "0" + day : day}  ${year}`;
+  };
+
   return (
     <>
       <Navbar />
-      {singleTicket.map((ticket)=>{
-        <div key={ticket.event_id}>
-            <div>{ticket.event_name}</div>
-        </div>
-      })}
+      <div className="pt-[5rem]">
+        {singleTicket.map((item) => (
+          <div key={item.event_id}>
+            <div>
+              <div>{item.event_name}</div>
+              <div>{formatDate(item.event_date)}</div>
+              <div>{item.event_time}</div>
+            </div>
+           <div>
+           {item.details.map((seat) => (
+              <div key={seat.ticket_id}>
+                <div>{seat.description}</div>
+              </div>
+            ))}
+           </div>
+          </div>
+        ))}
+      </div>
       <Footer />
     </>
   );
