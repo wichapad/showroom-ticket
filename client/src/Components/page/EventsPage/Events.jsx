@@ -8,6 +8,7 @@ import Footer from "../HomePage/Footer";
 
 const Events = () => {
   const { itemsEvent } = useContext(ApiContext);
+  
 
   return (
     <div className="max-w-screen-xl ">

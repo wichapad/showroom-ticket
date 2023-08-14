@@ -140,26 +140,24 @@ const AllEvents = () => {
                       <p className="text-center uppercase text-gray-500">
                         Event List
                       </p>
-                      <div className="flex justify-center text-sm">
-                        <div>
-                          {item.event.map((item, index) => (
+                      {item.events.map((item, index) => (
+                        <div className="flex justify-center text-sm">
+                          <div>
                             <div key={index} className="flex shadow border p-2">
                               <p>{item.event_name}</p>
                               <p className="px-2">{item.date}</p>
                               <p>{item.time}</p>
                             </div>
-                          ))}
-                        </div>
-                        <div>
-                          {item.venue.map((item, index) => (
+                          </div>
+                          <div>
                             <div key={index} className="flex shadow border p-2">
                               <p>{item.venue_name}</p>
                               <p className="px-2">{item.city}</p>
                               <p>{item.state}</p>
                             </div>
-                          ))}
+                          </div>
                         </div>
-                      </div>
+                      ))}
                     </td>
                   </tr>
                 )}

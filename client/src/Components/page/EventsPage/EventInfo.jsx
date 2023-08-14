@@ -4,13 +4,13 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Navbar from "../../Navbar/Navbar";
 import Footer from "../HomePage/Footer";
-// import Footer from "../HomeComponents/Footer";
+
 import { BsFillCalendarEventFill, BsFillClockFill } from "react-icons/bs";
+
 
 const EventInfo = () => {
   const { slug } = useParams();
   const [singleEvent, setSingleEvent] = useState([]);
-  const [tickeBtn,setTicketBtn] = useState(false)
 
   const fetchData = () => {
     axios
@@ -23,10 +23,11 @@ const EventInfo = () => {
         console.log(error);
       });
   };
+
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line
-  }, []);
+  }, [slug]);
 
   //แปลงค่า วันที่
   const formatDate = (dateString) => {
@@ -104,7 +105,7 @@ const EventInfo = () => {
               <div className="m-2 w-36 border-b-2 border-black">
                 <p className="text-2xl font-bold uppercase">list events</p>
               </div>
-              {event.event.map((item, index) => (
+              {event.events.map((item, index) => (
                 <div
                   key={index}
                   className="m-2 border border-violet-400 rounded shadow sm:max-w-screen-md"
@@ -128,20 +129,20 @@ const EventInfo = () => {
                       </div>
                       <div className="sm:flex">
                         <div>
-                          <p>{event.venue[index].venue_name},</p>
+                          <p>{item.venue_name},</p>
                         </div>
                         <div className="mx-2">
-                          <p>{event.venue[index].city},</p>
+                          <p>{item.city},</p>
                         </div>
                         <div>
-                          <p>{event.venue[index].state}</p>
+                          <p>{item.state}</p>
                         </div>
                       </div>
                     </div>
                     <div className="my-2">
                       <div>
                         <NavLink
-                          to={`/booking/${slug}`}
+                          to={`/booking/${item.slug_event}`}
                           className="uppercase text-sm font-bold py-3 px-4 text-gray-200 rounded-md bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95"
                         >
                           Get Ticket

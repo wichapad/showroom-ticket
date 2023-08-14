@@ -1,18 +1,24 @@
 const pool = require("../database");
 
 exports.getTicket = (req, res) => {
-  const slug = req.params.slug
-  const query = `SELECT 
-    t.ticket_id,
-	t.serial_number,
-	json_agg(json_build_object('seat',t.seat,'event_name',e.event_name,'event_slug',e.slug_event,'description',ctgy.description,'purchase_date',t.purchase_date)) AS details
-	FROM ticket t
-	JOIN event e ON t.event_id = e.event_id
-	JOIN ticket_category ctgy ON t.ticket_ctgy_id = ctgy.ticket_ctgy_id
-	GROUP BY
-	t.ticket_id,
-	t.serial_number;
-	`;
+  
+  const query = `SELECT
+    e.event_id,
+    e.event_name,
+    e.event_date,
+    e.event_time,
+    e.slug_event,
+    json_agg(json_build_object('ticket_id',t.ticket_id,'serial_number',t.serial_number,'seat',t.seat,'description',ctgy.description,'purchase_date',t.purchase_date)) AS details
+    FROM event e
+    JOIN ticket t ON t.event_id = e.event_id
+    JOIN ticket_category ctgy ON t.ticket_ctgy_id = ctgy.ticket_ctgy_id
+    GROUP BY
+    e.event_id,
+    e.event_name,
+    e.event_date,
+    e.event_time,
+    e.slug_event;
+  `;
 
   pool.query(query, (err, result) => {
     if (err) {
@@ -24,21 +30,27 @@ exports.getTicket = (req, res) => {
 };
 
 exports.singleTicket = (req, res) => {
-  const slug = req.params.slug
-  const query = `SELECT 
-    t.ticket_id,
-	t.serial_number,
-	json_agg(json_build_object('seat',t.seat,'event_name',e.event_name,'event_slug',e.slug_event,'description',ctgy.description,'purchase_date',t.purchase_date)) AS details
-	FROM ticket t
-	JOIN event e ON t.event_id = e.event_id
-	JOIN ticket_category ctgy ON t.ticket_ctgy_id = ctgy.ticket_ctgy_id
+  const slug = req.params.slug;
+  const query = `SELECT
+  e.event_id,
+  e.event_name,
+  e.event_date,
+  e.event_time,
+  e.slug_event,
+  json_agg(json_build_object('ticket_id',t.ticket_id,'serial_number',t.serial_number,'seat',t.seat,'description',ctgy.description,'purchase_date',t.purchase_date)) AS details
+  FROM event e
+  JOIN ticket t ON t.event_id = e.event_id
+  JOIN ticket_category ctgy ON t.ticket_ctgy_id = ctgy.ticket_ctgy_id
   WHERE e.slug_event = $1
-	GROUP BY
-	t.ticket_id,
-	t.serial_number;
+  GROUP BY
+  e.event_id,
+  e.event_name,
+  e.event_date,
+  e.event_time,
+  e.slug_event;
 	`;
 
-  pool.query(query,[slug], (err, result) => {
+  pool.query(query, [slug], (err, result) => {
     if (err) {
       res.status(500).json({ error: "Internal server error" });
     } else {
