@@ -6,13 +6,14 @@ import Navbar from "../../Navbar/Navbar";
 import Footer from "../HomePage/Footer";
 
 import { BsFillCalendarEventFill, BsFillClockFill } from "react-icons/bs";
-
+import { FormatDateTime } from "../../FormatDateTime";
 
 const EventInfo = () => {
   const { slug } = useParams();
   const [singleEvent, setSingleEvent] = useState([]);
+  const { formatDate, formatTime } = FormatDateTime();
 
-  const fetchData = () => {
+  const singleEventData = (slug) => {
     axios
       .get(`${process.env.REACT_APP_USERS}/api/events/${slug}`)
       .then((response) => {
@@ -25,51 +26,9 @@ const EventInfo = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    singleEventData(slug);
     // eslint-disable-next-line
   }, [slug]);
-
-  //แปลงค่า วันที่
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const monthString = [
-      "JAN",
-      "FEB",
-      "MAR",
-      "APR",
-      "MAY",
-      "JUN",
-      "JUL",
-      "AUG",
-      "SEP",
-      "OCT",
-      "NOV",
-      "DEC",
-    ];
-    const day = date.getDate();
-    const monthIndex = date.getMonth();
-    const month = monthString[monthIndex];
-    const year = date.getFullYear();
-    return `${month}  ${day < 10 ? "0" + day : day}  ${year}`;
-  };
-
-  const formatTime = (time24Hour) => {
-    const timeArr = time24Hour.split(":");
-    let hours = parseInt(timeArr[0]);
-    const minutes = timeArr[1];
-    let amPm = "AM";
-
-    if (hours === 0) {
-      hours = 12;
-    } else if (hours === 12) {
-      amPm = "PM";
-    } else if (hours > 12) {
-      hours -= 12;
-      amPm = "PM";
-    }
-
-    return `${hours}:${minutes} ${amPm}`;
-  };
 
   return (
     <>
@@ -79,7 +38,7 @@ const EventInfo = () => {
         {singleEvent.map((event) => (
           <div key={event.artist_id}>
             <div className="relative flex bg-black overflow-hidden">
-              <div className="brightness-50 w-full filter blur-sm  h-80">
+              <div className="brightness-50 w-full filter blur-sm  h-[280px]">
                 <img
                   className="w-full h-full object-cover"
                   src={event.artist_image}
@@ -89,7 +48,7 @@ const EventInfo = () => {
               <div className="absolute left-8 bottom-8  ">
                 <div className="flex ">
                   <img
-                    className="w-48  aspect-video rounded-md object-cover md:w-72"
+                    className=" aspect-video rounded-md object-cover w-[250px]"
                     src={event.artist_image}
                     alt="bandImage"
                   />
@@ -105,53 +64,56 @@ const EventInfo = () => {
               <div className="m-2 w-36 border-b-2 border-black">
                 <p className="text-2xl font-bold uppercase">list events</p>
               </div>
-              {event.events.map((item, index) => (
-                <div
-                  key={index}
-                  className="m-2 border border-violet-400 rounded shadow sm:max-w-screen-md"
-                >
-                  <div className="py-2 px-4 sm:flex justify-between items-center">
-                    <div>
-                      <div className="flex">
-                        <div className="flex  items-center mr-2">
-                          <BsFillCalendarEventFill className="mr-2 text-gray-400" />
-                          <p>{formatDate(item.date)}</p>
+              {event.events
+                .slice()
+                .sort((a, b) => a.event_id - b.event_id)
+                .map((item, index) => (
+                  <div
+                    key={index}
+                    className="m-2 border border-violet-400 rounded shadow sm:max-w-screen-md"
+                  >
+                    <div className="py-2 px-4 sm:flex justify-between items-center">
+                      <div>
+                        <div className="flex">
+                          <div className="flex  items-center mr-2">
+                            <BsFillCalendarEventFill className="mr-2 text-gray-400" />
+                            <p>{formatDate(item.date)}</p>
+                          </div>
+                          <div className="flex items-center">
+                            <BsFillClockFill className="mr-2 text-gray-400" />
+                            <p>{formatTime(item.time)}</p>
+                          </div>
                         </div>
-                        <div className="flex items-center">
-                          <BsFillClockFill className="mr-2 text-gray-400" />
-                          <p>{formatTime(item.time)}</p>
+                        <div className="my-2">
+                          <p className="text-[18px] font-[300]">
+                            {item.event_name}
+                          </p>
+                        </div>
+                        <div className="sm:flex">
+                          <div>
+                            <p>{item.venue_name},</p>
+                          </div>
+                          <div className="mx-2">
+                            <p>{item.city},</p>
+                          </div>
+                          <div>
+                            <p>{item.state}</p>
+                          </div>
                         </div>
                       </div>
                       <div className="my-2">
-                        <p className="text-[18px] font-[300]">
-                          {item.event_name}
-                        </p>
-                      </div>
-                      <div className="sm:flex">
                         <div>
-                          <p>{item.venue_name},</p>
+                          <NavLink
+                            to={`/booking/${item.slug_event}`}
+                            className="uppercase text-sm font-bold py-3 px-4 text-gray-200 rounded-md bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95"
+                          >
+                            Get Ticket
+                          </NavLink>
                         </div>
-                        <div className="mx-2">
-                          <p>{item.city},</p>
-                        </div>
-                        <div>
-                          <p>{item.state}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="my-2">
-                      <div>
-                        <NavLink
-                          to={`/booking/${item.slug_event}`}
-                          className="uppercase text-sm font-bold py-3 px-4 text-gray-200 rounded-md bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95"
-                        >
-                          Get Ticket
-                        </NavLink>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         ))}

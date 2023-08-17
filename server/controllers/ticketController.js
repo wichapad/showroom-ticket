@@ -1,23 +1,37 @@
 const pool = require("../database");
 
 exports.getTicket = (req, res) => {
-  
   const query = `SELECT
-    e.event_id,
-    e.event_name,
-    e.event_date,
-    e.event_time,
-    e.slug_event,
-    json_agg(json_build_object('ticket_id',t.ticket_id,'serial_number',t.serial_number,'seat',t.seat,'description',ctgy.description,'purchase_date',t.purchase_date)) AS details
-    FROM event e
-    JOIN ticket t ON t.event_id = e.event_id
-    JOIN ticket_category ctgy ON t.ticket_ctgy_id = ctgy.ticket_ctgy_id
-    GROUP BY
-    e.event_id,
-    e.event_name,
-    e.event_date,
-    e.event_time,
-    e.slug_event;
+  e.event_id,
+	e.event_name,
+	e.event_date,
+	e.event_time,
+  e.slug_event,
+  v.venue_name,
+  v.venue_city,
+  v.venue_state,
+  a.artist_name,
+  a.artist_image,
+  json_agg(json_build_object(
+  'ctgy_id',ctgy.ticket_ctgy_id,
+  'description',ctgy.description,
+  'area',ctgy.area,
+  'price',ctgy.price)) AS zone
+  FROM event e
+  JOIN ticket_category ctgy ON ctgy.event_id = e.event_id
+  JOIN artist a ON a.artist_id = e.artist_id
+  JOIN venue v ON v.venue_id = e.venue_id
+  GROUP BY
+  e.event_id,
+  e.event_name,
+	e.event_date,
+	e.event_time,
+  e.slug_event,
+  v.venue_name,
+  v.venue_city,
+  v.venue_state,
+  a.artist_name,
+  a.artist_image;
   `;
 
   pool.query(query, (err, result) => {
@@ -29,25 +43,40 @@ exports.getTicket = (req, res) => {
   });
 };
 
-exports.singleTicket = (req, res) => {
+exports.singleZone = (req, res) => {
   const slug = req.params.slug;
   const query = `SELECT
   e.event_id,
-  e.event_name,
-  e.event_date,
-  e.event_time,
+	e.event_name,
+	e.event_date,
+	e.event_time,
   e.slug_event,
-  json_agg(json_build_object('ticket_id',t.ticket_id,'serial_number',t.serial_number,'seat',t.seat,'description',ctgy.description,'purchase_date',t.purchase_date)) AS details
+  v.venue_name,
+  v.venue_city,
+  v.venue_state,
+  a.artist_name,
+  a.artist_image,
+  json_agg(json_build_object(
+  'ctgy_id',ctgy.ticket_ctgy_id,
+  'description',ctgy.description,
+  'area',ctgy.area,
+  'price',ctgy.price)) AS zone
   FROM event e
-  JOIN ticket t ON t.event_id = e.event_id
-  JOIN ticket_category ctgy ON t.ticket_ctgy_id = ctgy.ticket_ctgy_id
-  WHERE e.slug_event = $1
+  JOIN ticket_category ctgy ON ctgy.event_id = e.event_id
+  JOIN artist a ON a.artist_id = e.artist_id
+  JOIN venue v ON v.venue_id = e.venue_id
+  WHERE slug_event = $1
   GROUP BY
   e.event_id,
   e.event_name,
-  e.event_date,
-  e.event_time,
-  e.slug_event;
+	e.event_date,
+	e.event_time,
+  e.slug_event,
+  v.venue_name,
+  v.venue_city,
+  v.venue_state,
+  a.artist_name,
+  a.artist_image;
 	`;
 
   pool.query(query, [slug], (err, result) => {
@@ -58,3 +87,8 @@ exports.singleTicket = (req, res) => {
     }
   });
 };
+
+// exports.seatZone = (req,res) => {
+//   const id = req.params.id;
+//   const query = `SELECT`
+// }

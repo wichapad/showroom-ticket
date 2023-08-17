@@ -1,6 +1,6 @@
 //  แสดงข้อมูลที่ส่งมาจาก database โดย จะให้ไปแสดงใน home component จะแสดง รูปภาพ และชื่อ
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ApiContext } from "../../UseContext/ApiContext";
 import Navbar from "../../Navbar/Navbar";
 import Header from "../HomePage/Header";

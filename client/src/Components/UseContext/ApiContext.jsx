@@ -13,10 +13,9 @@ const ApiProvider = ({ children }) => {
   const [artistsList, setArtistsList] = useState([]);
   //API Venues List
   const [venuesList, setVenuesList] = useState([]);
-// API Ticket
+
+  // API Ticket
   const [allTicket, setAllticket] = useState([]);
-
-
 
   //ดึงข้อมูล จาก database collection events
   const fetchData = () => {
@@ -57,7 +56,7 @@ const ApiProvider = ({ children }) => {
   };
 
   // Get database tickets
-    const ticketData = () => {
+  const ticketData = () => {
     axios
       .get(`${process.env.REACT_APP_USERS}/api/tickets`)
       .then((response) => {
@@ -68,8 +67,6 @@ const ApiProvider = ({ children }) => {
       });
   };
 
-  
-
   useEffect(() => {
     fetchData();
     fetchDataArtists();
@@ -78,7 +75,14 @@ const ApiProvider = ({ children }) => {
   }, []);
 
   return (
-    <ApiContext.Provider value={{ itemsEvent, artistsList, venuesList,allTicket }}>
+    <ApiContext.Provider
+      value={{
+        itemsEvent,
+        artistsList,
+        venuesList,
+        allTicket,
+      }}
+    >
       {children}
     </ApiContext.Provider>
   );
