@@ -2,8 +2,7 @@ import { Outlet, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FormatDateTime } from "../../../FormatDateTime";
 import axios from "axios";
-import Navbar from "../../../Navbar/Navbar";
-import Footer from "../../HomePage/Footer";
+
 
 const TicketLayout = () => {
   const { slug } = useParams();
@@ -28,7 +27,6 @@ const TicketLayout = () => {
 
   return (
     <>
-      <Navbar />
       <div>
         {singleTicket.map((item) => (
           <div key={item.event_id}>
@@ -61,8 +59,7 @@ const TicketLayout = () => {
           </div>
         ))}
       </div>
-      <Outlet/>
-      <Footer />
+      <Outlet />
     </>
   );
 };

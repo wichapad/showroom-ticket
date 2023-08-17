@@ -88,7 +88,9 @@ exports.singleZone = (req, res) => {
   });
 };
 
-// exports.seatZone = (req,res) => {
+// exports.seatRow = (req,res) => {
 //   const id = req.params.id;
-//   const query = `SELECT`
+//   const query = `SELECT
+  
+//   `
 // }

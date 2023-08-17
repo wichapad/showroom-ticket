@@ -2,9 +2,8 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { ApiContext } from "../../UseContext/ApiContext";
-import Navbar from "../../Navbar/Navbar";
 import Header from "../HomePage/Header";
-import Footer from "../HomePage/Footer";
+
 
 const Events = () => {
   const { itemsEvent } = useContext(ApiContext);
@@ -12,7 +11,6 @@ const Events = () => {
 
   return (
     <div className="max-w-screen-xl ">
-      <Navbar />
       <Header />
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         {itemsEvent.map((event) => {
@@ -35,7 +33,6 @@ const Events = () => {
           );
         })}
       </div>
-      <Footer />
     </div>
   );
 };

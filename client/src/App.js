@@ -14,22 +14,38 @@ import UpdateEvent from "./Components/page/Dashboard/Content/Events/UpdateEvent"
 import { getAdminId } from "./Components/Auth/services/autherize";
 import Notfound from "./Components/page/ErrorPage/Notfound";
 import TicketLayout from "./Components/page/EventsPage/Ticket/TicketLayout";
+import Profile from "./Components/page/ProfilePage/Profile";
 import { SeatRow } from "./Components/page/EventsPage/Ticket/SeatRow";
+import PageLayout from "./Components/Navbar/PageLayout";
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/events" element={<Events />} />
-      <Route path="/events/:slug" element={<EventInfo />} />
-      <Route path="/booking/:slug" element={<TicketLayout />}>
-        <Route index element={<Zone />} />
-        <Route path="booking/:slug/:id" element={<SeatRow />} />
+      {/* Route home component */}
+      <Route path="/" element={<PageLayout />}>
+        <Route index element={<Home />} />
+
+        {/* Route events Component */}
+        <Route path="events" element={<Events />} />
+        <Route path="events/:slug" element={<EventInfo />} />
+
+        {/* Route Booking Ticket seat */}
+        <Route path="booking/:slug" element={<TicketLayout />}>
+          <Route index element={<Zone />} />
+          <Route path=":id" element={<SeatRow />} />
+        </Route>
+
+        {/* Route Shopping Components */}
+        <Route path="shop" element={<Shop />} />
+
+        <Route path="/profile" element={<Profile />} />
       </Route>
 
-      <Route path="/shop" element={<Shop />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      {/* Route Login & Register */}
+      <Route path="login" element={<Login />} />
+      <Route path="register" element={<Register />} />
+
+      {/* Route Dashbord */}
       {getAdminId() ? (
         <Route path="/dashboard" element={<LayoutDashboard />}>
           <Route index element={<Dashboard />} />
