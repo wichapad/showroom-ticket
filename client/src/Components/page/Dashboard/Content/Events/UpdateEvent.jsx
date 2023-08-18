@@ -10,22 +10,20 @@ const UpdateEvent = ({ isVisible, handleUpdate }) => {
   const [closeUpdate, setCloseUpdate] = useState(false);
   const [updateEvent, setUpdateEvent] = useState([]);
 
-  // const fetchData = async () => {
+  // const singleEventData = async () => {
   //   try {
   //     const response = await axios.get(
   //       `${process.env.REACT_APP_USERS}/api/events/${slug}`
   //     );
-
-  //     const artistData = response.data[0];
-  //     setUpdateEvent(artistData.event);
-  //     console.log(artistData.event);
+  //     setUpdateEvent(response.data);
+  //     console.log(response.data);
   //   } catch (error) {
   //     console.log("Error creating event", error);
   //   }
   // };
 
   // useEffect(() => {
-  //   fetchData();
+  //   singleEventData();
   // }, [slug]);
 
   // function ใส่ค่า form  ของ state Eventlist
@@ -66,8 +64,11 @@ const UpdateEvent = ({ isVisible, handleUpdate }) => {
   const submitForm = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`${process.env.REACT_APP_USERS}/api/events/${slug}`,updateEvent);
-      console.log('Update successfully');
+      await axios.put(
+        `${process.env.REACT_APP_USERS}/api/events/${slug}`,
+        updateEvent
+      );
+      console.log("Update successfully");
     } catch (error) {
       console.log("Error updating events", error);
     }

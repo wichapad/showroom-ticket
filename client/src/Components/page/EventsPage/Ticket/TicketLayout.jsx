@@ -3,26 +3,25 @@ import { useState, useEffect } from "react";
 import { FormatDateTime } from "../../../FormatDateTime";
 import axios from "axios";
 
-
 const TicketLayout = () => {
   const { slug } = useParams();
   const [singleTicket, setSingleTicket] = useState([]);
   const { formatDate, formatTime } = FormatDateTime();
 
-  const singleTicketData = (slug) => {
-    axios
-      .get(`${process.env.REACT_APP_USERS}/api/tickets/${slug}`)
-      .then((response) => {
-        console.log(response.data);
-        setSingleTicket(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const singleTicketData = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_USERS}/api/tickets/${slug}`
+      );
+
+      setSingleTicket(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    singleTicketData(slug);
+    singleTicketData();
   }, [slug]);
 
   return (

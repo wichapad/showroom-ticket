@@ -38,9 +38,9 @@ exports.createUsers = async (req, res) => {
 // ดูข้อมูล one user ใน database ด้วย email
 exports.getUserByEmail = async (req, res) => {
   try {
-    const { email } = req.params;
-    const query = `SELECT * FROM users WHERE email = $1`;
-    const value = [email];
+    const { name } = req.params;
+    const query = `SELECT * FROM users WHERE name = $1;`;
+    const value = [name];
     const result = await pool.query(query, value);
     if (result.rows.length > 0) {
       const user = result.rows[0];

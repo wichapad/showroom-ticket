@@ -12,7 +12,7 @@ const { requireAdmin } = require("../controllers/authController");
 
 router.get("/users", getUsers);
 router.post("/users/create", createUsers);
-router.get("/users/:email", getUserByEmail);
+router.get("/users/:name", getUserByEmail);
 router.put("/users/:email", updateUsersByEmail);
 router.delete("/users/:email", deleteUsers);
 

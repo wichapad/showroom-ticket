@@ -11,20 +11,19 @@ const EventInfo = () => {
   const [singleEvent, setSingleEvent] = useState([]);
   const { formatDate, formatTime } = FormatDateTime();
 
-  const singleEventData = (slug) => {
-    axios
-      .get(`${process.env.REACT_APP_USERS}/api/events/${slug}`)
-      .then((response) => {
-        console.log(response.data);
-        setSingleEvent(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const singleEventData = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_USERS}/api/events/${slug}`
+      );
+      setSingleEvent(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    singleEventData(slug);
+    singleEventData();
     // eslint-disable-next-line
   }, [slug]);
 
