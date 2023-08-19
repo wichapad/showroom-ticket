@@ -88,9 +88,32 @@ exports.singleZone = (req, res) => {
   });
 };
 
-// exports.seatRow = (req,res) => {
-//   const id = req.params.id;
-//   const query = `SELECT
-  
-//   `
-// }
+// ticketcontroller.js
+exports.seatRow = (req, res) => {
+  const id = req.params.id;
+  const slug = req.params.slug;
+
+  const query = `
+  SELECT
+  e.event_id,
+  ticket_ctgy_id,
+	e.slug_event,
+  json_agg(json_build_object(
+    'ticket_id', t.ticket_id,
+    'seat', t.seat
+  )) AS seats
+FROM ticket t
+JOIN event e ON e.event_id = t.event_id
+WHERE ticket_ctgy_id = $1
+AND e.slug_event  = $2
+GROUP BY e.event_id, ticket_ctgy_id;
+  `;
+
+  pool.query(query, [id, slug], (err, result) => {
+    if (err) {
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      res.json(result.rows);
+    }
+  });
+};
