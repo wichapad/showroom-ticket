@@ -38,5 +38,6 @@
 -- SELECT * FROM event;
 -- SELECT * FROM venue;
 -- SELECT * FROM artist;
-SELECT * FROM ticket;
+-- SELECT * FROM ticket;
+SELECT * FROM ticket_category
   
