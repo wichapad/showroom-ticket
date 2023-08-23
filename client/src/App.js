@@ -17,6 +17,7 @@ import TicketLayout from "./Components/page/EventsPage/Ticket/TicketLayout";
 import Profile from "./Components/page/ProfilePage/Profile";
 import { SeatRow } from "./Components/page/EventsPage/Ticket/SeatRow";
 import PageLayout from "./Components/Navbar/PageLayout";
+import NoTicket from "./Components/page/EventsPage/NoTicketPage/NoTicket";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="booking/:slug" element={<TicketLayout />}>
           <Route index element={<Zone />} />
           <Route path=":id" element={<SeatRow />} />
+          <Route path="notfound" element={<NoTicket />} />
         </Route>
 
         {/* Route Shopping Components */}

@@ -27,6 +27,8 @@ export const SeatRow = () => {
     seatRowsData();
   }, [id, slug]);
 
+  
+
   return (
     <div className="flex justify-center  m-4">
       {seatRows.map((item) => (
@@ -41,20 +43,12 @@ export const SeatRow = () => {
                   <NavLink
                     onClick={() =>
                       setCheckedRows((prevCheck) => {
-                        const newCheckRows = { ...prevCheck };
+                        let newCheckRows = { ...prevCheck };
                         newCheckRows[rows.seat] = !newCheckRows[rows.seat];
-                        const newTotalPrice = Object.keys(newCheckRows).reduce(
-                          (total, ticketId) =>
-                            newCheckRows[ticketId]
-                              ? total +
-                                item.seats.find(
-                                  (seat) => seat.ticket_id === +ticketId
-                                ).price
-                              : total,
-                          0
-                        );
-
-                        setTotalPrice(newTotalPrice);
+                        const updateTotalPrice = Object.keys(newCheckRows)
+                          .filter((seat) => newCheckRows[seat])
+                          .reduce((total) => total + rows.price, 0);
+                        setTotalPrice(updateTotalPrice);
 
                         return newCheckRows;
                       })

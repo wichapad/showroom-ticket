@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 
 const Zone = () => {
+  const navigate = useNavigate();
   const { slug } = useParams();
   const [singleTicket, setSingleTicket] = useState([]);
 
@@ -21,6 +22,11 @@ const Zone = () => {
   useEffect(() => {
     singleTicketData();
   }, [slug]);
+
+  if (singleTicket.length === 0) {
+    navigate(`/booking/${slug}/notfound`);
+    return null;
+  }
 
   return (
     <div>

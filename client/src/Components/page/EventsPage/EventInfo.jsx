@@ -2,7 +2,6 @@
 import { NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
-
 import { BsFillCalendarEventFill, BsFillClockFill } from "react-icons/bs";
 import { FormatDateTime } from "../../FormatDateTime";
 

@@ -57,8 +57,8 @@ const TicketLayout = () => {
             </div>
           </div>
         ))}
+        <Outlet />
       </div>
-      <Outlet />
     </>
   );
 };
