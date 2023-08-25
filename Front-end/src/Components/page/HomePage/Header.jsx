@@ -11,7 +11,7 @@ const Header = () => {
         <div className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <video
             src={Video}
-            className="rounded"
+            className="rounded-lg"
             width="600"
             height="300"
             loop

@@ -40,13 +40,12 @@ const Navbar = () => {
           </button>
           <div
             className={`${showMenu ? "" : "hidden"} w-full md:block md:w-auto`}
-            id="navbar-default"
           >
-            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:border-gray-700">
+            <ul className=" flex flex-col  p-4 md:p-0 mt-4 border border-amber-300 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
               <li>
                 <NavLink
                   to="/"
-                  className="navbar-li-mobile md:hover:border-none md:p-0"
+                  className="navbar-li-mobile md:hover:border-none md:hover:text-amber-400 md:p-0"
                 >
                   Home
                 </NavLink>
@@ -54,7 +53,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/events"
-                  className="navbar-li-mobile  md:hover:border-none md:p-0"
+                  className="navbar-li-mobile  md:hover:border-none md:hover:text-amber-400 md:p-0"
                 >
                   Event
                 </NavLink>
@@ -62,7 +61,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/shop"
-                  className="navbar-li-mobile md:hover:border-none md:p-0"
+                  className="navbar-li-mobile md:hover:border-none md:hover:text-amber-400 md:p-0"
                 >
                   Shop
                 </NavLink>
@@ -70,7 +69,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/"
-                  className="navbar-li-mobile md:hover:border-none md:p-0"
+                  className="navbar-li-mobile md:hover:border-none md:hover:text-amber-400 md:p-0"
                 >
                   Contact
                 </NavLink>
@@ -79,15 +78,14 @@ const Navbar = () => {
           </div>
           <div
             className={`${showMenu ? "" : "hidden"} w-full md:block md:w-auto`}
-            id="navbar-default"
           >
-            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:border-gray-700">
+            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-amber-300 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0">
               {!getClientId() && !getAdminId() ? (
                 <>
                   <li>
                     <NavLink
                       to="/login"
-                      className="navbar-li-mobile md:hover:border-none md:p-0"
+                      className="navbar-li-mobile md:hover:border-none md:hover:text-amber-400 md:p-0"
                     >
                       Sign In
                     </NavLink>
@@ -95,7 +93,7 @@ const Navbar = () => {
                   <li>
                     <NavLink
                       to="/register"
-                      className="navbar-li-mobile md:hover:border-none md:p-0"
+                      className="navbar-li-mobile md:hover:border-none md:hover:text-amber-400 md:p-0"
                     >
                       Sign Up
                     </NavLink>
@@ -107,7 +105,7 @@ const Navbar = () => {
                     <li>
                       <NavLink
                         to="/dashboard"
-                        className="navbar-li-mobile md:hover:border-none md:p-0"
+                        className="navbar-li-mobile md:hover:border-none md:hover:text-amber-400 md:p-0"
                       >
                         Dashboard
                       </NavLink>
@@ -116,7 +114,7 @@ const Navbar = () => {
                   <li>
                     <NavLink
                       to="/user/profile"
-                      className="navbar-li-mobile md:hover:border-none md:p-0"
+                      className="navbar-li-mobile md:hover:border-none md:hover:text-amber-400 md:p-0"
                     >
                       Profile
                     </NavLink>
@@ -124,7 +122,7 @@ const Navbar = () => {
                   <li>
                     <NavLink
                       onClick={() => logout(() => (window.location = "/"))}
-                      className=" navbar-li-mobile md:hover:border-none md:p-0"
+                      className=" navbar-li-mobile md:hover:border-none md:hover:text-amber-400 md:p-0"
                     >
                       Log Out
                     </NavLink>
