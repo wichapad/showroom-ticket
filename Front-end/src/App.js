@@ -18,6 +18,8 @@ import Profile from "./Components/page/ProfilePage/Profile";
 import { SeatRow } from "./Components/page/EventsPage/Ticket/SeatRow";
 import PageLayout from "./Components/Navbar/PageLayout";
 import NoTicket from "./Components/page/EventsPage/NoTicketPage/NoTicket";
+import LayoutProfile from "./Components/page/ProfilePage/LayoutProfile";
+import MyTicket from "./Components/page/ProfilePage/MyTicket";
 
 const App = () => {
   return (
@@ -40,7 +42,10 @@ const App = () => {
         {/* Route Shopping Components */}
         <Route path="shop" element={<Shop />} />
 
-        <Route path="/profile" element={<Profile />} />
+        <Route path="user" element={<LayoutProfile />}>
+          <Route path="profile" element={<Profile />} />
+          <Route path="myticket" element={<MyTicket />} />
+        </Route>
       </Route>
 
       {/* Route Login & Register */}

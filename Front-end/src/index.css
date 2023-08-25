@@ -10,14 +10,14 @@
 
 
 @layer base {
-    *{
+    * {
         font-family: 'Roboto', sans-serif;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
-    
-    
+
+
 
     input {
         width: 100%;
@@ -34,24 +34,19 @@
         margin-bottom: 0.8rem;
     }
 
-    /* ------------ button ------------ */
-    .button-container {
-        width: 100%;
-        color: #fff;
-        background-image: linear-gradient(to left bottom, #a855f7, #b552f6, #c14ef4, #cd4af2, #d946ef);
-        padding: 0.5rem 0.8rem;
-        border-radius: 25px;
+    /* ------------ NavbarPage in Navrbar folder ------------ */
+    .navbar-li-mobile{
+        display: block;
+        padding: 0.5rem 0 0.5rem 0.75rem;
+        color: #FFF;
+        border-radius: 0.25rem;
     }
-
-    .button-container:hover {
-        background: rgb(168, 85, 247);
+    .navbar-li-mobile:hover{
+        border: 1px solid rgb(168, 85, 247);
     }
+    
 
-    .button-container:active {
-        background: rgb(147, 51, 234);
-    }
-
-    /* ------------ Home ------------ */
+    /* ------------ HomeComponent in HomePage folder ------------ */
     .home-background {
         width: 100%;
     }
@@ -63,7 +58,7 @@
         filter: brightness(.5);
     }
 
-    /* ------------ slide ------------ */
+    /* ------------ Swiper for ShopHomeComponent in HomePage folder------------ */
     .slide-bg-image {
         background-image: url("https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80");
         background-repeat: no-repeat;
@@ -87,5 +82,17 @@
         display: block;
         width: 100%;
     }
-      
+
+    /* ------------ LayoutProfile Component in ProfilePage folder ------------*/
+    .menu-mobile {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+        border-bottom: 1px solid rgb(209, 213, 219);
+    }
+
+    .menu-mobile:hover {
+        color: rgb(147, 51, 234);
+    }
+
 }

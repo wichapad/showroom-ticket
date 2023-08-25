@@ -4,7 +4,6 @@ import SideMenubar from "./Navbar/SideMenubar";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
-
 const LayoutDashboard = () => {
   const [isSidebarOpen, setSideBarOpen] = useState(false);
 
@@ -16,9 +15,9 @@ const LayoutDashboard = () => {
       <NavDashboard onToggleBar={toggleMenu} />
       <div className="flex  pt-[3.2rem]">
         <SideMenubar isOpen={isSidebarOpen} />
-        <div className="w-full ml-[4rem]">
+        <div className="w-full md:ml-[4rem]">
           <main>
-          <Outlet/>
+            <Outlet />
           </main>
         </div>
       </div>

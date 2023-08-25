@@ -16,6 +16,7 @@ const SideMunubar = ({ isOpen }) => {
   const [productBar, setProductBar] = useState(false);
   const [userBar, setUserBar] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
+  
 
   const toggleSubmenu = (menu) => {
     if (menu === "product") {

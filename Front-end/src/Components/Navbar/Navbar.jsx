@@ -2,17 +2,33 @@ import logo from "../../images/showroomlogowhite.png";
 import { NavLink, Link } from "react-router-dom";
 import { getAdminId, getClientId, logout } from "../Auth/services/autherize";
 import { FaBars } from "react-icons/fa";
-import {  useState } from "react";
-
+import { useEffect, useRef, useState } from "react";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const menuRef = useRef(null);
 
+  // click anywhere outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
       <nav className="fixed w-full border-gray-200 z-50 bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <div
+          className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+          ref={menuRef}
+        >
           <Link to="/" className="flex items-center">
             <img src={logo} className="h-5" alt="Flowbite Logo" />
           </Link>
@@ -30,7 +46,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="navbar-li-mobile md:hover:border-none md:p-0"
                 >
                   Home
                 </NavLink>
@@ -38,7 +54,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/events"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="navbar-li-mobile  md:hover:border-none md:p-0"
                 >
                   Event
                 </NavLink>
@@ -46,7 +62,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/shop"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="navbar-li-mobile md:hover:border-none md:p-0"
                 >
                   Shop
                 </NavLink>
@@ -54,7 +70,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="navbar-li-mobile md:hover:border-none md:p-0"
                 >
                   Contact
                 </NavLink>
@@ -71,7 +87,7 @@ const Navbar = () => {
                   <li>
                     <NavLink
                       to="/login"
-                      className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                      className="navbar-li-mobile md:hover:border-none md:p-0"
                     >
                       Sign In
                     </NavLink>
@@ -79,7 +95,7 @@ const Navbar = () => {
                   <li>
                     <NavLink
                       to="/register"
-                      className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                      className="navbar-li-mobile md:hover:border-none md:p-0"
                     >
                       Sign Up
                     </NavLink>
@@ -91,7 +107,7 @@ const Navbar = () => {
                     <li>
                       <NavLink
                         to="/dashboard"
-                        className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                        className="navbar-li-mobile md:hover:border-none md:p-0"
                       >
                         Dashboard
                       </NavLink>
@@ -99,19 +115,19 @@ const Navbar = () => {
                   )}
                   <li>
                     <NavLink
-                      to="/profile"
-                      className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                      to="/user/profile"
+                      className="navbar-li-mobile md:hover:border-none md:p-0"
                     >
                       Profile
                     </NavLink>
                   </li>
                   <li>
-                    <button
+                    <NavLink
                       onClick={() => logout(() => (window.location = "/"))}
-                      className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                      className=" navbar-li-mobile md:hover:border-none md:p-0"
                     >
                       Log Out
-                    </button>
+                    </NavLink>
                   </li>
                 </>
               )}

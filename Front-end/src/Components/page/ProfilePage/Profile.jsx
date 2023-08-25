@@ -7,6 +7,8 @@ const Profile = () => {
   const [phone, setPhone] = useState("");
   const [countries, setCountrise] = useState(null);
 
+
+  // Api รายชื่อ ประเทศ
   useEffect(() => {
     const countryData = async () => {
       try {
@@ -23,8 +25,8 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className="pt-[5rem]">
-      <div className="m-2">
+    <div>
+      <div className="m-4">
         <p className="text-2xl text-center">Profile</p>
         <div className="flex justify-center m-4">
           <form className="w-[350px]">
@@ -102,8 +104,8 @@ const Profile = () => {
                   type="text"
                 />
               </div>
-              <div className="text-center mt-4">
-                <button className="uppercase text-sm font-bold py-3 px-4 text-gray-200 rounded-md bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95">
+              <div className="text-center my-4">
+                <button className="w-full uppercase text-base font-bold py-3 px-4 text-gray-200 rounded-md bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95">
                   Update Details
                 </button>
               </div>

@@ -25,7 +25,7 @@ const NavDashboard = ({ onToggleBar }) => {
             <img src={logo} className="h-5" alt="Flowbite Logo" />
           </a>
         </div>
-        <form className="hidden md:flex  ">
+        <form className="hidden md:flex">
           <label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center text-xl text-gray-500 pl-3">
