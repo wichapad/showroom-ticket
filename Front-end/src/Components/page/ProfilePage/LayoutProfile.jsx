@@ -33,15 +33,23 @@ const LayoutProfile = () => {
           </div>
           <div className={`${showMenu ? "" : "hidden"}`}>
             <div className="absolute z-[50] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  ">
-              <div className="flex flex-col items-center w-[350px] bg-white">
-                <NavLink to="/user/profile" className="menu-mobile">
+              <div className="flex flex-col items-center w-[350px] bg-white rounded-xl">
+                <NavLink
+                  to="/user/profile"
+                  className="menu-mobile border-b border-gray-300"
+                >
                   Profile
                 </NavLink>
-                <NavLink to="/user/myticket" className="menu-mobile">
+                <NavLink
+                  to="/user/myticket"
+                  className="menu-mobile border-b border-gray-300"
+                >
                   My Ticket
                 </NavLink>
-                <NavLink className="menu-mobile">Purchase History</NavLink>
-                <NavLink className="menu-mobile">Change Password</NavLink>
+                <NavLink className="menu-mobile border-b border-gray-300">
+                  Purchase History
+                </NavLink>
+                <NavLink className="menu-mobile ">Change Password</NavLink>
               </div>
             </div>
             <Blackdrop />

@@ -103,14 +103,14 @@ const Login = () => {
             <input
               type="submit"
               value="Sign In"
-              className="button-container mb-8 cursor-pointer"
+              className="w-full bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95 uppercase text-sm font-bold py-3 px-4 text-gray-200 rounded-lg mb-8 cursor-pointer"
             />
           </div>
           <div className="flex items-center justify-around">
             <a className="text-xs" href="/">
               Forgot Password?
             </a>
-            <a className="text-sm underline" href="/register">
+            <a className="text-sm uppercase underline" href="/register">
               Sign Up
             </a>
           </div>
