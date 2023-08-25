@@ -24,7 +24,7 @@ const Login = () => {
     e.preventDefault();
     await axios
       .post(
-        `${process.env.REACT_APP_USERS}/auth/login`,
+        `${process.env.REACT_APP_API}/auth/login`,
         { email, password },
         {
           headers: {

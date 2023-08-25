@@ -14,7 +14,7 @@ export const SeatRow = () => {
   const seatRowsData = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_USERS}/api/tickets/${slug}/${id}`
+        `${process.env.REACT_APP_API}/api/tickets/${slug}/${id}`
       );
       console.log(response.data);
       setSeatRows(response.data);

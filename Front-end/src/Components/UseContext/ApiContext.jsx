@@ -23,7 +23,7 @@ const ApiProvider = ({ children }) => {
     const UsersData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_USERS}/users`,
+          `${process.env.REACT_APP_API}/users`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -43,7 +43,7 @@ const ApiProvider = ({ children }) => {
     const EventsData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_USERS}/api/events`,
+          `${process.env.REACT_APP_API}/api/events`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -63,7 +63,7 @@ const ApiProvider = ({ children }) => {
     const ArtistsData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_USERS}/api/artists`
+          `${process.env.REACT_APP_API}/api/artists`
         );
         setArtistsList(response.data);
       } catch (error) {
@@ -78,7 +78,7 @@ const ApiProvider = ({ children }) => {
     const VenuesData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_USERS}/api/venues`
+          `${process.env.REACT_APP_API}/api/venues`
         );
         setVenuesList(response.data);
       } catch (error) {
@@ -93,7 +93,7 @@ const ApiProvider = ({ children }) => {
     const ticketData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_USERS}/api/tickets`
+          `${process.env.REACT_APP_API}/api/tickets`
         );
 
         setAllticket(response.data);

@@ -65,7 +65,7 @@ const UpdateEvent = ({ isVisible, handleUpdate }) => {
     e.preventDefault();
     try {
       await axios.put(
-        `${process.env.REACT_APP_USERS}/api/events/${slug}`,
+        `${process.env.REACT_APP_API}/api/events/${slug}`,
         updateEvent
       );
       console.log("Update successfully");

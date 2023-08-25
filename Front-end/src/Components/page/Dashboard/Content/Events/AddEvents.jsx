@@ -48,7 +48,7 @@ const AddEvents = ({ isVisible, handleCreate }) => {
     e.preventDefault();
     try {
       await axios.post(
-        `${process.env.REACT_APP_USERS}/api/events/create`,
+        `${process.env.REACT_APP_API}/api/events/create`,
         eventList
       );
       setEventList([

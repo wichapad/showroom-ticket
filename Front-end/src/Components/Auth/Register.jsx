@@ -41,7 +41,7 @@ const Register = () => {
 
     await axios
       .post(
-        `${process.env.REACT_APP_USERS}/users/create`,
+        `${process.env.REACT_APP_API}/users/create`,
         {
           email: email,
           password: password,
