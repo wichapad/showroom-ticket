@@ -14,7 +14,7 @@ const Login = () => {
   });
   const { email, password } = users;
 
-  //กำหนดค่าให้ state
+ 
   const inputValue = (name) => (event) => {
     setUsers({ ...users, [name]: event.target.value });
   };

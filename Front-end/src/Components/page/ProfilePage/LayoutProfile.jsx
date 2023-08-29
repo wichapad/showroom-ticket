@@ -22,7 +22,7 @@ const LayoutProfile = () => {
 
   return (
     <div className=" flex flex-col  items-center">
-      <Header/>
+      <Header />
       <div className="p-4">
         <div className=" border-b-2 uppercase md:hidden">
           <div className="relative text-center p-2  n" ref={menuRef}>
@@ -49,10 +49,15 @@ const LayoutProfile = () => {
                 >
                   My Ticket
                 </NavLink>
-                <NavLink className="menu-mobile border-b border-gray-300">
+                <NavLink
+                  to="/user/purchase"
+                  className="menu-mobile border-b border-gray-300"
+                >
                   Purchase History
                 </NavLink>
-                <NavLink className="menu-mobile ">Change Password</NavLink>
+                <NavLink to="/user/changepassword" className="menu-mobile ">
+                  Change Password
+                </NavLink>
               </div>
             </div>
             <Blackdrop />
@@ -60,17 +65,22 @@ const LayoutProfile = () => {
         </div>
         {/* laptop - desktop menu layout */}
         <div className="hidden md:block">
-          <div className="p-2 border-b-2">
-            <NavLink to="/user/profile" className="p-2">
+          <div className="p-2 border-b-2 ">
+            <NavLink to="/user/profile" className="p-2 hover:text-purple-600">
               Profile
             </NavLink>
-            <NavLink to="/user/myticket" className="p-2">
+            <NavLink to="/user/myticket" className="p-2 hover:text-purple-600">
               My Ticket
             </NavLink>
-            <NavLink to="/user/purchase" className="p-2">
+            <NavLink to="/user/purchase" className="p-2 hover:text-purple-600">
               Purchase History
             </NavLink>
-            <NavLink className=" p-2">Change Password</NavLink>
+            <NavLink
+              to="/user/changepassword"
+              className=" p-2 hover:text-purple-600"
+            >
+              Change Password
+            </NavLink>
           </div>
         </div>
         <Outlet />

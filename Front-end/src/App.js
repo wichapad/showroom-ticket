@@ -21,6 +21,7 @@ import NoTicket from "./Components/page/EventsPage/NoTicketPage/NoTicket";
 import LayoutProfile from "./Components/page/ProfilePage/LayoutProfile";
 import MyTicket from "./Components/page/ProfilePage/MyTicket";
 import Purchase from "./Components/page/ProfilePage/Purchase";
+import ChangePassword from "./Components/page/ProfilePage/ChangePassword";
 
 const App = () => {
   return (
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="profile" element={<Profile />} />
           <Route path="myticket" element={<MyTicket />} />
           <Route path="purchase" element={<Purchase />} />
+          <Route path="changepassword" element={<ChangePassword />} />
         </Route>
       </Route>
 
