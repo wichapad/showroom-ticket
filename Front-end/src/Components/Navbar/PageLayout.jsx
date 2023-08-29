@@ -7,9 +7,7 @@ const PageLayout = () => {
   return (
     <>
       <Navbar />
-
       <Outlet />
-
       <Footer />
     </>
   );

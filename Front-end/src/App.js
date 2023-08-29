@@ -20,6 +20,7 @@ import PageLayout from "./Components/Navbar/PageLayout";
 import NoTicket from "./Components/page/EventsPage/NoTicketPage/NoTicket";
 import LayoutProfile from "./Components/page/ProfilePage/LayoutProfile";
 import MyTicket from "./Components/page/ProfilePage/MyTicket";
+import Purchase from "./Components/page/ProfilePage/Purchase";
 
 const App = () => {
   return (
@@ -45,6 +46,7 @@ const App = () => {
         <Route path="user" element={<LayoutProfile />}>
           <Route path="profile" element={<Profile />} />
           <Route path="myticket" element={<MyTicket />} />
+          <Route path="purchase" element={<Purchase />} />
         </Route>
       </Route>
 

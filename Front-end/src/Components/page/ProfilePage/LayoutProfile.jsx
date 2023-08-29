@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import Blackdrop from "../Dashboard/LayoutDashboard/Navbar/Blackdrop";
+import Header from "../HomePage/Header";
 
 const LayoutProfile = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -20,10 +21,11 @@ const LayoutProfile = () => {
   }, []);
 
   return (
-    <div className=" pt-[5rem] flex flex-col  items-center">
-      <div>
-        <div className=" border-b-2 uppercase">
-          <div className="relative text-center p-2  sm:hidden" ref={menuRef}>
+    <div className=" flex flex-col  items-center">
+      <Header/>
+      <div className="p-4">
+        <div className=" border-b-2 uppercase md:hidden">
+          <div className="relative text-center p-2  n" ref={menuRef}>
             <button
               className="border uppercase rounded-lg py-2 px-3"
               onClick={() => setShowMenu(!showMenu)}
@@ -31,8 +33,9 @@ const LayoutProfile = () => {
               Menu
             </button>
           </div>
-          <div className={`${showMenu ? "" : "hidden"}`}>
-            <div className="absolute z-[50] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  ">
+          {/* mobile menu layout */}
+          <div className={`${showMenu ? "" : "hidden"} `}>
+            <div className="fixed z-[50] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  ">
               <div className="flex flex-col items-center w-[350px] bg-white rounded-xl">
                 <NavLink
                   to="/user/profile"
@@ -53,6 +56,21 @@ const LayoutProfile = () => {
               </div>
             </div>
             <Blackdrop />
+          </div>
+        </div>
+        {/* laptop - desktop menu layout */}
+        <div className="hidden md:block">
+          <div className="p-2 border-b-2">
+            <NavLink to="/user/profile" className="p-2">
+              Profile
+            </NavLink>
+            <NavLink to="/user/myticket" className="p-2">
+              My Ticket
+            </NavLink>
+            <NavLink to="/user/purchase" className="p-2">
+              Purchase History
+            </NavLink>
+            <NavLink className=" p-2">Change Password</NavLink>
           </div>
         </div>
         <Outlet />

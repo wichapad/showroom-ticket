@@ -7,7 +7,6 @@ const Profile = () => {
   const [phone, setPhone] = useState("");
   const [countries, setCountrise] = useState(null);
 
-
   // Api รายชื่อ ประเทศ
   useEffect(() => {
     const countryData = async () => {
@@ -27,7 +26,7 @@ const Profile = () => {
   return (
     <div>
       <div className="m-4">
-        <p className="text-2xl text-center">Profile</p>
+        <p className="text-[1.5rem] text-center">Profile</p>
         <div className="flex justify-center m-4">
           <form className="w-[350px]">
             <div className="flex">
