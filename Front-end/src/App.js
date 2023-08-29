@@ -22,6 +22,7 @@ import LayoutProfile from "./Components/page/ProfilePage/LayoutProfile";
 import MyTicket from "./Components/page/ProfilePage/MyTicket";
 import Purchase from "./Components/page/ProfilePage/Purchase";
 import ChangePassword from "./Components/page/ProfilePage/ChangePassword";
+import Tickets from "./Components/page/Dashboard/Content/Tickets/Tickets";
 
 const App = () => {
   return (
@@ -63,6 +64,7 @@ const App = () => {
           <Route path="events" element={<AllEvents />}>
             <Route path=":slug" element={<UpdateEvent />} />
           </Route>
+          <Route path="tickets" element={<Tickets/>} />
         </Route>
       ) : (
         <Route path="/dashboard/*" element={<Notfound />} />

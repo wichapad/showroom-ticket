@@ -128,11 +128,11 @@ const SideMunubar = ({ isOpen }) => {
               ) : (
                 <ul className="text-lg text-gray-900 font-light">
                   <li>
-                    <div className="flex p-2 justify-between items-center text-slate-200 hover: transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
+                    <NavLink to="/dashboard/tickets" className="flex p-2 justify-between items-center text-slate-200 hover: transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
                       <p className="pl-8 text-lg text-white font-light">
                         Tickets
                       </p>
-                    </div>
+                    </NavLink>
                   </li>
                   <li>
                     <div className="flex p-2 justify-between items-center text-slate-200 hover: transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
