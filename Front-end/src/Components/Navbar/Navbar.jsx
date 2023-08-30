@@ -68,7 +68,15 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink
-                  to="/"
+                  to="/news"
+                  className="navbar-li-mobile md:hover:border-none md:hover:text-amber-400 md:p-0"
+                >
+                  News
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/contact"
                   className="navbar-li-mobile md:hover:border-none md:hover:text-amber-400 md:p-0"
                 >
                   Contact
