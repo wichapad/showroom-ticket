@@ -3,7 +3,7 @@ const {
   getTicket,
   singleZone,
   seatRow,
-} = require("../controllers/ticketcontroller");
+} = require("../controllers/ticketController");
 const router = express.Router();
 
 router.get("/tickets", getTicket);
