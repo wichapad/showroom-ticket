@@ -6,7 +6,7 @@ const {
 } = require("../controllers/ticketController");
 const router = express.Router();
 
-router.get("/tickets", getTicket);
+// router.get("/tickets", getTicket);
 router.get("/tickets/:slug", singleZone);
 router.get("/tickets/:slug/:id", seatRow);
 

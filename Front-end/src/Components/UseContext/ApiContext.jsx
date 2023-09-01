@@ -2,6 +2,7 @@
 
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
+
 const ApiContext = createContext();
 
 const ApiProvider = ({ children }) => {
@@ -16,20 +17,14 @@ const ApiProvider = ({ children }) => {
   //State Venues List
   const [venuesList, setVenuesList] = useState([]);
 
-  // State Ticket
-  const [allTicket, setAllticket] = useState([]);
-
   useEffect(() => {
     const UsersData = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API}/users`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const response = await axios.get(`${process.env.REACT_APP_API}/users`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
         setAllUsers(response.data);
       } catch (error) {
         console.log(error);
@@ -88,22 +83,6 @@ const ApiProvider = ({ children }) => {
     };
   }, []);
 
-  // Get database all tickets
-  useEffect(() => {
-    const ticketData = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API}/api/tickets`
-        );
-
-        setAllticket(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-      ticketData();
-    };
-  }, []);
-
   return (
     <ApiContext.Provider
       value={{
@@ -111,7 +90,6 @@ const ApiProvider = ({ children }) => {
         itemsEvent,
         artistsList,
         venuesList,
-        allTicket,
       }}
     >
       {children}

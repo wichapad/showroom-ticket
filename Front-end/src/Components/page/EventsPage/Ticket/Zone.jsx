@@ -21,10 +21,12 @@ const Zone = () => {
 
   useEffect(() => {
     singleTicketData();
+    // eslint-disable-next-line
   }, [slug]);
 
   if (singleTicket.length === 0) {
     navigate(`/booking/${slug}/notfound`);
+    
     return null;
   }
 
