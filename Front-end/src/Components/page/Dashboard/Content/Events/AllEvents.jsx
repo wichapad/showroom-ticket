@@ -145,6 +145,7 @@ const AllEvents = () => {
                         {item.events
                           .slice()
                           .sort((a, b) => a.event_id - b.event_id)
+                          
                           .map((item, index) => (
                             <div key={index} className="p-2">
                               <div className="flex justify-center ">
