@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div className=" flex flex-col justify-center items-center m-auto ">
       <Header />
-      <div className="flex flex-col max-w-screen-2xl">
+      <div className="max-w-screen-2xl">
         <p className="text-2xl py-2  border-gray-900">Showroom events</p>
         <EventsHome />
         <ShopHome />

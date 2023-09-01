@@ -7,7 +7,7 @@ const Events = () => {
   const { itemsEvent } = useContext(ApiContext);
 
   return (
-    <div>
+    <div className="flex flex-col justify-center m-auto max-w-screen-2xl">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         {itemsEvent.map((event) => {
           return (
