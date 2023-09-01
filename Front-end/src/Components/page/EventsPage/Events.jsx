@@ -2,16 +2,12 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { ApiContext } from "../../UseContext/ApiContext";
-import Header from "../HomePage/Header";
-
 
 const Events = () => {
   const { itemsEvent } = useContext(ApiContext);
-  
 
   return (
     <div>
-      <Header />
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         {itemsEvent.map((event) => {
           return (
