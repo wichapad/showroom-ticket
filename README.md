@@ -1,7 +1,5 @@
 # [Showroom-ticket](https://showroom-frontend.onrender.com/) 
 
-# showroom-ticket
-
 Web Concert Ticket Booking Develop With React.js
 frontend React.js Tailwind
 Backend Node.js
