@@ -1,8 +1,6 @@
 // ---- PostgreSQL -----
-const pool = require('../database')
+const pool = require("../database");
 const bcrypt = require("bcrypt");
-
-
 
 //ขอข้อมูล data users ทั้งหมด
 exports.getUsers = (req, res) => {
@@ -24,10 +22,32 @@ const hashPassword = async (password) => {
 // Create new user ลง database
 exports.createUsers = async (req, res) => {
   try {
-    const { email, password, name, phone, address, city, zipcode } = req.body;
+    const {
+      email,
+      password,
+      name,
+      phone,
+      address,
+      city,
+      zipcode,
+      province,
+      district,
+      date_of_birth,
+    } = req.body;
     const hashedPassword = await hashPassword(password);
-    const query = `INSERT INTO users(email, password, name, phone, address, city, zipcode) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *`;
-    const values = [email, hashedPassword, name, phone, address, city, zipcode];
+    const query = `INSERT INTO users(email, password, name, phone, address, city, zipcode, province,district,date_of_birth) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *`;
+    const values = [
+      email,
+      hashedPassword,
+      name,
+      phone,
+      address,
+      city,
+      zipcode,
+      province,
+      district,
+      date_of_birth,
+    ];
     const result = await pool.query(query, values);
     res.json(result.rows[0]);
   } catch (error) {
