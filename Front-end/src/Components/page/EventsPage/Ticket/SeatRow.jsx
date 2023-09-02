@@ -32,9 +32,9 @@ export const SeatRow = () => {
   return (
     <div className="flex justify-center  m-4">
       {seatRows.map((item) => (
-        <div key={item.event_id} className="flex">
-          <div className="bg-gray-900 w-[500px] flex flex-col p-4 items-center">
-            <div className="flex justify-center items-center  border-2 border-purple-500 w-[300px] h-[50px] rounded">
+        <div key={item.event_id} className="block md:flex">
+          <div className="bg-gray-900 w-[350px] flex flex-col p-4 items-center">
+            <div className="flex justify-center items-center  border-2 border-purple-500 w-[300px]  rounded">
               <p className="text-white text-lg uppercase">Stage</p>
             </div>
             <div className="flex p-2">
@@ -71,7 +71,7 @@ export const SeatRow = () => {
               ))}
             </div>
           </div>
-          <div className="ml-[5rem] w-[280px] border rounded border-purple-600">
+          <div className="mt-4 md:mt-0 md:ml-[5rem] md:w-[280px] border rounded border-purple-600">
             <div className="p-2 bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600">
               <p className="text-white">Booking Detail</p>
             </div>

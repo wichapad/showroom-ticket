@@ -42,13 +42,13 @@ const EventInfo = () => {
             <div className="absolute left-8 bottom-8  ">
               <div className="flex ">
                 <img
-                  className=" aspect-video rounded-md object-cover w-[250px]"
+                  className=" aspect-video rounded-md object-cover w-[200px] md:w-[250px]"
                   src={event.artist_image}
                   alt="bandImage"
                 />
                 <div className="pl-8 text-2xl text-white font-black md:text-3xl ">
-                  <p className="text-lg">{event.genre_name}</p>
-                  <p>{event.artist_name}</p>
+                  <p className="text-lg ">{event.genre_name}</p>
+                  <p className="text-[1.2rem] md:text-[1.5rem]">{event.artist_name}</p>
                 </div>
               </div>
             </div>

@@ -3,7 +3,7 @@ import React from "react";
 const NewsHome = () => {
   return (
     <div className=" w-full">
-      <div>
+      <div className="p-2">
         <div className="grid grid-cols-1 gap-2 md:grid-cols-4 lg:grid-cols-12">
           {/* item 1 */}
           <div className="shadow-lg rounded md:col-span-4 lg:col-span-6 row-span-3">
