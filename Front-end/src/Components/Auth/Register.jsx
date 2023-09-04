@@ -104,158 +104,160 @@ const Register = () => {
           </a>
         </div>
       </nav>
-      <div className="flex text-sm justify-center m-8 ">
-        <form onSubmit={submitData}>
-          <div className="md:flex">
-            <div className="bg-gray-50 shadow-md rounded w-[350px] p-4">
-              <div className="form-input">
-                <label className="mb-2">Email</label>
-                <input
-                  className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={inputValue("email")}
-                />
-              </div>
-              <div className="form-input">
-                <label className="mb-2">Username</label>
-                <input
-                  className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
-                  id="user"
-                  type="text"
-                  value={name}
-                  onChange={inputValue("name")}
-                />
-              </div>
-              <div className="form-input relative">
-                <label className="mb-2">Password</label>
-                <input
-                  className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={inputValue("password")}
-                />
-                <button
-                  className="absolute bottom-3 right-4"
-                  type="button"
-                  onClick={() => {
-                    togglePassword("password");
-                  }}
-                >
-                  {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
-                </button>
-              </div>
+      <div className="flex flex-col justify-center h-screen p-4 ">
+        <div className="flex text-sm justify-center ">
+          <form onSubmit={submitData}>
+            <div className="md:flex">
+              <div className="bg-gray-50 shadow-md rounded w-[350px] p-4">
+                <div className="form-input">
+                  <label className="mb-2">Email</label>
+                  <input
+                    className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={inputValue("email")}
+                  />
+                </div>
+                <div className="form-input">
+                  <label className="mb-2">Username</label>
+                  <input
+                    className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
+                    id="user"
+                    type="text"
+                    value={name}
+                    onChange={inputValue("name")}
+                  />
+                </div>
+                <div className="form-input relative">
+                  <label className="mb-2">Password</label>
+                  <input
+                    className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={inputValue("password")}
+                  />
+                  <button
+                    className="absolute bottom-3 right-4"
+                    type="button"
+                    onClick={() => {
+                      togglePassword("password");
+                    }}
+                  >
+                    {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
+                  </button>
+                </div>
 
-              <div className="form-input  relative">
-                <label className="mb-2">Confirm Password</label>
-                <input
-                  className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
-                  id="confirm"
-                  type={showConfirmPassword ? "text" : "password"}
-                  value={confirmPassword}
-                  onChange={inputValue("confirmPassword")}
-                />
-                <button
-                  className="absolute bottom-3 right-4"
-                  type="button"
-                  onClick={() => {
-                    togglePassword("confirm");
-                  }}
-                >
-                  {showConfirmPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
-                </button>
+                <div className="form-input  relative">
+                  <label className="mb-2">Confirm Password</label>
+                  <input
+                    className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
+                    id="confirm"
+                    type={showConfirmPassword ? "text" : "password"}
+                    value={confirmPassword}
+                    onChange={inputValue("confirmPassword")}
+                  />
+                  <button
+                    className="absolute bottom-3 right-4"
+                    type="button"
+                    onClick={() => {
+                      togglePassword("confirm");
+                    }}
+                  >
+                    {showConfirmPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
+                  </button>
+                </div>
+                <div className="form-input">
+                  <label className="mb-2">Date of birth</label>
+                  <input
+                    className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
+                    id="date_of_birth"
+                    type="date"
+                    value={date_of_birth}
+                    onChange={inputValue("date_of_birth")}
+                  />
+                </div>
+                <div className="form-input">
+                  <label className="mb-2">Phone</label>
+                  <input
+                    className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
+                    id="phone"
+                    type="text"
+                    value={phone}
+                    onChange={inputValue("phone")}
+                  />
+                </div>
               </div>
-              <div className="form-input">
-                <label className="mb-2">Date of birth</label>
-                <input
-                  className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
-                  id="date_of_birth"
-                  type="date"
-                  value={date_of_birth}
-                  onChange={inputValue("date_of_birth")}
-                />
-              </div>
-              <div className="form-input">
-                <label className="mb-2">Phone</label>
-                <input
-                  className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
-                  id="phone"
-                  type="text"
-                  value={phone}
-                  onChange={inputValue("phone")}
-                />
+              <div className="bg-gray-50 shadow-md rounded w-[350px] mt-2 md:mt-0 md:ml-2 p-4">
+                <div className="form-input">
+                  <label className="mb-2">Address</label>
+                  <input
+                    className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
+                    id="address"
+                    type="text"
+                    value={address}
+                    onChange={inputValue("address")}
+                  />
+                </div>
+                <div className="form-input">
+                  <label className="mb-2">Province</label>
+                  <input
+                    className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
+                    id="province"
+                    type="text"
+                    value={province}
+                    onChange={inputValue("province")}
+                  />
+                </div>
+                <div className="form-input">
+                  <label className="mb-2">District</label>
+                  <input
+                    className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
+                    id="district"
+                    type="text"
+                    value={district}
+                    onChange={inputValue("district")}
+                  />
+                </div>
+                <div className="form-input">
+                  <label className="mb-2">City</label>
+                  <input
+                    className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
+                    id="city"
+                    type="text"
+                    value={city}
+                    onChange={inputValue("city")}
+                  />
+                </div>
+                <div className="form-input">
+                  <label className="mb-2">Zipcode</label>
+                  <input
+                    className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
+                    id="zipcode"
+                    type="text"
+                    value={zipcode}
+                    onChange={inputValue("zipcode")}
+                  />
+                </div>
+                <div className="flex justify-around items-center  p-4">
+                  <div>
+                    <input
+                      type="submit"
+                      value="Sign Up"
+                      className="w-[150px] bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95 uppercase text-sm font-bold px-2 py-3 text-gray-200 rounded-lg cursor-pointer"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <a className="text-sm uppercase underline" href="/login">
+                      Sign In
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="bg-gray-50 shadow-md rounded w-[350px] p-4">
-              <div className="form-input">
-                <label className="mb-2">Address</label>
-                <input
-                  className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
-                  id="address"
-                  type="text"
-                  value={address}
-                  onChange={inputValue("address")}
-                />
-              </div>
-              <div className="form-input">
-                <label className="mb-2">Province</label>
-                <input
-                  className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
-                  id="province"
-                  type="text"
-                  value={province}
-                  onChange={inputValue("province")}
-                />
-              </div>
-              <div className="form-input">
-                <label className="mb-2">District</label>
-                <input
-                  className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
-                  id="district"
-                  type="text"
-                  value={district}
-                  onChange={inputValue("district")}
-                />
-              </div>
-              <div className="form-input">
-                <label className="mb-2">City</label>
-                <input
-                  className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
-                  id="city"
-                  type="text"
-                  value={city}
-                  onChange={inputValue("city")}
-                />
-              </div>
-              <div className="form-input">
-                <label className="mb-2">Zipcode</label>
-                <input
-                  className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
-                  id="zipcode"
-                  type="text"
-                  value={zipcode}
-                  onChange={inputValue("zipcode")}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col justify-center items-center p-4">
-            <div>
-              <input
-                type="submit"
-                value="Sign Up"
-                className="w-[150px] bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95 uppercase text-sm font-bold p-3 text-gray-200 rounded-lg cursor-pointer"
-              />
-            </div>
-            <div className="text-center mt-2">
-              <a className="text-sm uppercase underline" href="/login">
-                Sign In
-              </a>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </>
   );

@@ -15,9 +15,11 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+
     }
 
     body {
+
         margin: auto;
     }
 
@@ -33,7 +35,6 @@
 
 @layer components {
     .form-input {
-       
         margin-bottom: 0.8rem;
     }
 

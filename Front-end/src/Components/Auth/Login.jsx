@@ -63,57 +63,59 @@ const Login = () => {
           </a>
         </div>
       </nav>
-      <div className="flex items-center justify-center text-sm h-screen">
-        <form
-          onSubmit={submitUser}
-          className="bg-gray-50 shadow-md rounded w-96 px-8 py-10"
-        >
-          <img src="" alt="" />
-          <div className="form-input">
-            <label className="mb-2">Email</label>
-            <input
-              className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
-              id="email"
-              type="email"
-              value={email}
-              onChange={inputValue("email")}
-            />
-          </div>
-          <div className="form-input relative">
-            <label className="mb-2">Password</label>
-            <input
-              className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
-              id="password"
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={inputValue("password")}
-            />
-            <button
-              className="absolute bottom-3 right-4"
-              type="button"
-              onClick={() => {
-                togglePassword("password");
-              }}
-            >
-              {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
-            </button>
-          </div>
-          <div className="flex items-center justify-center">
-            <input
-              type="submit"
-              value="Sign In"
-              className="w-full bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95 uppercase text-sm font-bold py-3 px-4 text-gray-200 rounded-lg mb-8 cursor-pointer"
-            />
-          </div>
-          <div className="flex items-center justify-around">
-            <a className="text-xs" href="/">
-              Forgot Password?
-            </a>
-            <a className="text-sm uppercase underline" href="/register">
-              Sign Up
-            </a>
-          </div>
-        </form>
+      <div className="flex flex-col justify-center h-screen p-4 ">
+        <div className="flex items-center justify-center text-sm">
+          <form
+            onSubmit={submitUser}
+            className="bg-gray-50 shadow-md rounded w-96 px-8 py-10"
+          >
+            <img src="" alt="" />
+            <div className="form-input">
+              <label className="mb-2">Email</label>
+              <input
+                className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
+                id="email"
+                type="email"
+                value={email}
+                onChange={inputValue("email")}
+              />
+            </div>
+            <div className="form-input relative">
+              <label className="mb-2">Password</label>
+              <input
+                className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
+                id="password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={inputValue("password")}
+              />
+              <button
+                className="absolute bottom-3 right-4"
+                type="button"
+                onClick={() => {
+                  togglePassword("password");
+                }}
+              >
+                {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
+              </button>
+            </div>
+            <div className="flex items-center justify-center">
+              <input
+                type="submit"
+                value="Sign In"
+                className="w-full bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95 uppercase text-sm font-bold py-3 px-4 text-gray-200 rounded-lg mb-8 cursor-pointer"
+              />
+            </div>
+            <div className="flex items-center justify-around">
+              <a className="text-xs" href="/">
+                Forgot Password?
+              </a>
+              <a className="text-sm uppercase underline" href="/register">
+                Sign Up
+              </a>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );
