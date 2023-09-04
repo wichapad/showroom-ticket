@@ -16,7 +16,12 @@
         padding: 0;
         box-sizing: border-box;
     }
-   
+
+    body {
+
+        margin: auto;
+    }
+
 
 
     input {
@@ -35,16 +40,17 @@
     }
 
     /* ------------ NavbarPage in Navrbar folder ------------ */
-    .navbar-li-mobile{
+    .navbar-li-mobile {
         display: block;
         padding: 0.5rem 0 0.5rem 0.75rem;
         color: #FFF;
         border-radius: 0.25rem;
     }
-    .navbar-li-mobile:hover{
+
+    .navbar-li-mobile:hover {
         border: 1px solid rgb(251, 191, 36);
     }
-    
+
 
     /* ------------ HomeComponent in HomePage folder ------------ */
     .home-background {
@@ -88,7 +94,7 @@
         width: 100%;
         text-align: center;
         padding: 1rem;
-   
+
     }
 
     .menu-mobile:hover {

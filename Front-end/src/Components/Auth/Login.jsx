@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { authenticate, getAdminId, getClientId } from "./services/autherize";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import axios from "axios";
-import { Link } from "react-router-dom";
+
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -14,7 +14,6 @@ const Login = () => {
   });
   const { email, password } = users;
 
- 
   const inputValue = (name) => (event) => {
     setUsers({ ...users, [name]: event.target.value });
   };
@@ -57,11 +56,11 @@ const Login = () => {
 
   return (
     <>
-      <nav className="relative z-50 bg-white border-gray-200 bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
+      <nav className="relative bg-white z-50 border-gray-200 bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <Link to="/" className="flex items-center">
-            <img src={logo} className="h-5 mr-3" alt="Showroom Logo" />
-          </Link>
+          <a href="/" className="flex items-center">
+            <img src={logo} className="h-5 mr-3" alt="Flowbite Logo" />
+          </a>
         </div>
       </nav>
       <div className="flex items-center justify-center h-screen bg-slate-50">

@@ -98,7 +98,7 @@ const Register = () => {
   return (
     <>
       <nav className="relative bg-white z-50 border-gray-200 bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800">
-        <div className="flex flex-wrap items-center justify-between mx-auto p-4">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="/" className="flex items-center">
             <img src={logo} className="h-5 mr-3" alt="Flowbite Logo" />
           </a>
@@ -241,15 +241,15 @@ const Register = () => {
               </div>
             </div>
           </div>
-          <div>
-            <div className="flex items-center justify-center">
+          <div className="flex flex-col justify-center items-center p-4">
+            <div>
               <input
                 type="submit"
                 value="Sign Up"
-                className="w-full bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95 uppercase text-sm font-bold py-3 px-4 text-gray-200 rounded-lg mb-8 cursor-pointer"
+                className="w-[150px] bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95 uppercase text-sm font-bold p-3 text-gray-200 rounded-lg cursor-pointer"
               />
             </div>
-            <div className="flex items-center justify-around">
+            <div className="text-center">
               <a className="text-sm uppercase underline" href="/login">
                 Sign In
               </a>
