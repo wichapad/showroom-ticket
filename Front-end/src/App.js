@@ -23,6 +23,7 @@ import MyTicket from "./Components/page/ProfilePage/MyTicket";
 import Purchase from "./Components/page/ProfilePage/Purchase";
 import ChangePassword from "./Components/page/ProfilePage/ChangePassword";
 import Tickets from "./Components/page/Dashboard/Content/Tickets/Tickets";
+import EventsLayout from "./Components/page/EventsPage/EventsLayout";
 
 const App = () => {
   return (
@@ -32,7 +33,9 @@ const App = () => {
         <Route index element={<Home />} />
 
         {/* Route events Component */}
-        <Route path="events" element={<Events />} />
+        <Route path="events" element={<EventsLayout />}>
+          <Route index element={<Events />} />
+        </Route>
         <Route path="events/:slug" element={<EventInfo />} />
 
         {/* Route Booking Ticket seat */}
@@ -64,7 +67,7 @@ const App = () => {
           <Route path="events" element={<AllEvents />}>
             <Route path=":slug" element={<UpdateEvent />} />
           </Route>
-          <Route path="tickets" element={<Tickets/>} />
+          <Route path="tickets" element={<Tickets />} />
         </Route>
       ) : (
         <Route path="/dashboard/*" element={<Notfound />} />

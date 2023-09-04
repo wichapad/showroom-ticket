@@ -9,14 +9,13 @@ import NewsHome from "./NewsHome";
 
 const Home = () => {
   return (
-    <div className=" flex flex-wrap mx-auto ">
+    <div className=" flex flex-col justify-center items-center m-auto ">
       <Header />
-      <div className="mt-4 mx-4">
-        <span className="text-2xl border-b-2 border-gray-900">
-          Showroom Concert
-        </span>
+      <div className="max-w-screen-2xl">
+        <p className="text-2xl py-2  border-gray-900">Showroom events</p>
         <EventsHome />
         <ShopHome />
+        <p className="text-2xl py-2 border-gray-900">Showroom news</p>
         <NewsHome />
       </div>
     </div>

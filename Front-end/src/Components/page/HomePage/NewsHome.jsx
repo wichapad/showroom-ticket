@@ -3,12 +3,7 @@ import React from "react";
 const NewsHome = () => {
   return (
     <div className=" w-full">
-      <div className="mt-4 mx-4">
-        <span className="text-2xl border-b-2 border-gray-900">
-          Showroom News
-        </span>
-      </div>
-      <div className="p-4">
+      <div>
         <div className="grid grid-cols-1 gap-2 md:grid-cols-4 lg:grid-cols-12">
           {/* item 1 */}
           <div className="shadow-lg rounded md:col-span-4 lg:col-span-6 row-span-3">

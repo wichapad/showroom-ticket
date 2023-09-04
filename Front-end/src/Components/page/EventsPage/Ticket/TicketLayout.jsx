@@ -22,6 +22,7 @@ const TicketLayout = () => {
 
   useEffect(() => {
     singleTicketData();
+    // eslint-disable-next-line
   }, [slug]);
 
   return (

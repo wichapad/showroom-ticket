@@ -140,24 +140,39 @@ const AllEvents = () => {
                       <p className="text-center uppercase text-gray-500">
                         Event List
                       </p>
-                      {item.events.map((item, index) => (
-                        <div className="flex justify-center text-sm">
-                          <div>
-                            <div key={index} className="flex shadow border p-2">
-                              <p>{item.event_name}</p>
-                              <p className="px-2">{item.date}</p>
-                              <p>{item.time}</p>
+                      <div className="flex justify-center items-center ">
+                        {/* Map call data in terms of Events data */}
+                        {item.events
+                          .slice()
+                          .sort((a, b) => a.event_id - b.event_id)
+                          
+                          .map((item, index) => (
+                            <div key={index} className="p-2">
+                              <div className="flex justify-center ">
+                                <div className="p-4 shadow border">
+                                  <p className="text-center">
+                                    {item.event_name}
+                                  </p>
+                                  <div className="flex justify-center">
+                                    <p className="pr-2">{item.date}</p>
+                                    <p>{item.time}</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="flex justify-center pt-2">
+                                <div className="shadow border p-2">
+                                  <p className="text-center">
+                                    {item.venue_name}
+                                  </p>
+                                  <div className="flex justify-center">
+                                    <p className="pr-2">{item.city}</p>
+                                    <p>{item.state}</p>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                          <div>
-                            <div key={index} className="flex shadow border p-2">
-                              <p>{item.venue_name}</p>
-                              <p className="px-2">{item.city}</p>
-                              <p>{item.state}</p>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
+                          ))}
+                      </div>
                     </td>
                   </tr>
                 )}
