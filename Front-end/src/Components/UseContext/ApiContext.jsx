@@ -79,8 +79,8 @@ const ApiProvider = ({ children }) => {
       } catch (error) {
         console.log(error);
       }
-      VenuesData();
     };
+    VenuesData();
   }, []);
 
   return (

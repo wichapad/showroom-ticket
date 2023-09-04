@@ -1,11 +1,11 @@
-import axios from "axios";
-import { useState, useEffect, useContext } from "react";
+// import axios from "axios";
+import { useState, useContext } from "react";
 import { HiX } from "react-icons/hi";
 import { ApiContext } from "../../../../UseContext/ApiContext";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 const UpdateEvent = ({ isVisible, handleUpdate }) => {
-  const { slug } = useParams();
+  // const { slug } = useParams();
   const { artistsList, venuesList } = useContext(ApiContext);
   const [closeUpdate, setCloseUpdate] = useState(false);
   const [updateEvent, setUpdateEvent] = useState([]);
@@ -61,18 +61,18 @@ const UpdateEvent = ({ isVisible, handleUpdate }) => {
     handleUpdate();
   };
 
-  const submitForm = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.put(
-        `${process.env.REACT_APP_API}/api/events/${slug}`,
-        updateEvent
-      );
-      console.log("Update successfully");
-    } catch (error) {
-      console.log("Error updating events", error);
-    }
-  };
+  // const submitForm = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     await axios.put(
+  //       `${process.env.REACT_APP_API}/api/events/${slug}`,
+  //       updateEvent
+  //     );
+  //     console.log("Update successfully");
+  //   } catch (error) {
+  //     console.log("Error updating events", error);
+  //   }
+  // };
 
   return (
     <div

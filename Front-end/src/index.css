@@ -18,7 +18,6 @@
     }
 
     body {
-
         margin: auto;
     }
 
@@ -34,8 +33,7 @@
 
 @layer components {
     .form-input {
-        display: flex;
-        flex-direction: column;
+       
         margin-bottom: 0.8rem;
     }
 

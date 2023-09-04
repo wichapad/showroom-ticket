@@ -104,10 +104,10 @@ const Register = () => {
           </a>
         </div>
       </nav>
-      <div className="flex items-center justify-center  bg-slate-100">
+      <div className="flex text-sm justify-center m-8 ">
         <form onSubmit={submitData}>
           <div className="md:flex">
-            <div className="bg-white shadow-md rounded w-[350px] m-4  px-8 py-10">
+            <div className="bg-gray-50 shadow-md rounded w-[350px] p-4">
               <div className="form-input">
                 <label className="mb-2">Email</label>
                 <input
@@ -148,7 +148,7 @@ const Register = () => {
                 </button>
               </div>
 
-              <div className="form-input mb-8 relative">
+              <div className="form-input  relative">
                 <label className="mb-2">Confirm Password</label>
                 <input
                   className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
@@ -188,7 +188,7 @@ const Register = () => {
                 />
               </div>
             </div>
-            <div className="bg-white shadow-md rounded w-[350px] m-4  px-8 py-10">
+            <div className="bg-gray-50 shadow-md rounded w-[350px] p-4">
               <div className="form-input">
                 <label className="mb-2">Address</label>
                 <input
@@ -249,7 +249,7 @@ const Register = () => {
                 className="w-[150px] bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95 uppercase text-sm font-bold p-3 text-gray-200 rounded-lg cursor-pointer"
               />
             </div>
-            <div className="text-center">
+            <div className="text-center mt-2">
               <a className="text-sm uppercase underline" href="/login">
                 Sign In
               </a>

@@ -63,10 +63,10 @@ const Login = () => {
           </a>
         </div>
       </nav>
-      <div className="flex items-center justify-center h-screen bg-slate-50">
+      <div className="flex items-center justify-center text-sm h-screen">
         <form
           onSubmit={submitUser}
-          className="bg-white shadow-md rounded w-96 px-8 py-10"
+          className="bg-gray-50 shadow-md rounded w-96 px-8 py-10"
         >
           <img src="" alt="" />
           <div className="form-input">
