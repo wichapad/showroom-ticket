@@ -2,6 +2,7 @@ import { useState } from "react";
 import logo from "../../images/showroomlogowhite.png";
 import axios from "axios";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
+import { NavLink } from "react-router-dom";
 
 const Register = () => {
   // สร้าง navigate ด้วย react-router-dom เพื่อให้เวลา กด submit แล้ว redirect ไปหน้า home
@@ -104,7 +105,7 @@ const Register = () => {
           </a>
         </div>
       </nav>
-      <div className="flex flex-col justify-center h-screen p-4 ">
+      <div className="flex flex-col justify-center h-screen  ">
         <div className="flex text-sm justify-center ">
           <form onSubmit={submitData}>
             <div className="md:flex">
@@ -249,9 +250,9 @@ const Register = () => {
                     />
                   </div>
                   <div className="text-center">
-                    <a className="text-sm uppercase underline" href="/login">
+                    <NavLink to="/login" className="text-sm uppercase underline" >
                       Sign In
-                    </a>
+                    </NavLink>
                   </div>
                 </div>
               </div>

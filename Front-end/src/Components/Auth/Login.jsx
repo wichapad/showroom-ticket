@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { authenticate, getAdminId, getClientId } from "./services/autherize";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -63,7 +64,7 @@ const Login = () => {
           </a>
         </div>
       </nav>
-      <div className="flex flex-col justify-center h-screen p-4 ">
+      <div className="flex flex-col justify-center h-screen  ">
         <div className="flex items-center justify-center text-sm">
           <form
             onSubmit={submitUser}
@@ -110,9 +111,9 @@ const Login = () => {
               <a className="text-xs" href="/">
                 Forgot Password?
               </a>
-              <a className="text-sm uppercase underline" href="/register">
+              <NavLink to="/register" className="text-sm uppercase underline">
                 Sign Up
-              </a>
+              </NavLink>
             </div>
           </form>
         </div>
