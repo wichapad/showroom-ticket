@@ -41,11 +41,11 @@ const TicketLayout = () => {
               <div className="absolute left-8 bottom-8 ">
                 <div className="flex ">
                   <img
-                    className="  aspect-video rounded-md object-cover w-[250px]"
+                    className="  aspect-video rounded-md object-cover w-[200px] md:w-[250px]"
                     src={item.artist_image}
                     alt="bandImage"
                   />
-                  <div className="pl-8 text-white font-black">
+                  <div className="pl-8 text-white text-[0.8rem] md:text-[1rem]">
                     <p>{item.event_name}</p>
                     <p>{formatDate(item.event_date)}</p>
                     <p>{formatTime(item.event_time)}</p>

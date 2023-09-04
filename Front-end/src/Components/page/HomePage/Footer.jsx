@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="slide-bg-image ">
+    <div className="slide-bg-image">
       <div className="text-white grid grid-cols-2 sm:gap-4 md:flex justify-around lg:flex lg:justify-between max-w-screen-lg mx-auto">
         <div className="w-48">
           <a href="/" className="flex items-center">

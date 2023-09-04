@@ -29,21 +29,12 @@ const Profile = () => {
         <p className="text-[1.5rem] text-center">Profile</p>
         <div className="flex justify-center m-4">
           <form className="w-[350px]">
-            <div className="flex">
-              <div className="mr-2">
-                <label>First Name</label>
-                <input
-                  className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
-                  type="text"
-                />
-              </div>
-              <div>
-                <label>Last Name</label>
-                <input
-                  className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
-                  type="text"
-                />
-              </div>
+            <div>
+              <label>Name</label>
+              <input
+                className="px-3 py-2 border rounded shadow focus:border focus:border-gray-600"
+                type="text"
+              />
             </div>
             <div className="my-3">
               <label>Date of Birth</label>
