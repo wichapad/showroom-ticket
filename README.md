@@ -9,9 +9,9 @@ Developed for Education Full Stack Programming
 
 ## Demo pages
 
-| Dashboard | Stacked Layout | Products (CRUD)
+| Home Page | Event Page | Shop Page (CRUD)
 | --- | --- | --- |
-| [![Dashboard](https://flowbite.s3.amazonaws.com/templates/flowbite-admin-dashboard/github/homepage.jpg)](https://flowbite-admin-dashboard.vercel.app/) | [![Stacked Layout](https://flowbite.s3.amazonaws.com/templates/flowbite-admin-dashboard/github/stacked.jpg)](https://flowbite-admin-dashboard.vercel.app/layouts/stacked/) | [![Products (CRUD)](https://flowbite.s3.amazonaws.com/templates/flowbite-admin-dashboard/github/products-crud.jpg)](https://flowbite-admin-dashboard.vercel.app/crud/products/)
+| [![Dashboard](https://drive.google.com/file/d/1HYGVGUypdnU20KAq_ApdgkOfByoNK4_R/view?usp=sharing)](https://flowbite-admin-dashboard.vercel.app/) | [![Stacked Layout](https://flowbite.s3.amazonaws.com/templates/flowbite-admin-dashboard/github/stacked.jpg)](https://flowbite-admin-dashboard.vercel.app/layouts/stacked/) | [![Products (CRUD)](https://flowbite.s3.amazonaws.com/templates/flowbite-admin-dashboard/github/products-crud.jpg)](https://flowbite-admin-dashboard.vercel.app/crud/products/)
 
 | Users (CRUD) | Settings | Pricing page
 | --- | --- | --- |
