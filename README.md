@@ -15,7 +15,7 @@ Developed for Education Full Stack Programming
 
 | Event Tour | Zone | Seat Row
 | --- | --- | --- |
-| [![EventTour](https://github.com/wichapad/showroom-ticket/assets/84759066/1d63071e-77e1-426b-bf7d-d0c6b02d219e)] | [![Zone](https://github.com/wichapad/showroom-ticket/assets/84759066/244ebd05-7638-4c01-b95b-988e355fefd0)] | [![ShopPage](https://github.com/wichapad/showroom-ticket/assets/84759066/24fa0811-a4f1-4930-a6d0-9ec1c5896d40)]
+| ![EventTour](https://github.com/wichapad/showroom-ticket/assets/84759066/1d63071e-77e1-426b-bf7d-d0c6b02d219e) | ![Zone](https://github.com/wichapad/showroom-ticket/assets/84759066/244ebd05-7638-4c01-b95b-988e355fefd0) | ![ShopPage](https://github.com/wichapad/showroom-ticket/assets/84759066/24fa0811-a4f1-4930-a6d0-9ec1c5896d40)
 
 | Login Page | Register Page | Admin Control
 | --- | --- | --- |
