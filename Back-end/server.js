@@ -31,6 +31,10 @@ app.use(authRoute);
 app.use("/api", eventsRoute);
 app.use("/api", ticketRoute);
 
+app.get("/", (req, res) => {
+  res.send("this is API running");
+});
+
 const port = process.env.PORT;
 
 app.listen(port, () => {
