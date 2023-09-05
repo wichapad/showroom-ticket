@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
-// const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
@@ -15,17 +14,6 @@ const users = require("./routes/users");
 const authRoute = require("./routes/auth");
 const eventsRoute = require("./routes/events");
 const ticketRoute = require("./routes/ticket");
-// const adminRoute = require('./routes/admin');
-// const { requireAdmin } = require("./controllers/authController");
-
-// mongoDB Database
-// mongoose
-//     .connect(process.env.DATABASE, {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: false,
-//     })
-//     .then(() => console.log("Connect mongoDB database success"))
-//     .catch((error) => console.log(error))
 
 // PostgreSQL Database
 const pool = require("./database");
