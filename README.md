@@ -27,7 +27,7 @@ Developed for Education Full Stack Programming
 
 | Change Password | 
 | --- | --- | --- |
-| [![Profile](https://github.com/wichapad/showroom-ticket/assets/84759066/c954432a-ce78-4086-a9fa-7f0145e45c84)](https://showroom-ticket.vercel.app/user/changepassword) | 
+| [![Profile](https://github.com/wichapad/showroom-ticket/assets/84759066/c954432a-ce78-4086-a9fa-7f0145e45c84)](https://showroom-ticket.vercel.app/user/changepassword) | [] | []
  
 
 -   [Live Preview](https://showroom-ticket.vercel.app/)
