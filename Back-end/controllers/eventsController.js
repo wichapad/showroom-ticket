@@ -90,29 +90,6 @@ exports.getEvent = (req, res) => {
     }
   });
 };
-// Get all data artists from sql
-exports.getArtists = (req, res) => {
-  const query = `SELECT * FROM artist;`;
-  pool.query(query, (err, result) => {
-    if (err) {
-      res.status(500).json({ error: "Internal server error" });
-    } else {
-      res.json(result.rows);
-    }
-  });
-};
-
-// Get all data venues from sql
-exports.getVenues = (req, res) => {
-  const query = `SELECT * FROM venue;`;
-  pool.query(query, (err, result) => {
-    if (err) {
-      res.status(500).json({ error: "Internal server error" });
-    } else {
-      res.json(result.rows);
-    }
-  });
-};
 
 // Get single data by slug join table artist event venue
 exports.singleEvent = (req, res) => {

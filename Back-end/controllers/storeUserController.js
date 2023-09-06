@@ -58,9 +58,9 @@ exports.createUsers = async (req, res) => {
 // ดูข้อมูล one user ใน database ด้วย email
 exports.getUserByEmail = async (req, res) => {
   try {
-    const { name } = req.params;
-    const query = `SELECT * FROM users WHERE name = $1;`;
-    const value = [name];
+    const { email } = req.params;
+    const query = `SELECT * FROM users WHERE email = $1;`;
+    const value = [email];
     const result = await pool.query(query, value);
     if (result.rows.length > 0) {
       const user = result.rows[0];
@@ -77,13 +77,32 @@ exports.getUserByEmail = async (req, res) => {
 exports.updateUsersByEmail = async (req, res) => {
   try {
     const { email } = req.params;
-    const { name, phone, address, city, zipcode } = req.body;
+    const {
+      name,
+      phone,
+      address,
+      city,
+      zipcode,
+      province,
+      district,
+      date_of_birth,
+    } = req.body;
     const query = `UPDATE users 
-        set name=$1 ,phone=$2 ,address=$3,city=$4,zipcode=$5
-        WHERE email =$6
+        set name=$1 ,phone=$2 ,address=$3,city=$4,zipcode=$5 ,province=$6,district=$7,date_of_birth=$8
+        WHERE email =$9
         RETURNING *
         `;
-    const values = [name, phone, address, city, zipcode, email];
+    const values = [
+      name,
+      phone,
+      address,
+      city,
+      zipcode,
+      province,
+      district,
+      date_of_birth,
+      email,
+    ];
     const result = await pool.query(query, values);
     if (result.rows.length > 0) {
       const updateUser = result.rows[0];

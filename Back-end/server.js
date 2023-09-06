@@ -12,6 +12,8 @@ app.use(cors());
 // call routes
 const users = require("./routes/users");
 const authRoute = require("./routes/auth");
+const artistsRoute = require("./routes/artists");
+const venuesRoute = require("./routes/venues");
 const eventsRoute = require("./routes/events");
 const ticketRoute = require("./routes/ticket");
 
@@ -30,6 +32,8 @@ app.use(users);
 app.use(authRoute);
 app.use("/api", eventsRoute);
 app.use("/api", ticketRoute);
+app.use("/api", artistsRoute);
+app.use("/api", venuesRoute);
 
 app.get("/", (req, res) => {
   res.send("this is API running");
