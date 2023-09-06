@@ -21,4 +21,12 @@ Developed for Education Full Stack Programming
 | --- | --- | --- |
 | [![Login](https://github.com/wichapad/showroom-ticket/assets/84759066/ecfe5c71-1ea2-4d36-a484-ffe45644d3eb)](https://showroom-ticket.vercel.app/login) | [![Register](https://github.com/wichapad/showroom-ticket/assets/84759066/e4306e30-6423-459e-8dbd-aa9564c2d68b)](https://showroom-ticket.vercel.app/register) | ![Admin](https://github.com/wichapad/showroom-ticket/assets/84759066/1544bc12-7568-4dcd-8e19-b55c06c4108e)
 
+| Profile Page | Myticket | Purchase History
+| --- | --- | --- |
+| [![Profile](https://github.com/wichapad/showroom-ticket/assets/84759066/eabd814a-15eb-4009-81c6-6d73a07a161b)](https://showroom-ticket.vercel.app/user/profile) | [![Myticket](https://github.com/wichapad/showroom-ticket/assets/84759066/748add7c-76c5-4024-bd16-83b0e4277031)](https://showroom-ticket.vercel.app/user/myticket) | [![Purchase](https://github.com/wichapad/showroom-ticket/assets/84759066/2fea1975-f578-41ab-950b-b96607e578cd)](https://showroom-ticket.vercel.app/user/purchase)
+
+| Change Password 
+| --- | --- | --- |
+| [![Profile](https://github.com/wichapad/showroom-ticket/assets/84759066/c954432a-ce78-4086-a9fa-7f0145e45c84)](https://showroom-ticket.vercel.app/user/changepassword) | 
+
 -   [Live Preview](https://showroom-ticket.vercel.app/)
