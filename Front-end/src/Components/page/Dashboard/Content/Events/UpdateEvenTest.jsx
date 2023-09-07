@@ -9,7 +9,7 @@ const UpdateEvent = () => {
   const [artistEvent, setArtistEvent] = useState([]);
   
 
-  const singleArtistEvent = async () => {
+  const eventGroup = async () => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_API}/api/events/${id}`
@@ -21,8 +21,8 @@ const UpdateEvent = () => {
   };
 
   useEffect(() => {
-    singleArtistEvent();
-  }, []);
+    eventGroup();
+  }, [id]);
 
 
   return <div>test</div>;

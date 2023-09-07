@@ -1,5 +1,4 @@
 // Match database between table artist,event,venue in order to get information tourschedule
-
 const pool = require('../database')
 
 exports.getartistSchedule = (req, res) => {

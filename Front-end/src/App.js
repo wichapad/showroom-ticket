@@ -10,9 +10,7 @@ import Register from "./Components/Auth/Register";
 import LayoutDashboard from "./Components/page/Dashboard/LayoutDashboard/LayoutDashboard";
 import AllEvents from "./Components/page/Dashboard/Content/Events/AllEvents";
 import Dashboard from "./Components/page/Dashboard/Content/Chart/ChartDashboard";
-// import UpdateEvent from "./Components/page/Dashboard/Content/Events/UpdateEvent";
-import UpdateEventTest from "./Components/page/Dashboard/Content/Events/UpdateEvenTest";
-
+import UpdateEvent from "./Components/page/Dashboard/Content/Events/UpdateEvent";
 import { getAdminId } from "./Components/Auth/services/autherize";
 import Notfound from "./Components/page/ErrorPage/Notfound";
 import TicketLayout from "./Components/page/EventsPage/Ticket/TicketLayout";
@@ -67,9 +65,9 @@ const App = () => {
         <Route path="/dashboard" element={<LayoutDashboard />}>
           <Route index element={<Dashboard />} />
           <Route path="events" element={<AllEvents />}>
-            {/* <Route path=":slug" element={<UpdateEvent />} /> */}
+            <Route path=":slug" element={<UpdateEvent />} />
           </Route>
-           <Route path="events/:slug" element={<UpdateEventTest />} />
+   
           <Route path="tickets" element={<Tickets />} />
         </Route>
       ) : (
