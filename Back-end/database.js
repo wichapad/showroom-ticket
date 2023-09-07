@@ -11,7 +11,10 @@ const pool = new Pool({
 
   // Vercel postgresql database
 
-  connectionString: process.env.POSTGRES_URL + "?sslmode=require",
+  connectionString: process.env.POSTGRES_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 module.exports = pool;
