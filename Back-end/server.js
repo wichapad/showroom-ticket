@@ -16,6 +16,7 @@ const artistsRoute = require("./routes/artists");
 const venuesRoute = require("./routes/venues");
 const eventsRoute = require("./routes/events");
 const ticketRoute = require("./routes/ticket");
+const artistScrhedule = require("./routes/artistSchedule");
 
 // PostgreSQL Database
 const pool = require("./database");
@@ -34,6 +35,7 @@ app.use("/api", eventsRoute);
 app.use("/api", ticketRoute);
 app.use("/api", artistsRoute);
 app.use("/api", venuesRoute);
+app.use("/api", artistScrhedule);
 
 app.get("/", (req, res) => {
   res.send("this is API running");

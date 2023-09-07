@@ -10,7 +10,7 @@ const ApiProvider = ({ children }) => {
   const [allUsers, setAllUsers] = useState([]);
 
   // State all Events
-  const [itemsEvent, setitemsEvent] = useState([]);
+  const [artistSchedule, setiartistSchedule] = useState([]);
 
   //State Artists List
   const [artistsList, setArtistsList] = useState([]);
@@ -35,22 +35,22 @@ const ApiProvider = ({ children }) => {
 
   //Get database collection events
   useEffect(() => {
-    const EventsData = async () => {
+    const ScheduleData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API}/api/events`,
+          `${process.env.REACT_APP_API}/api/tour`,
           {
             headers: {
               "Content-Type": "application/json",
             },
           }
         );
-        setitemsEvent(response.data);
+        setiartistSchedule(response.data);
       } catch (error) {
         console.log(error);
       }
     };
-    EventsData();
+    ScheduleData();
   }, []);
 
   // Get all ArtistsData
@@ -87,7 +87,7 @@ const ApiProvider = ({ children }) => {
     <ApiContext.Provider
       value={{
         allUsers,
-        itemsEvent,
+        artistSchedule,
         artistsList,
         venuesList,
       }}

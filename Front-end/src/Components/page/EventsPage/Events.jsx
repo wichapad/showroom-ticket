@@ -4,12 +4,12 @@ import { NavLink } from "react-router-dom";
 import { ApiContext } from "../../UseContext/ApiContext";
 
 const Events = () => {
-  const { itemsEvent } = useContext(ApiContext);
+  const { artistSchedule } = useContext(ApiContext);
 
   return (
     <div className="flex flex-col justify-center m-auto max-w-screen-2xl">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
-        {itemsEvent.map((event) => {
+        {artistSchedule.map((event) => {
           return (
             <div
               key={event.artist_id}

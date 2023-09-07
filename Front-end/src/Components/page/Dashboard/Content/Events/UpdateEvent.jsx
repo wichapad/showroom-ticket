@@ -11,15 +11,15 @@ const UpdateEvent = ({ isVisible, handleUpdate }) => {
   const [closeUpdate, setCloseUpdate] = useState(false);
   const [updateEvent, setUpdateEvent] = useState([]);
 
-  const singleArtistEvent = () => {
-    axios
-      .get(`${process.env.REACT_APP_USERS}/api/events/id/${id}`)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log("Error creating event", err);
-      });
+  const singleArtistEvent = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_API}/api/events/${id}`
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
