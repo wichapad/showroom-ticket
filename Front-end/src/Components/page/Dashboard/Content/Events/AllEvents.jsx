@@ -8,7 +8,6 @@ import { NavLink } from "react-router-dom";
 const AllEvents = () => {
   // get api UseContext
   const { itemsEvent } = useContext(ApiContext);
-
   const [showContent, setShowContent] = useState(null);
   const [word, setWord] = useState("");
   const [isCreate, setIsCreate] = useState(false);

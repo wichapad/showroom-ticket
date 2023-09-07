@@ -1,30 +1,30 @@
-// import axios from "axios";
-import { useState, useContext } from "react";
+import axios from "axios";
+import { useState, useEffect, useContext } from "react";
 import { HiX } from "react-icons/hi";
 import { ApiContext } from "../../../../UseContext/ApiContext";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const UpdateEvent = ({ isVisible, handleUpdate }) => {
-  // const { slug } = useParams();
+  const { id } = useParams();
   const { artistsList, venuesList } = useContext(ApiContext);
+  const [artistEvent, setArtistEvent] = useState([]);
   const [closeUpdate, setCloseUpdate] = useState(false);
   const [updateEvent, setUpdateEvent] = useState([]);
 
-  // const singleEventData = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `${process.env.REACT_APP_USERS}/api/events/${slug}`
-  //     );
-  //     setUpdateEvent(response.data);
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     console.log("Error creating event", error);
-  //   }
-  // };
+  const singleArtistEvent = () => {
+    axios
+      .get(`${process.env.REACT_APP_USERS}/api/events/id/${id}`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log("Error creating event", err);
+      });
+  };
 
-  // useEffect(() => {
-  //   singleEventData();
-  // }, [slug]);
+  useEffect(() => {
+    singleArtistEvent();
+  }, [id]);
 
   // function ใส่ค่า form  ของ state Eventlist
   const inputEventList = (index) => (e) => {

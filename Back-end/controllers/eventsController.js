@@ -26,21 +26,22 @@ exports.createEvent = async (req, res) => {
   }
 };
 
+// Update events
 exports.updateEvent = async (req, res) => {
   try {
     const events = req.body;
     const updateEvents = await Promise.all(
       events.map(async (event) => {
         const {
-          event_id,
           event_name,
           event_date,
           event_time,
           artist_id,
           venue_id,
+          event_id
         } = event;
         const query = `UPDATE event 
-        SET event_name = $1, event_date = $2, event_time = $3, artist_id = $4, venue_id = $5 
+        SET  event_name = $1, event_date = $2, event_time = $3, artist_id = $4, venue_id = $5 
         WHERE event_id = $6
         RETURNING *`;
         const values = [
@@ -49,7 +50,7 @@ exports.updateEvent = async (req, res) => {
           event_time,
           artist_id,
           venue_id,
-          event_id,
+          event_id
         ];
         const result = await pool.query(query, values);
         return result.rows[0];
@@ -61,7 +62,20 @@ exports.updateEvent = async (req, res) => {
   }
 };
 
-// Get all data join table artist event venue
+// Get data single event of artsit 
+exports.singleEventByArtistId = (req, res) => {
+  const id = req.params.id;
+  const query = `SELECT * FROM event WHERE artist_id = $1;`;
+  pool.query(query, [id], (err, result) => {
+    if (err) {
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      res.json(result.rows);
+    }
+  });
+};
+
+// Get all data by slug join table artist event venue only show data front-end
 exports.getEvent = (req, res) => {
   const query = `SELECT
   a.artist_id,
@@ -91,7 +105,7 @@ exports.getEvent = (req, res) => {
   });
 };
 
-// Get single data by slug join table artist event venue
+// Get single data by slug join table artist event venue only show data front-end
 exports.singleEvent = (req, res) => {
   const slug = req.params.slug;
   const query = `SELECT
@@ -125,4 +139,3 @@ exports.singleEvent = (req, res) => {
     }
   });
 };
-
