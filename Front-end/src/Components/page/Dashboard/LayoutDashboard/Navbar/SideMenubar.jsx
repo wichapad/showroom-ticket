@@ -6,6 +6,7 @@ import {
   HiChevronDown,
   HiUsers,
   HiSupport,
+  HiDatabase
 } from "react-icons/hi";
 import { FaGithub, FaMicrophone } from "react-icons/fa";
 import { useState } from "react";
@@ -15,6 +16,7 @@ import Blackdrop from "./Blackdrop";
 const SideMunubar = ({ isOpen }) => {
   const [productBar, setProductBar] = useState(false);
   const [userBar, setUserBar] = useState(false);
+  const [manage,setManage] = useState(false)
   const [showSidebar, setShowSidebar] = useState(false);
   
 
@@ -23,6 +25,8 @@ const SideMunubar = ({ isOpen }) => {
       setProductBar(!productBar);
     } else if (menu === "user") {
       setUserBar(!userBar);
+    } else if (menu === "manage"){
+      setManage(!manage)
     }
   };
   // eslint-disable-next-line 
@@ -177,6 +181,51 @@ const SideMunubar = ({ isOpen }) => {
               )}
             </li>
             <div className="my-2 border opacity-25 "></div>
+            <li>
+              <div className="flex px-2 py-3  text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
+                <button
+                  className="flex justify-between items-center w-full"
+                  type="button"
+                  onClick={() => {
+                    toggleSubmenu("manage");
+                  }}
+                >
+                  <div className="flex">
+                    <HiDatabase className="text-2xl  mr-3" />
+                    <p className="text-lg text-white font-light">Management</p>
+                  </div>
+                  <HiChevronDown className="text-xl" />
+                </button>
+              </div>
+
+              {!manage ? (
+                ""
+              ) : (
+                <ul className="text-lg text-white font-light">
+                  <li>
+                    <NavLink to="/dashboard/artists" className="flex p-2 justify-between items-center text-slate-200 hover: transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
+                      <p className="pl-8 text-lg text-white font-light">
+                        Artists
+                      </p>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <div className="flex p-2 justify-between items-center text-slate-200 hover:text-gray-900 transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
+                      <p className="pl-8 text-lg text-white font-light">
+                        Events
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="flex p-2 justify-between items-center text-slate-200 hover:text-gray-900 transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">
+                      <p className="pl-8 text-lg text-white font-light">
+                        Venues
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              )}
+            </li>
             <li>
               <NavLink to="#">
                 <div className="flex text-slate-200 hover:text-white transition duration-300 ease-in-out hover:bg-slate-800 rounded-lg cursor-pointer">

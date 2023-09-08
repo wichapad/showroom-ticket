@@ -65,7 +65,7 @@ exports.updateEvent = async (req, res) => {
 // Get data single event of artsit 
 exports.singleEventByArtistId = (req, res) => {
   const slug = req.params.slug;
-  const query = `SELECT * FROM event WHERE slug_event = $1;`;
+  const query = `SELECT * FROM event WHERE arist_id = $1;`;
   pool.query(query, [slug], (err, result) => {
     if (err) {
       res.status(500).json({ error: "Internal server error" });

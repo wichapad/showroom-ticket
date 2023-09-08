@@ -1,29 +1,33 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Home from "./Components/page/HomePage/Home";
-import Events from "./Components/page/EventsPage/Events";
-import EventInfo from "./Components/page/EventsPage/EventInfo";
-import Zone from "./Components/page/EventsPage/Ticket/Zone";
-import Shop from "./Components/page/ShopPage/Shop";
+import PageLayout from "./Components/Navbar/PageLayout";
+import { getAdminId } from "./Components/Auth/services/autherize";
 import Login from "./Components/Auth/Login";
 import Register from "./Components/Auth/Register";
-import LayoutDashboard from "./Components/page/Dashboard/LayoutDashboard/LayoutDashboard";
-import AllEvents from "./Components/page/Dashboard/Content/Events/AllEvents";
-import Dashboard from "./Components/page/Dashboard/Content/Chart/ChartDashboard";
-import UpdateEvent from "./Components/page/Dashboard/Content/Events/UpdateEvent";
-import { getAdminId } from "./Components/Auth/services/autherize";
+
+import Home from "./Components/page/HomePage/Home";
+import Shop from "./Components/page/ShopPage/Shop";
+
+import EventsLayout from "./Components/page/EventsPage/EventsLayout";
+import Events from "./Components/page/EventsPage/Events";
+import EventInfo from "./Components/page/EventsPage/EventInfo";
 import Notfound from "./Components/page/ErrorPage/Notfound";
 import TicketLayout from "./Components/page/EventsPage/Ticket/TicketLayout";
-import Profile from "./Components/page/ProfilePage/Profile";
 import { SeatRow } from "./Components/page/EventsPage/Ticket/SeatRow";
-import PageLayout from "./Components/Navbar/PageLayout";
+import Zone from "./Components/page/EventsPage/Ticket/Zone";
 import NoTicket from "./Components/page/EventsPage/NoTicketPage/NoTicket";
+
 import LayoutProfile from "./Components/page/ProfilePage/LayoutProfile";
+import Profile from "./Components/page/ProfilePage/Profile";
 import MyTicket from "./Components/page/ProfilePage/MyTicket";
 import Purchase from "./Components/page/ProfilePage/Purchase";
 import ChangePassword from "./Components/page/ProfilePage/ChangePassword";
+
+import LayoutDashboard from "./Components/page/Dashboard/LayoutDashboard/LayoutDashboard";
+import Dashboard from "./Components/page/Dashboard/Content/Chart/ChartDashboard";
+import AllEvents from "./Components/page/Dashboard/Content/Events/AllEvents";
 import Tickets from "./Components/page/Dashboard/Content/Tickets/Tickets";
-import EventsLayout from "./Components/page/EventsPage/EventsLayout";
+import ArtistsManage from "./Components/page/Dashboard/Content/Management/AristsMange";
 
 const App = () => {
   return (
@@ -64,11 +68,9 @@ const App = () => {
       {getAdminId() ? (
         <Route path="/dashboard" element={<LayoutDashboard />}>
           <Route index element={<Dashboard />} />
-          <Route path="events" element={<AllEvents />}>
-            <Route path=":slug" element={<UpdateEvent />} />
-          </Route>
-   
+          <Route path="events" element={<AllEvents />} />
           <Route path="tickets" element={<Tickets />} />
+          <Route path="artists" element={<ArtistsManage />} />
         </Route>
       ) : (
         <Route path="/dashboard/*" element={<Notfound />} />
