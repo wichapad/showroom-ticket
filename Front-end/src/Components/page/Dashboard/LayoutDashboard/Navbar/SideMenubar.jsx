@@ -8,7 +8,7 @@ import {
   HiSupport,
   HiDatabase,
 } from "react-icons/hi";
-import { FaGithub, FaMicrophone } from "react-icons/fa";
+import { FaGithub, FaTable } from "react-icons/fa";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Blackdrop from "./Blackdrop";
@@ -88,14 +88,14 @@ const SideMunubar = ({ isOpen }) => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard/events">
+              <NavLink to="/dashboard/tour">
                 <div className="menu-sidebar-container">
                   <div className="menu-sidebar-inside">
                     <div>
-                      <FaMicrophone className=" icons-sidebar" />
+                      <FaTable className=" icons-sidebar" />
                     </div>
                     <div>
-                      <div className="text-sidebar">Events</div>
+                      <div className="text-sidebar">Schedule</div>
                     </div>
                   </div>
                 </div>
@@ -200,9 +200,9 @@ const SideMunubar = ({ isOpen }) => {
                     </NavLink>
                   </li>
                   <li>
-                    <div className="sidebar-dropdown-li">
+                    <NavLink to='/dashboard/events' className="sidebar-dropdown-li">
                       <p className="pl-8 text-sidebar">Events</p>
-                    </div>
+                    </NavLink>
                   </li>
                   <li>
                     <NavLink to='/dashboard/venues' className="sidebar-dropdown-li">

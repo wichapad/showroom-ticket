@@ -27,8 +27,9 @@ import LayoutDashboard from "./Components/page/Dashboard/LayoutDashboard/LayoutD
 import Dashboard from "./Components/page/Dashboard/Content/Chart/ChartDashboard";
 import AllEvents from "./Components/page/Dashboard/Content/Events/AllEvents";
 import Tickets from "./Components/page/Dashboard/Content/Tickets/Tickets";
-import ArtistsManage from "./Components/page/Dashboard/Content/Management/AristsMange";
-import VenuesManage from "./Components/page/Dashboard/Content/Management/VenuesMange";
+import ArtistsManage from "./Components/page/Dashboard/Content/Management/AristsManage/AristsMange";
+import EventsMange from "./Components/page/Dashboard/Content/Management/EventsMange/EventsManage";
+import VenuesManage from "./Components/page/Dashboard/Content/Management/VenuesMange/VenuesMange";
 
 const App = () => {
   return (
@@ -69,9 +70,10 @@ const App = () => {
       {getAdminId() ? (
         <Route path="/dashboard" element={<LayoutDashboard />}>
           <Route index element={<Dashboard />} />
-          <Route path="events" element={<AllEvents />} />
+          <Route path="tour" element={<AllEvents />} />
           <Route path="tickets" element={<Tickets />} />
           <Route path="artists" element={<ArtistsManage />} />
+         <Route path="events" element={<EventsMange/>} />
           <Route path="venues" element={<VenuesManage />} />
         </Route>
       ) : (

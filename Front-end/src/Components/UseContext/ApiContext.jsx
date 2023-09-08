@@ -16,6 +16,8 @@ const ApiProvider = ({ children }) => {
   const [artistsList, setArtistsList] = useState([]);
   //State Venues List
   const [venuesList, setVenuesList] = useState([]);
+  //State Events List
+  const [eventsList, setEventsList] = useState([]);
 
   useEffect(() => {
     const UsersData = async () => {
@@ -68,6 +70,20 @@ const ApiProvider = ({ children }) => {
     ArtistsData();
   }, []);
 
+  useEffect(() => {
+    const EventsData = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_API}/api/events`
+        );
+        setEventsList(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    EventsData();
+  }, []);
+
   // Get all venuesData
   useEffect(() => {
     const VenuesData = async () => {
@@ -89,6 +105,7 @@ const ApiProvider = ({ children }) => {
         allUsers,
         artistSchedule,
         artistsList,
+        eventsList,
         venuesList,
       }}
     >
