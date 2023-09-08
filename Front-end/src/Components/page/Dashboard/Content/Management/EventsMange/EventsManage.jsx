@@ -24,7 +24,7 @@ const EventsManage = () => {
             <input
               type="search"
               className="block py-2 pl-10 border border-gray-300 rounded-lg  shadow"
-              placeholder="Search state..."
+              placeholder="Search event name..."
               value={word}
               onChange={(e) => setWord(e.target.value)}
             />
