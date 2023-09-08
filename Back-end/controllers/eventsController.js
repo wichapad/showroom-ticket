@@ -62,6 +62,17 @@ exports.updateEvent = async (req, res) => {
   }
 };
 
+exports.allEvents =(req,res)=>{
+  const query = `SELECT * FROM event;`;
+  pool.query(query, (err, result) => {
+    if (err) {
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      res.json(result.rows);
+    }
+  });
+}
+
 // Get data single event of artsit 
 exports.singleEventByArtistId = (req, res) => {
   const slug = req.params.slug;

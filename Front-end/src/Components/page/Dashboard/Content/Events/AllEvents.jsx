@@ -7,7 +7,6 @@ const AllEvents = () => {
   const { artistSchedule } = useContext(ApiContext);
   const [showContent, setShowContent] = useState(null);
   const [word, setWord] = useState("");
- 
 
   // Search Data by artist name
   const searchData = () => {
@@ -19,7 +18,7 @@ const AllEvents = () => {
   return (
     <>
       <div className="flex flex-col">
-        <div className="flex items-center p-2 ">
+        <div className="p-2 ">
           <div>
             <form className="w-[300px]">
               <div className="relative">
@@ -41,14 +40,13 @@ const AllEvents = () => {
 
         {/* Table event data */}
 
-        <div className="flex flex-col  whitespace-nowrap">
+        <div className="flex flex-col pr-[1rem]  whitespace-nowrap">
           <table>
-            <thead className="bg-gray-100 border-2 rounded">
-              <tr className=" text-xs font-medium text-center text-gray-500 uppercase">
+            <thead className="bg-slate-800 border-2 rounded">
+              <tr className=" text-xs font-medium text-center text-gray-200 uppercase">
                 <th className="p-4"></th>
                 <th className="p-4">Artist</th>
                 <th className="p-4">genre</th>
-                <th className="p-4"></th>
               </tr>
             </thead>
             {searchData().map((item) => (
@@ -78,7 +76,6 @@ const AllEvents = () => {
                   <td className="p-4 text-sm font-normal text-gray-500 ">
                     {item.genre_name}
                   </td>
-                  
                 </tr>
                 {/* show info */}
                 {showContent === item.artist_id && (

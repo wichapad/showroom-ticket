@@ -28,6 +28,7 @@ import Dashboard from "./Components/page/Dashboard/Content/Chart/ChartDashboard"
 import AllEvents from "./Components/page/Dashboard/Content/Events/AllEvents";
 import Tickets from "./Components/page/Dashboard/Content/Tickets/Tickets";
 import ArtistsManage from "./Components/page/Dashboard/Content/Management/AristsMange";
+import VenuesManage from "./Components/page/Dashboard/Content/Management/VenuesMange";
 
 const App = () => {
   return (
@@ -71,6 +72,7 @@ const App = () => {
           <Route path="events" element={<AllEvents />} />
           <Route path="tickets" element={<Tickets />} />
           <Route path="artists" element={<ArtistsManage />} />
+          <Route path="venues" element={<VenuesManage />} />
         </Route>
       ) : (
         <Route path="/dashboard/*" element={<Notfound />} />
