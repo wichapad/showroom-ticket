@@ -14,6 +14,8 @@ const ApiProvider = ({ children }) => {
 
   //State Artists List
   const [artistsList, setArtistsList] = useState([]);
+  //State Genre List
+  const [genreList, setGenreList] = useState([]);
   //State Venues List
   const [venuesList, setVenuesList] = useState([]);
   //State Events List
@@ -70,6 +72,22 @@ const ApiProvider = ({ children }) => {
     ArtistsData();
   }, []);
 
+  // Get all GenreData
+  useEffect(() => {
+    const GenresData = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_API}/api/genres`
+        );
+        setGenreList(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    GenresData();
+  }, []);
+
+  // Get all EventsData
   useEffect(() => {
     const EventsData = async () => {
       try {
@@ -105,6 +123,7 @@ const ApiProvider = ({ children }) => {
         allUsers,
         artistSchedule,
         artistsList,
+        genreList,
         eventsList,
         venuesList,
       }}

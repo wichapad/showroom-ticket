@@ -3,10 +3,12 @@ import { BsSearch } from "react-icons/bs";
 
 import { ApiContext } from "../../../../../UseContext/ApiContext";
 import { NavLink, Outlet } from "react-router-dom";
+import CreateArtists from "./CreateArtists";
 
 const AristsMange = () => {
   const { artistsList } = useContext(ApiContext);
   const [word, setWord] = useState("");
+  const [isCreate, setIsCreate] = useState(false);
 
   // Search Data by artist name
   const searchData = () => {
@@ -14,6 +16,12 @@ const AristsMange = () => {
       return item.artist_name.toLowerCase().includes(word.toLowerCase());
     });
   };
+
+  // Start value is false when click create button will show CreateArtists component
+  const handleCreate = () => {
+    setIsCreate(!isCreate);
+  };
+
   return (
     <div className="relative">
       <div className="flex flex-col">
@@ -33,12 +41,19 @@ const AristsMange = () => {
             </div>
           </form>
           <div>
-            <NavLink
-              to="/dashboard/artists/create"
-              className="px-4 py-3 rounded-lg bg-purple-700 text-white hover:bg-purple-800"
+            <div
+              className={`${
+                isCreate ? "translate-x-0 " : "translate-x-full"
+              } fixed top-0 left-0 z-50 h-full w-full bg-[rgba(0,0,0,0.5)] `}
+            >
+              <CreateArtists isVisible={isCreate} handleCreate={handleCreate} />
+            </div>
+            <button
+              onClick={handleCreate}
+              className="px-4 py-2 rounded-lg bg-purple-700 text-white hover:bg-purple-800"
             >
               + Create
-            </NavLink>
+            </button>
           </div>
         </div>
         <div className="flex flex-col pr-[1rem]  whitespace-nowrap">
@@ -79,9 +94,6 @@ const AristsMange = () => {
             ))}
           </table>
         </div>
-      </div>
-      <div className="absolute top-0 right-0 w-[300px]">
-      <Outlet />
       </div>
     </div>
   );
