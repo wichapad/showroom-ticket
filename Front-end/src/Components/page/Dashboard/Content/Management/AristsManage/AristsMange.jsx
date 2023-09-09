@@ -2,13 +2,14 @@ import React, { useState, useContext } from "react";
 import { BsSearch } from "react-icons/bs";
 
 import { ApiContext } from "../../../../../UseContext/ApiContext";
-import { NavLink, Outlet } from "react-router-dom";
 import CreateArtists from "./CreateArtists";
+import UpdateArtists from "./UpdateArtists";
 
 const AristsMange = () => {
   const { artistsList } = useContext(ApiContext);
   const [word, setWord] = useState("");
   const [isCreate, setIsCreate] = useState(false);
+  const [isUpdate, setIsUpdate] = useState(false);
 
   // Search Data by artist name
   const searchData = () => {
@@ -20,6 +21,10 @@ const AristsMange = () => {
   // Start value is false when click create button will show CreateArtists component
   const handleCreate = () => {
     setIsCreate(!isCreate);
+  };
+  // Start value is false when click create button will show CreateArtists component
+  const handleUpdate = () => {
+    setIsUpdate(!isUpdate);
   };
 
   return (
@@ -41,12 +46,27 @@ const AristsMange = () => {
             </div>
           </form>
           <div>
-            <div
-              className={`${
-                isCreate ? "translate-x-0 " : "translate-x-full"
-              } fixed top-0 left-0 z-50 h-full w-full bg-[rgba(0,0,0,0.5)] `}
-            >
-              <CreateArtists isVisible={isCreate} handleCreate={handleCreate} />
+            <div>
+              <div
+                className={`${
+                  isCreate ? "translate-x-0 " : "translate-x-full"
+                } fixed top-0 left-0 z-50 h-full w-full bg-[rgba(0,0,0,0.5)] `}
+              >
+                <CreateArtists
+                  isVisible={isCreate}
+                  handleCreate={handleCreate}
+                />
+              </div>
+              <div
+                className={`${
+                  isUpdate ? "translate-x-0 " : "translate-x-full"
+                } fixed top-0 left-0 z-50 h-full w-full  bg-[rgba(0,0,0,0.5)]`}
+              >
+                <UpdateArtists
+                  isVisible={isUpdate}
+                  handleUpdate={handleUpdate}
+                />
+              </div>
             </div>
             <button
               onClick={handleCreate}
@@ -77,16 +97,20 @@ const AristsMange = () => {
                   <td className="p-4 text-sm font-normal text-gray-500 ">
                     {item.genre_name}
                   </td>
+
                   <td className="p-4 flex justify-center text-sm font-normal text-gray-500 ">
                     <div className="pr-2">
-                      <NavLink className="px-4 py-3 rounded-lg bg-blue-700 text-white hover:bg-blue-800">
+                      <button
+                        onClick={handleUpdate}
+                        className="px-4 py-3 rounded-lg bg-blue-700 text-white hover:bg-blue-800"
+                      >
                         Update
-                      </NavLink>
+                      </button>
                     </div>
                     <div>
-                      <NavLink className="px-4 py-3 rounded-lg bg-red-700 text-white hover:bg-red-800">
+                      <button className="px-4 py-3 rounded-lg bg-red-700 text-white hover:bg-red-800">
                         Delete
-                      </NavLink>
+                      </button>
                     </div>
                   </td>
                 </tr>
