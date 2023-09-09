@@ -36,7 +36,7 @@ const SideMunubar = ({ isOpen }) => {
       <div className={`fixed z-20  md:flex ${isOpen ? "" : "hidden"}`}>
         <aside
           className={`relative z-20 ${
-            showSidebar ? "md:w-[250px]" : "md:w-[45px] md:hover:w-[250px]"
+            showSidebar ? "md:w-[250px]" : "md:w-[46px] md:hover:w-[250px]"
           } w-[250px] h-[100vh] overflow-auto  rounded-b-r bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800`}
           style={{ transition: "width 0.2s ease-in-out" }}
         >

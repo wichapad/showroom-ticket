@@ -29,3 +29,14 @@ exports.singleArtist = (req, res) => {
     }
   });
 };
+
+exports.getGenre = (req, res) => {
+  const query = `SELECT * FROM genre;`;
+  pool.query(query, (err, result) => {
+    if (err) {
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      res.json(result.rows);
+    }
+  });
+};

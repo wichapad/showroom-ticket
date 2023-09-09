@@ -2,9 +2,12 @@ import React, { useState, useContext } from "react";
 import { BsSearch } from "react-icons/bs";
 
 import { ApiContext } from "../../../../../UseContext/ApiContext";
+import { NavLink } from "react-router-dom";
+import { FormatDateTime } from "../../../../../FormatDateTime";
 
 const EventsManage = () => {
   const { eventsList } = useContext(ApiContext);
+  const { formatDate,formatTime } = FormatDateTime();
   const [word, setWord] = useState("");
 
   // Search Data by artist name
@@ -15,7 +18,7 @@ const EventsManage = () => {
   };
   return (
     <div className="flex flex-col ">
-      <div className="p-2">
+      <div className="flex justify-between items-center p-[1rem]">
         <form className="w-[300px]">
           <div className="relative">
             <div className="absolute  inset-y-0 left-0 flex items-center text-gray-500 pl-3">
@@ -30,6 +33,11 @@ const EventsManage = () => {
             />
           </div>
         </form>
+        <div>
+          <NavLink className="px-4 py-3 rounded-lg bg-purple-700 text-white hover:bg-purple-800">
+            + Create
+          </NavLink>
+        </div>
       </div>
       <div className="flex flex-col pr-[1rem]  whitespace-nowrap">
         <table>
@@ -38,6 +46,7 @@ const EventsManage = () => {
               <th className="p-4">event</th>
               <th className="p-4">date</th>
               <th className="p-4">time</th>
+              <th className="p-4 w-[20%]"></th>
             </tr>
           </thead>
           {searchData().map((item) => (
@@ -50,10 +59,22 @@ const EventsManage = () => {
                   {item.event_name}
                 </td>
                 <td className="p-4 text-sm font-normal text-gray-500 ">
-                  {item.event_date}
+                  {formatDate(item.event_date)}
                 </td>
                 <td className="p-4 text-sm font-normal text-gray-500 ">
-                  {item.event_time}
+                  {formatTime(item.event_time)}
+                </td>
+                <td className="p-4 flex justify-center text-sm font-normal text-gray-500 ">
+                  <div className="pr-2">
+                    <NavLink className="px-4 py-3 rounded-lg bg-blue-700 text-white hover:bg-blue-800">
+                      Update
+                    </NavLink>
+                  </div>
+                  <div>
+                    <NavLink className="px-4 py-3 rounded-lg bg-red-700 text-white hover:bg-red-800">
+                      Delete
+                    </NavLink>
+                  </div>
                 </td>
               </tr>
             </tbody>
