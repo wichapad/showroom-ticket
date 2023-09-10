@@ -1,15 +1,17 @@
 import React, { useState, useContext } from "react";
 import { BsSearch } from "react-icons/bs";
-
+import { useParams } from "react-router-dom";
 import { ApiContext } from "../../../../../UseContext/ApiContext";
 import CreateArtists from "./CreateArtists";
 import UpdateArtists from "./UpdateArtists";
 
 const AristsMange = () => {
+  const slug = useParams();
   const { artistsList } = useContext(ApiContext);
   const [word, setWord] = useState("");
   const [isCreate, setIsCreate] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
+  const [updateSlug, setUpdateSlug] = useState(null);
 
   // Search Data by artist name
   const searchData = () => {
@@ -23,8 +25,9 @@ const AristsMange = () => {
     setIsCreate(!isCreate);
   };
   // Start value is false when click create button will show CreateArtists component
-  const handleUpdate = () => {
+  const handleUpdate = (slug) => {
     setIsUpdate(!isUpdate);
+    console.log(slug);
   };
 
   return (
@@ -79,7 +82,7 @@ const AristsMange = () => {
         <div className="flex flex-col pr-[1rem]  whitespace-nowrap">
           <table>
             <thead className="bg-slate-800 border-2 rounded">
-              <tr className=" text-xs font-medium text-center text-gray-200 uppercase">
+              <tr className=" text-sm font-medium text-center text-gray-200 uppercase">
                 <th className="p-4 w-[30%]">Artist</th>
                 <th className="p-4">genre</th>
                 <th className="p-4 w-[20%]"></th>
@@ -91,17 +94,17 @@ const AristsMange = () => {
                 className="bg-white border-2 shadow trasition duration-500"
               >
                 <tr className="text-center border-b-2 hover:bg-gray-100">
-                  <td className="p-4 text-sm font-normal text-gray-900 ">
+                  <td className="p-2 text-sm font-normal text-gray-900 ">
                     {item.artist_name}
                   </td>
-                  <td className="p-4 text-sm font-normal text-gray-500 ">
+                  <td className="p-2 text-sm font-normal text-gray-500 ">
                     {item.genre_name}
                   </td>
 
-                  <td className="p-4 flex justify-center text-sm font-normal text-gray-500 ">
+                  <td className="p-2 flex justify-center text-sm font-normal text-gray-500 ">
                     <div className="pr-2">
                       <button
-                        onClick={handleUpdate}
+                        onClick={() => handleUpdate(item.slug)}
                         className="px-4 py-3 rounded-lg bg-blue-700 text-white hover:bg-blue-800"
                       >
                         Update
