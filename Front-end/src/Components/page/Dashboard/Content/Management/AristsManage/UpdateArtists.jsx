@@ -1,16 +1,58 @@
-import React, { useState } from "react";
+// Component update value artist by slug. When click update will send new value update data to  database
+
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { HiX } from "react-icons/hi";
 import { ApiContext } from "../../../../../UseContext/ApiContext";
+import axios from "axios";
 // import axios from "axios";
 
-const UpdateArtists = ({ isVisible, handleUpdate }) => {
+const UpdateArtists = ({ isVisible, handleUpdate, artist }) => {
   const { genreList } = useContext(ApiContext);
-  const [closeCreate, setCloseCreate] = useState(false);
+  const [closeUpdate, setCloseUpdate] = useState(false);
+  const [artistsForm, setArtistsForm] = useState({
+    artist_name: "",
+    genre_id: "",
+    artist_image: "",
+  });
+
+  useEffect(() => {
+    setArtistsForm({
+      artist_name: artist.artist_name,
+      genre_id: artist.genre_id,
+      artist_image: artist.artist_image,
+    });
+  }, [artist]);
+
+  const inputValueArtists = (e) => {
+    const { name, value } = e.target;
+    setArtistsForm({
+      ...artistsForm,
+      [name]: value,
+    });
+  };
+
+  const updateArtist = async (e, slug) => {
+    e.preventDefault();
+    try {
+      const response = await axios.put(
+        `${process.env.REACT_APP_API}/api/artists/${slug}`,
+        artistsForm
+      );
+      if (response.status === 200) {
+        alert("Artist update is successfully");
+        handleUpdate();
+      } else {
+        console.error("Fail to update artist");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   //close Add event page
   const toggleClose = () => {
-    setCloseCreate(!closeCreate);
+    setCloseUpdate(!closeUpdate);
     handleUpdate();
   };
 
@@ -30,21 +72,26 @@ const UpdateArtists = ({ isVisible, handleUpdate }) => {
             <HiX />
           </div>
           <h1 className="text-center uppercase">Update artists</h1>
-          <form>
+          <form onSubmit={(e) => updateArtist(e, artist.slug)}>
             <div>
               <label>Artist</label>
               <input
                 className="border border-gray-300 rounded p-[0.35rem]  focus:border-gray-700 outline-none appearance-none "
                 type="text"
-              />
+                name="artist_name"
+                value={artistsForm.artist_name || ""}
+                onChange={inputValueArtists}
+              />{" "}
             </div>
             <div className="my-2">
               <label>Genre</label>
               <select
                 className="w-full border border-gray-300 rounded p-[0.35rem] focus:border-gray-700 outline-none appearance-none "
-                type="text"
+                value={artistsForm.genre_id || ""}
+                name="genre_id"
+                onChange={inputValueArtists}
               >
-                <option>Select genre</option>
+                <option>{artistsForm.genre_name}</option>
                 {genreList.map((genre) => (
                   <option key={genre.genre_id} value={genre.genre_id}>
                     {genre.genre_name}
@@ -57,6 +104,9 @@ const UpdateArtists = ({ isVisible, handleUpdate }) => {
               <input
                 className="border border-gray-300 rounded p-[0.35rem]  focus:border-gray-700 outline-none appearance-none "
                 type="text"
+                name="artist_image"
+                value={artistsForm.artist_image || ""}
+                onChange={inputValueArtists}
               />
             </div>
             <div className="flex justify-evenly mt-2">

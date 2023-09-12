@@ -30,6 +30,7 @@ import Tickets from "./Components/page/Dashboard/Content/Tickets/Tickets";
 import ArtistsManage from "./Components/page/Dashboard/Content/Management/AristsManage/AristsMange";
 import EventsMange from "./Components/page/Dashboard/Content/Management/EventsMange/EventsManage";
 import VenuesManage from "./Components/page/Dashboard/Content/Management/VenuesMange/VenuesMange";
+import UpdateArtists from "./Components/page/Dashboard/Content/Management/AristsManage/UpdateArtists";
 
 const App = () => {
   return (
@@ -72,7 +73,9 @@ const App = () => {
           <Route index element={<Dashboard />} />
           <Route path="tour" element={<AllEvents />} />
           <Route path="tickets" element={<Tickets />} />
-          <Route path="artists" element={<ArtistsManage />} />
+          <Route path="artists" element={<ArtistsManage />} >
+          <Route path=":slug" element={<UpdateArtists />} />
+          </Route>
           <Route path="events" element={<EventsMange />} />
           <Route path="venues" element={<VenuesManage />} />
         </Route>

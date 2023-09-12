@@ -1,9 +1,10 @@
+// Component create new artist. When click create will send value keep back to  database
+
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { HiX } from "react-icons/hi";
 import { ApiContext } from "../../../../../UseContext/ApiContext";
 import axios from "axios";
-
 const CreateArtists = ({ isVisible, handleCreate }) => {
   const { genreList } = useContext(ApiContext);
   const [closeCreate, setCloseCreate] = useState(false);
@@ -33,7 +34,9 @@ const CreateArtists = ({ isVisible, handleCreate }) => {
         artist_name: "",
         genre_id: "",
         artist_image: "",
-      });
+      })
+      alert("Create artist successfully")
+      window.location.reload(`/dashboard/artists`)
     } catch (error) {
       console.error("Error creating artist", error);
     }
@@ -76,7 +79,6 @@ const CreateArtists = ({ isVisible, handleCreate }) => {
               <label>Genre</label>
               <select
                 className="w-full border border-gray-300 rounded p-[0.35rem] focus:border-gray-700 outline-none appearance-none "
-                type="text"
                 name="genre_id"
                 value={artistsForm.genre_id}
                 onChange={inputValueArtists}

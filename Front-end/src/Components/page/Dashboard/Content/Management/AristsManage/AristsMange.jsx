@@ -1,17 +1,28 @@
+// Component in show data all artists
 import React, { useState, useContext } from "react";
 import { BsSearch } from "react-icons/bs";
 import { useParams } from "react-router-dom";
 import { ApiContext } from "../../../../../UseContext/ApiContext";
 import CreateArtists from "./CreateArtists";
 import UpdateArtists from "./UpdateArtists";
+import axios from "axios";
+import DeleteArists from "./DeleteArtist";
 
 const AristsMange = () => {
   const slug = useParams();
   const { artistsList } = useContext(ApiContext);
   const [word, setWord] = useState("");
+
+  // State create component
   const [isCreate, setIsCreate] = useState(false);
+  // State update component
   const [isUpdate, setIsUpdate] = useState(false);
   const [updateSlug, setUpdateSlug] = useState(null);
+  // State delete component
+  const [isDelte, setIsDelte] = useState(false);
+  const [deleteSlug, setDeleteSlug] = useState(null);
+
+  const [selectedArtist, setSelectedArtist] = useState([]);
 
   // Search Data by artist name
   const searchData = () => {
@@ -24,16 +35,26 @@ const AristsMange = () => {
   const handleCreate = () => {
     setIsCreate(!isCreate);
   };
-  // Start value is false when click create button will show CreateArtists component
+  // Start value is false when click update button will show UpdateArtists for slug name
   const handleUpdate = (slug) => {
     setIsUpdate(!isUpdate);
-    console.log(slug);
+    setUpdateSlug(slug);
+    const artist = artistsList.find((item) => item.slug === slug);
+    setSelectedArtist(artist);
+  };
+
+  // Start value is false when click delete button will show DeleteArtist for slug name
+  const handleDelete = (slug) => {
+    setIsDelte(!isDelte);
+    setDeleteSlug(slug);
+    const artist = artistsList.find((item) => item.slug === slug);
+    setSelectedArtist(artist);
   };
 
   return (
     <div className="relative">
       <div className="flex flex-col">
-        <div className="flex justify-between items-center p-[1rem]">
+        <div className="flex justify-between items-center py-[1rem] pr-[1.2rem]">
           <form className="w-[300px]">
             <div className="relative">
               <div className="absolute  inset-y-0 left-0 flex items-center text-gray-500 pl-3">
@@ -68,6 +89,18 @@ const AristsMange = () => {
                 <UpdateArtists
                   isVisible={isUpdate}
                   handleUpdate={handleUpdate}
+                  artist={selectedArtist}
+                />
+              </div>
+              <div
+                className={`${
+                  isDelte ? "translate-x-0 " : "translate-x-full"
+                } fixed top-0 left-0 z-50 h-full w-full  bg-[rgba(0,0,0,0.5)]`}
+              >
+                <DeleteArists
+                  isVisible={isDelte}
+                  handleDelete={() => handleDelete()}
+                  artist={selectedArtist}
                 />
               </div>
             </div>
@@ -111,7 +144,10 @@ const AristsMange = () => {
                       </button>
                     </div>
                     <div>
-                      <button className="px-4 py-3 rounded-lg bg-red-700 text-white hover:bg-red-800">
+                      <button
+                        onClick={() => handleDelete(item.slug)}
+                        className="px-4 py-3 rounded-lg bg-red-700 text-white hover:bg-red-800"
+                      >
                         Delete
                       </button>
                     </div>
