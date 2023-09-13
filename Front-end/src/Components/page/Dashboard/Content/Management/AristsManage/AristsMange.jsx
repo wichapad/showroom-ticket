@@ -1,11 +1,11 @@
 // Component in show data all artists
+
 import React, { useState, useContext } from "react";
 import { BsSearch } from "react-icons/bs";
 import { useParams } from "react-router-dom";
 import { ApiContext } from "../../../../../UseContext/ApiContext";
 import CreateArtists from "./CreateArtists";
 import UpdateArtists from "./UpdateArtists";
-import axios from "axios";
 import DeleteArists from "./DeleteArtist";
 
 const AristsMange = () => {
@@ -17,10 +17,8 @@ const AristsMange = () => {
   const [isCreate, setIsCreate] = useState(false);
   // State update component
   const [isUpdate, setIsUpdate] = useState(false);
-  const [updateSlug, setUpdateSlug] = useState(null);
   // State delete component
   const [isDelte, setIsDelte] = useState(false);
-  const [deleteSlug, setDeleteSlug] = useState(null);
 
   const [selectedArtist, setSelectedArtist] = useState([]);
 
@@ -38,7 +36,6 @@ const AristsMange = () => {
   // Start value is false when click update button will show UpdateArtists for slug name
   const handleUpdate = (slug) => {
     setIsUpdate(!isUpdate);
-    setUpdateSlug(slug);
     const artist = artistsList.find((item) => item.slug === slug);
     setSelectedArtist(artist);
   };
@@ -46,7 +43,6 @@ const AristsMange = () => {
   // Start value is false when click delete button will show DeleteArtist for slug name
   const handleDelete = (slug) => {
     setIsDelte(!isDelte);
-    setDeleteSlug(slug);
     const artist = artistsList.find((item) => item.slug === slug);
     setSelectedArtist(artist);
   };
@@ -99,7 +95,7 @@ const AristsMange = () => {
               >
                 <DeleteArists
                   isVisible={isDelte}
-                  handleDelete={() => handleDelete()}
+                  handleDelete={handleDelete}
                   artist={selectedArtist}
                 />
               </div>

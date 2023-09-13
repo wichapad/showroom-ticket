@@ -1,5 +1,5 @@
-// Component update value artist by slug. When click update will send new value update data to  database
-
+// Component update artist by slug. When input new values in the input attribute or select velues in select arttribute will keep values in state artistsForm.
+// After click update will send new value keep back to database
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { HiX } from "react-icons/hi";
@@ -10,12 +10,15 @@ import axios from "axios";
 const UpdateArtists = ({ isVisible, handleUpdate, artist }) => {
   const { genreList } = useContext(ApiContext);
   const [closeUpdate, setCloseUpdate] = useState(false);
+  // Create state to keep value artists
+
   const [artistsForm, setArtistsForm] = useState({
     artist_name: "",
     genre_id: "",
     artist_image: "",
   });
 
+  // Use react hook useEffect to keep data artist by slug from click update
   useEffect(() => {
     setArtistsForm({
       artist_name: artist.artist_name,
@@ -23,7 +26,7 @@ const UpdateArtists = ({ isVisible, handleUpdate, artist }) => {
       artist_image: artist.artist_image,
     });
   }, [artist]);
-
+  //Function store new value in state artistsForm
   const inputValueArtists = (e) => {
     const { name, value } = e.target;
     setArtistsForm({
@@ -32,6 +35,7 @@ const UpdateArtists = ({ isVisible, handleUpdate, artist }) => {
     });
   };
 
+  // HTTP put artists
   const updateArtist = async (e, slug) => {
     e.preventDefault();
     try {
@@ -41,7 +45,7 @@ const UpdateArtists = ({ isVisible, handleUpdate, artist }) => {
       );
       if (response.status === 200) {
         alert("Artist update is successfully");
-        handleUpdate();
+        window.location.reload()
       } else {
         console.error("Fail to update artist");
       }
@@ -50,7 +54,7 @@ const UpdateArtists = ({ isVisible, handleUpdate, artist }) => {
     }
   };
 
-  //close Add event page
+  //close update event page
   const toggleClose = () => {
     setCloseUpdate(!closeUpdate);
     handleUpdate();

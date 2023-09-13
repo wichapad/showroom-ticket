@@ -38,7 +38,7 @@ exports.updateEvent = async (req, res) => {
           event_time,
           artist_id,
           venue_id,
-          event_id
+          event_id,
         } = event;
         const query = `UPDATE event 
         SET  event_name = $1, event_date = $2, event_time = $3, artist_id = $4, venue_id = $5 
@@ -50,7 +50,7 @@ exports.updateEvent = async (req, res) => {
           event_time,
           artist_id,
           venue_id,
-          event_id
+          event_id,
         ];
         const result = await pool.query(query, values);
         return result.rows[0];
@@ -62,7 +62,7 @@ exports.updateEvent = async (req, res) => {
   }
 };
 
-exports.allEvents =(req,res)=>{
+exports.allEvents = (req, res) => {
   const query = `SELECT * FROM event;`;
   pool.query(query, (err, result) => {
     if (err) {
@@ -71,9 +71,9 @@ exports.allEvents =(req,res)=>{
       res.json(result.rows);
     }
   });
-}
+};
 
-// Get data single event of artsit 
+// Get data single event of artsit
 exports.singleEventByArtistId = (req, res) => {
   const slug = req.params.slug;
   const query = `SELECT * FROM event WHERE arist_id = $1;`;
@@ -85,5 +85,3 @@ exports.singleEventByArtistId = (req, res) => {
     }
   });
 };
-
-

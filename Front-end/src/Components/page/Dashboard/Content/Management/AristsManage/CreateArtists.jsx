@@ -1,6 +1,7 @@
-// Component create new artist. When click create will send value keep back to  database
+// Component create new artist. When input values in the input attribute and select velues inselect arttlibute will keep values in state artistsForm. 
+// After click create will send value keep back to  database
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { HiX } from "react-icons/hi";
 import { ApiContext } from "../../../../../UseContext/ApiContext";
@@ -8,12 +9,14 @@ import axios from "axios";
 const CreateArtists = ({ isVisible, handleCreate }) => {
   const { genreList } = useContext(ApiContext);
   const [closeCreate, setCloseCreate] = useState(false);
+  // Create state to keep value artists
   const [artistsForm, setArtistsForm] = useState({
     artist_name: "",
     genre_id: "",
     artist_image: "",
   });
 
+  //Function store new value in state artistsForm
   const inputValueArtists = (e) => {
     const { name, value } = e.target;
     setArtistsForm({
@@ -22,7 +25,7 @@ const CreateArtists = ({ isVisible, handleCreate }) => {
     });
   };
 
-  //Create artists
+  //HTTP create artists 
   const createArtists = async (e) => {
     e.preventDefault();
     try {
@@ -36,7 +39,7 @@ const CreateArtists = ({ isVisible, handleCreate }) => {
         artist_image: "",
       })
       alert("Create artist successfully")
-      window.location.reload(`/dashboard/artists`)
+      window.location.reload()
     } catch (error) {
       console.error("Error creating artist", error);
     }

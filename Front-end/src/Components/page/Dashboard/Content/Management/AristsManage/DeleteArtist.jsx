@@ -6,12 +6,6 @@ import { HiX } from "react-icons/hi";
 
 const DeleteArists = ({ isVisible, handleDelete, artist }) => {
   const [closeDelete, setCloseDelete] = useState(false);
-  
-
-  const toggleClose = () => {
-    setCloseDelete(!closeDelete);
-    handleDelete();
-  };
 
   const deleteArtist = async (slug) => {
     try {
@@ -27,6 +21,11 @@ const DeleteArists = ({ isVisible, handleDelete, artist }) => {
     } catch (error) {
       console.error("An error occurred while deleting artist:", error);
     }
+  };
+
+  const toggleClose = () => {
+    setCloseDelete(!closeDelete);
+    handleDelete();
   };
 
   return (
