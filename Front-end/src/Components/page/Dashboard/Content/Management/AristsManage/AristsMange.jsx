@@ -7,18 +7,13 @@ import { ApiContext } from "../../../../../UseContext/ApiContext";
 import CreateArtists from "./CreateArtists";
 import UpdateArtists from "./UpdateArtists";
 import DeleteArists from "./DeleteArtist";
+import { DashboardContext } from "../../../../../UseContext/DashboardContext";
 
 const AristsMange = () => {
   const slug = useParams();
   const { artistsList } = useContext(ApiContext);
+  const { state, dispatch } = useContext(DashboardContext);
   const [word, setWord] = useState("");
-
-  // State create component
-  const [isCreate, setIsCreate] = useState(false);
-  // State update component
-  const [isUpdate, setIsUpdate] = useState(false);
-  // State delete component
-  const [isDelte, setIsDelte] = useState(false);
 
   const [selectedArtist, setSelectedArtist] = useState([]);
 
@@ -31,18 +26,18 @@ const AristsMange = () => {
 
   // Start value is false when click create button will show CreateArtists component
   const handleCreate = () => {
-    setIsCreate(!isCreate);
+    dispatch({ type: "TOGGLE_CREATE" });
   };
   // Start value is false when click update button will show UpdateArtists for slug name
   const handleUpdate = (slug) => {
-    setIsUpdate(!isUpdate);
+    dispatch({ type: "TOGGLE_UPDATE" });
     const artist = artistsList.find((item) => item.slug === slug);
     setSelectedArtist(artist);
   };
 
   // Start value is false when click delete button will show DeleteArtist for slug name
   const handleDelete = (slug) => {
-    setIsDelte(!isDelte);
+    dispatch({ type: "TOGGLE_DELETE" });
     const artist = artistsList.find((item) => item.slug === slug);
     setSelectedArtist(artist);
   };
@@ -69,35 +64,24 @@ const AristsMange = () => {
             <div>
               <div
                 className={`${
-                  isCreate ? "translate-x-0 " : "translate-x-full"
+                  state.isCreate ? "translate-x-0 " : "translate-x-full"
                 } fixed top-0 left-0 z-50 h-full w-full bg-[rgba(0,0,0,0.5)] `}
               >
-                <CreateArtists
-                  isVisible={isCreate}
-                  handleCreate={handleCreate}
-                />
+                <CreateArtists />
               </div>
               <div
                 className={`${
-                  isUpdate ? "translate-x-0 " : "translate-x-full"
+                  state.isUpdate ? "translate-x-0 " : "translate-x-full"
                 } fixed top-0 left-0 z-50 h-full w-full  bg-[rgba(0,0,0,0.5)]`}
               >
-                <UpdateArtists
-                  isVisible={isUpdate}
-                  handleUpdate={handleUpdate}
-                  artist={selectedArtist}
-                />
+                <UpdateArtists artist={selectedArtist} />
               </div>
               <div
                 className={`${
-                  isDelte ? "translate-x-0 " : "translate-x-full"
+                  state.isDelete ? "translate-x-0 " : "translate-x-full"
                 } fixed top-0 left-0 z-50 h-full w-full  bg-[rgba(0,0,0,0.5)]`}
               >
-                <DeleteArists
-                  isVisible={isDelte}
-                  handleDelete={handleDelete}
-                  artist={selectedArtist}
-                />
+                <DeleteArists artist={selectedArtist} />
               </div>
             </div>
             <button

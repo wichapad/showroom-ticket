@@ -6,9 +6,11 @@ import { useContext } from "react";
 import { HiX } from "react-icons/hi";
 import { ApiContext } from "../../../../../UseContext/ApiContext";
 import axios from "axios";
-const CreateArtists = ({ isVisible, handleCreate }) => {
+import { DashboardContext } from "../../../../../UseContext/DashboardContext";
+const CreateArtists = () => {
   const { genreList } = useContext(ApiContext);
-  const [closeCreate, setCloseCreate] = useState(false);
+  const {state ,dispatch} = useContext(DashboardContext)
+  
   // Create state to keep value artists
   const [artistsForm, setArtistsForm] = useState({
     artist_name: "",
@@ -47,15 +49,14 @@ const CreateArtists = ({ isVisible, handleCreate }) => {
 
   //close Add event page
   const toggleClose = () => {
-    setCloseCreate(!closeCreate);
-    handleCreate();
+    dispatch({type:'TOGGLE_CREATE'})
   };
 
   return (
     <>
       <div
         className={`${
-          isVisible ? "translate-x-0" : "translate-x-full"
+          state.isCreate ? "translate-x-0" : "translate-x-full"
         } fixed z-50 top-0 right-0 h-full  w-full overflow-y-auto bg-white transition-transform ease-in-out duration-300 `}
         style={{ width: "300px" }}
       >

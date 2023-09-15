@@ -1,11 +1,12 @@
 // Component delete artist by slug. When click delete will delete data to database
 
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { HiX } from "react-icons/hi";
+import { DashboardContext } from "../../../../../UseContext/DashboardContext";
 
-const DeleteArists = ({ isVisible, handleDelete, artist }) => {
-  const [closeDelete, setCloseDelete] = useState(false);
+const DeleteArists = ({ artist }) => {
+  const { state, dispatch } = useContext(DashboardContext);
 
   const deleteArtist = async (slug) => {
     try {
@@ -24,15 +25,14 @@ const DeleteArists = ({ isVisible, handleDelete, artist }) => {
   };
 
   const toggleClose = () => {
-    setCloseDelete(!closeDelete);
-    handleDelete();
+    dispatch({ type: "TOGGLE_DELETE" });
   };
 
   return (
     <>
       <div
         className={`${
-          isVisible ? "translate-x-0" : "translate-x-full"
+          state.isDelete ? "translate-x-0" : "translate-x-full"
         } fixed z-50 top-0 right-0 h-full  w-full overflow-y-auto bg-white transition-transform ease-in-out duration-300 `}
         style={{ width: "300px" }}
       >

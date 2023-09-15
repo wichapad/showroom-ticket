@@ -5,11 +5,12 @@ import { useContext } from "react";
 import { HiX } from "react-icons/hi";
 import { ApiContext } from "../../../../../UseContext/ApiContext";
 import axios from "axios";
+import { DashboardContext } from "../../../../../UseContext/DashboardContext";
 // import axios from "axios";
 
-const UpdateArtists = ({ isVisible, handleUpdate, artist }) => {
+const UpdateArtists = ({ artist }) => {
+  const { state, dispatch } = useContext(DashboardContext);
   const { genreList } = useContext(ApiContext);
-  const [closeUpdate, setCloseUpdate] = useState(false);
   // Create state to keep value artists
 
   const [artistsForm, setArtistsForm] = useState({
@@ -45,7 +46,7 @@ const UpdateArtists = ({ isVisible, handleUpdate, artist }) => {
       );
       if (response.status === 200) {
         alert("Artist update is successfully");
-        window.location.reload()
+        window.location.reload();
       } else {
         console.error("Fail to update artist");
       }
@@ -56,15 +57,14 @@ const UpdateArtists = ({ isVisible, handleUpdate, artist }) => {
 
   //close update event page
   const toggleClose = () => {
-    setCloseUpdate(!closeUpdate);
-    handleUpdate();
+    dispatch({ type: "TOGGLE_UPDATE" });
   };
 
   return (
     <>
       <div
         className={`${
-          isVisible ? "translate-x-0" : "translate-x-full"
+          state.isUpdate ? "translate-x-0" : "translate-x-full"
         } fixed z-50 top-0 right-0 h-full  w-full overflow-y-auto bg-white transition-transform ease-in-out duration-300 `}
         style={{ width: "300px" }}
       >
