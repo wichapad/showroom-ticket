@@ -2,7 +2,6 @@
 
 import React, { useState, useContext } from "react";
 import { BsSearch } from "react-icons/bs";
-import { useParams } from "react-router-dom";
 import { ApiContext } from "../../../../../UseContext/ApiContext";
 import CreateArtists from "./CreateArtists";
 import UpdateArtists from "./UpdateArtists";
@@ -10,7 +9,6 @@ import DeleteArists from "./DeleteArtist";
 import { DashboardContext } from "../../../../../UseContext/DashboardContext";
 
 const AristsMange = () => {
-  const slug = useParams();
   const { artistsList } = useContext(ApiContext);
   const { state, dispatch } = useContext(DashboardContext);
   const [word, setWord] = useState("");

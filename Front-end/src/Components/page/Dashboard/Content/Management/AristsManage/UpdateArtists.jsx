@@ -36,7 +36,7 @@ const UpdateArtists = ({ artist }) => {
     });
   };
 
-  // HTTP put artists
+  // HTTP update artists
   const updateArtist = async (e, slug) => {
     e.preventDefault();
     try {

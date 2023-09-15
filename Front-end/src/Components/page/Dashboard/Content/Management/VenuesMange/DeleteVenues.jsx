@@ -1,29 +1,30 @@
-// Component delete artist by slug. When click delete will delete data to database
+// Component delete Venues by id
 
-import axios from "axios";
 import { useContext } from "react";
 import { HiX } from "react-icons/hi";
 import { DashboardContext } from "../../../../../UseContext/DashboardContext";
+import axios from "axios";
 
-const DeleteArists = ({ artist }) => {
+const DeleteVenues = ({ venue }) => {
   const { state, dispatch } = useContext(DashboardContext);
 
-  const deleteArtist = async (slug) => {
+  const deleteVenue = async (id) => {
     try {
       const response = await axios.delete(
-        `${process.env.REACT_APP_API}/api/artists/${slug}`
+        `${process.env.REACT_APP_API}/api/venues/${id}`
       );
       if (response.status === 200) {
-        alert("Artist deleted successfully!");
+        alert("Venue deleted successfully");
         window.location.reload();
       } else {
-        console.error("Failed to delete artist.");
+        console.error("Failed to delete venues.");
       }
     } catch (error) {
-      console.error("An error occurred while deleting artist:", error);
+        console.error("An error occurred while delete venues", error);
     }
   };
 
+  //close Add event page
   const toggleClose = () => {
     dispatch({ type: "TOGGLE_DELETE" });
   };
@@ -46,19 +47,19 @@ const DeleteArists = ({ artist }) => {
           <h1 className="text-center uppercase">Delete artists</h1>
 
           <div>
-            <p>{artist.artist_name}</p>
+            <p>{venue.venue_name}</p>
           </div>
           <div className="my-2">
-            <p>{artist.genre_name}</p>
+            <p>{venue.venue_city}</p>
           </div>
           <div>
-            <img src={artist.artist_image} alt={artist.artist_image} />
+            <p>{venue.venue_state}</p>
+          </div>
+          <div className="my-2">
+            <p>{venue.venue_capacity}</p>
           </div>
           <div className="flex justify-evenly mt-2">
-            <button
-              onClick={() => deleteArtist(artist.slug)}
-              className="px-4 py-3 rounded-lg bg-blue-700 text-white hover:bg-blue-800"
-            >
+            <button onClick={() => deleteVenue(venue.venue_id)} className="px-4 py-3 rounded-lg bg-blue-700 text-white hover:bg-blue-800">
               Confirm
             </button>
             <button
@@ -74,4 +75,4 @@ const DeleteArists = ({ artist }) => {
   );
 };
 
-export default DeleteArists;
+export default DeleteVenues;

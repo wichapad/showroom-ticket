@@ -7,6 +7,7 @@ import { HiX } from "react-icons/hi";
 import { ApiContext } from "../../../../../UseContext/ApiContext";
 import axios from "axios";
 import { DashboardContext } from "../../../../../UseContext/DashboardContext";
+
 const CreateArtists = () => {
   const { genreList } = useContext(ApiContext);
   const {state ,dispatch} = useContext(DashboardContext)
