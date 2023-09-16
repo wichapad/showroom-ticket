@@ -5,12 +5,15 @@ import { ApiContext } from "../../../../../UseContext/ApiContext";
 import { FormatDateTime } from "../../../../../FormatDateTime";
 import { DashboardContext } from "../../../../../UseContext/DashboardContext";
 import CreateEvents from "./CreateEvents";
+import UpdateEvents from "./UpdateEvents";
 
 const EventsManage = () => {
   const { state, dispatch } = useContext(DashboardContext);
   const { eventsList } = useContext(ApiContext);
-  const { formatDate, formatTime } = FormatDateTime();
+  const { formatTime } = FormatDateTime();
   const [word, setWord] = useState("");
+
+  const [selectedEvent, setSelectedEvent] = useState([]);
 
   // Search Data by artist name
   const searchData = () => {
@@ -19,8 +22,23 @@ const EventsManage = () => {
     });
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const formattedDay = day < 10 ? `0${day}` : day;
+    const formattedMonth = month < 10 ? `0${month}` : month;
+    return `${year}/${formattedMonth}/${formattedDay}`;
+  };
+
   const handleCreate = () => {
     dispatch({ type: "TOGGLE_CREATE" });
+  };
+  const handleUpdate = (id) => {
+    dispatch({ type: "TOGGLE_UPDATE" });
+    const event = eventsList.find((item) => item.event_id === id);
+    setSelectedEvent(event);
   };
   return (
     <div className="flex flex-col whitespace-nowrap">
@@ -47,6 +65,13 @@ const EventsManage = () => {
               } fixed top-0 left-0 z-50 h-full w-full bg-[rgba(0,0,0,0.5)] `}
             >
               <CreateEvents />
+            </div>
+            <div
+              className={`${
+                state.isUpdate ? "translate-x-0 " : "translate-x-full"
+              } fixed top-0 left-0 z-50 h-full w-full bg-[rgba(0,0,0,0.5)] `}
+            >
+              <UpdateEvents event={selectedEvent} />
             </div>
           </div>
         </div>
@@ -75,19 +100,22 @@ const EventsManage = () => {
               className="bg-white border-2 shadow trasition duration-500"
             >
               <tr className="text-center border-b-2 hover:bg-gray-100">
-                <td className="p-4 text-sm font-normal text-gray-900 ">
+                <td className="p-2 text-sm font-normal text-gray-900 ">
                   {item.event_name}
                 </td>
-                <td className="p-4 text-sm font-normal text-gray-500 ">
+                <td className="p-2 text-sm font-normal text-gray-500 ">
                   {formatDate(item.event_date)}
                 </td>
-                <td className="p-4 text-sm font-normal text-gray-500 ">
+                <td className="p-2 text-sm font-normal text-gray-500 ">
                   {formatTime(item.event_time)}
                 </td>
-               
-                <td className="p-4 flex justify-center text-sm font-normal text-gray-500 ">
+
+                <td className="p-2 flex justify-center text-sm font-normal text-gray-500 ">
                   <div className="pr-2">
-                    <button className="px-4 py-3 rounded-lg bg-blue-700 text-white hover:bg-blue-800">
+                    <button
+                      onClick={() => handleUpdate(item.event_id)}
+                      className="px-4 py-3 rounded-lg bg-blue-700 text-white hover:bg-blue-800"
+                    >
                       Update
                     </button>
                   </div>

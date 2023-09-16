@@ -69,7 +69,7 @@ exports.allEvents = (req, res) => {
 
 // Get data single event of artsit
 exports.singleEventByEventId = (req, res) => {
-  const id = req.params;
+  const { id } = req.params;
   const query = `SELECT * FROM event WHERE event_id = $1;`;
   pool.query(query, [id], (err, result) => {
     if (err) {

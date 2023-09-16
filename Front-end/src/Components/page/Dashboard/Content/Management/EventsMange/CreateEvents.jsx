@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { HiX } from "react-icons/hi";
 import { ApiContext } from "../../../../../UseContext/ApiContext";
 import { DashboardContext } from "../../../../../UseContext/DashboardContext";
+import axios from "axios";
 
 const CreateEvents = () => {
   const { artistsList, venuesList } = useContext(ApiContext);
@@ -52,6 +53,30 @@ const CreateEvents = () => {
     setEventForm(newList);
   };
 
+  //HTTP create events
+  const createEvents = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_API}/api/events/create`,
+        eventForm
+      );
+      setEventForm([
+        {
+          event_name: "",
+          event_date: "",
+          event_time: "",
+          artist_id: "",
+          venue_id: "",
+        },
+      ]);
+      alert("Create venue successfully");
+      window.location.reload();
+    } catch (error) {
+      console.error("Error creating events", error);
+    }
+  };
+
   //close Add event page
   const toggleClose = () => {
     dispatch({ type: "TOGGLE_CREATE" });
@@ -73,7 +98,7 @@ const CreateEvents = () => {
             <HiX />
           </div>
           <h1 className="text-center uppercase">Create events</h1>
-          <form>
+          <form onSubmit={createEvents}>
             <div>
               {eventForm.map((event, index) => (
                 <div key={index}>
