@@ -106,7 +106,7 @@ const CreateVenues = () => {
                   <div>
                     <label>Venue</label>
                     <input
-                      className="border border-gray-300 rounded p-[0.35rem]  focus:border-gray-700 outline-none appearance-none "
+                      className="manage_input"
                       type="text"
                       name="venue_name"
                       value={venue.venue_name}
@@ -116,7 +116,7 @@ const CreateVenues = () => {
                   <div className="my-2">
                     <label>City</label>
                     <input
-                      className="border border-gray-300 rounded p-[0.35rem]  focus:border-gray-700 outline-none appearance-none "
+                      className="manage_input"
                       type="text"
                       name="venue_city"
                       value={venue.venue_city}
@@ -126,7 +126,7 @@ const CreateVenues = () => {
                   <div>
                     <label>State</label>
                     <input
-                      className="border border-gray-300 rounded p-[0.35rem]  focus:border-gray-700 outline-none appearance-none "
+                      className="manage_input"
                       type="text"
                       name="venue_state"
                       value={venue.venue_state}
@@ -136,7 +136,7 @@ const CreateVenues = () => {
                   <div className="my-2">
                     <label>Capacity</label>
                     <input
-                      className="border border-gray-300 rounded p-[0.35rem]  focus:border-gray-700 outline-none appearance-none "
+                      className="manage_input"
                       type="text"
                       name="venue_capacity"
                       value={venue.venue_capacity}

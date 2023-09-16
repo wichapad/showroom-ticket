@@ -78,7 +78,7 @@ const UpdateVenues = ({ venue }) => {
             <div>
               <label>Venue</label>
               <input
-                className="border border-gray-300 rounded p-[0.35rem]  focus:border-gray-700 outline-none appearance-none "
+                className="manage_input"
                 type="text"
                 name="venue_name"
                 value={venueForm.venue_name || ""}
@@ -88,7 +88,7 @@ const UpdateVenues = ({ venue }) => {
             <div className="my-2">
               <label>City</label>
               <input
-                className="border border-gray-300 rounded p-[0.35rem]  focus:border-gray-700 outline-none appearance-none "
+                className="manage_input"
                 type="text"
                 name="venue_city"
                 value={venueForm.venue_city || ""}
@@ -98,7 +98,7 @@ const UpdateVenues = ({ venue }) => {
             <div>
               <label>State</label>
               <input
-                className="border border-gray-300 rounded p-[0.35rem]  focus:border-gray-700 outline-none appearance-none "
+                className="manage_input"
                 type="text"
                 name="venue_state"
                 value={venueForm.venue_state || ""}
@@ -108,7 +108,7 @@ const UpdateVenues = ({ venue }) => {
             <div className="my-2">
               <label>Capacity</label>
               <input
-                className="border border-gray-300 rounded p-[0.35rem]  focus:border-gray-700 outline-none appearance-none "
+                className="manage_input"
                 type="text"
                 name="venue_capacity"
                 value={venueForm.venue_capacity || ""}

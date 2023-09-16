@@ -80,7 +80,7 @@ const UpdateArtists = ({ artist }) => {
             <div>
               <label>Artist</label>
               <input
-                className="border border-gray-300 rounded p-[0.35rem]  focus:border-gray-700 outline-none appearance-none "
+                className="manage_input"
                 type="text"
                 name="artist_name"
                 value={artistsForm.artist_name || ""}
@@ -90,7 +90,7 @@ const UpdateArtists = ({ artist }) => {
             <div className="my-2">
               <label>Genre</label>
               <select
-                className="w-full border border-gray-300 rounded p-[0.35rem] focus:border-gray-700 outline-none appearance-none "
+                className="w-full manage_input"
                 value={artistsForm.genre_id || ""}
                 name="genre_id"
                 onChange={inputValueArtists}
@@ -106,7 +106,7 @@ const UpdateArtists = ({ artist }) => {
             <div>
               <label>Arist Image</label>
               <input
-                className="border border-gray-300 rounded p-[0.35rem]  focus:border-gray-700 outline-none appearance-none "
+                className="manage_input"
                 type="text"
                 name="artist_image"
                 value={artistsForm.artist_image || ""}

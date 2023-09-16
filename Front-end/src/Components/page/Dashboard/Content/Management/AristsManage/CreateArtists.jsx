@@ -1,4 +1,4 @@
-// Component create new artist. When input values in the input attribute and select velues inselect arttlibute will keep values in state artistsForm. 
+// Component create new artist. When input values in the input attribute and select velues inselect arttlibute will keep values in state artistsForm.
 // After click create will send value keep back to  database
 
 import React, { useState } from "react";
@@ -10,8 +10,8 @@ import { DashboardContext } from "../../../../../UseContext/DashboardContext";
 
 const CreateArtists = () => {
   const { genreList } = useContext(ApiContext);
-  const {state ,dispatch} = useContext(DashboardContext)
-  
+  const { state, dispatch } = useContext(DashboardContext);
+
   // Create state to keep value artists
   const [artistsForm, setArtistsForm] = useState({
     artist_name: "",
@@ -28,7 +28,7 @@ const CreateArtists = () => {
     });
   };
 
-  //HTTP create artists 
+  //HTTP create artists
   const createArtists = async (e) => {
     e.preventDefault();
     try {
@@ -40,9 +40,9 @@ const CreateArtists = () => {
         artist_name: "",
         genre_id: "",
         artist_image: "",
-      })
-      alert("Create artist successfully")
-      window.location.reload()
+      });
+      alert("Create artist successfully");
+      window.location.reload();
     } catch (error) {
       console.error("Error creating artist", error);
     }
@@ -50,7 +50,7 @@ const CreateArtists = () => {
 
   //close Add event page
   const toggleClose = () => {
-    dispatch({type:'TOGGLE_CREATE'})
+    dispatch({ type: "TOGGLE_CREATE" });
   };
 
   return (
@@ -73,7 +73,7 @@ const CreateArtists = () => {
             <div>
               <label>Artist</label>
               <input
-                className="border border-gray-300 rounded p-[0.35rem]  focus:border-gray-700 outline-none appearance-none "
+                className="manage_input"
                 type="text"
                 name="artist_name"
                 value={artistsForm.artist_name}
@@ -83,7 +83,7 @@ const CreateArtists = () => {
             <div className="my-2">
               <label>Genre</label>
               <select
-                className="w-full border border-gray-300 rounded p-[0.35rem] focus:border-gray-700 outline-none appearance-none "
+                className="w-full manage_input"
                 name="genre_id"
                 value={artistsForm.genre_id}
                 onChange={inputValueArtists}
@@ -99,7 +99,7 @@ const CreateArtists = () => {
             <div>
               <label>Arist Image</label>
               <input
-                className="border border-gray-300 rounded p-[0.35rem]  focus:border-gray-700 outline-none appearance-none "
+                className="manage_input"
                 type="text"
                 name="artist_image"
                 value={artistsForm.artist_image}

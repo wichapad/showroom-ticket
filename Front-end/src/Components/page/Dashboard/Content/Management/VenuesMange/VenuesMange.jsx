@@ -81,7 +81,7 @@ const VenuesManage = () => {
         <div>
           <button
             onClick={handleCreate}
-            className="px-4 py-3 rounded-lg bg-purple-700 text-white hover:bg-purple-800"
+            className="px-4 py-2 rounded-lg bg-purple-700 text-white hover:bg-purple-800"
           >
             + Create
           </button>

@@ -169,5 +169,19 @@
         cursor: pointer;
     }
 
+    /* ------------ Management component in dashboard ------------*/
+    .manage_input {
+        border: 1px solid rgb(209, 213, 219);
+        border-radius: 0.25rem;
+        padding: 0.35rem;
+        appearance: none;
+        outline: none;
+    }
+
+    .manage_input:focus {
+        border: 1px solid rgb(55, 65, 81);
+
+
+    }
 
 }
