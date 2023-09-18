@@ -20,7 +20,7 @@ const DeleteVenues = ({ venue }) => {
         console.error("Failed to delete venues.");
       }
     } catch (error) {
-        console.error("An error occurred while delete venues", error);
+      console.error("An error occurred while delete venues", error);
     }
   };
 
@@ -44,7 +44,7 @@ const DeleteVenues = ({ venue }) => {
           >
             <HiX />
           </div>
-          <h1 className="text-center uppercase">Delete artists</h1>
+          <h1 className="text-center uppercase">Delete venues</h1>
 
           <div>
             <p>{venue.venue_name}</p>
@@ -58,17 +58,19 @@ const DeleteVenues = ({ venue }) => {
           <div className="my-2">
             <p>{venue.venue_capacity}</p>
           </div>
-          <div className="flex justify-evenly mt-2">
-            <button onClick={() => deleteVenue(venue.venue_id)} className="px-4 py-3 rounded-lg bg-blue-700 text-white hover:bg-blue-800">
-              Confirm
-            </button>
-            <button
-              onClick={toggleClose}
-              className="px-4 py-3 rounded-lg bg-red-700 text-white hover:bg-red-800"
-            >
-              Cancel
-            </button>
-          </div>
+
+          <button
+            onClick={() => deleteVenue(venue.venue_id)}
+            className="my-2 py-[0.6rem] uppercase rounded-lg bg-gray-800 text-white hover:bg-gray-900"
+          >
+            Confirm
+          </button>
+          <button
+            onClick={toggleClose}
+            className=" py-[0.6rem] uppercase rounded-lg bg-red-700 text-white hover:bg-red-800"
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </>

@@ -116,7 +116,7 @@ const AristsMange = () => {
                     <div className="pr-2">
                       <button
                         onClick={() => handleUpdate(item.slug)}
-                        className="px-4 py-3 rounded-lg bg-blue-700 text-white hover:bg-blue-800"
+                        className="px-4 py-3 rounded-lg bg-gray-800 text-white hover:bg-gray-900"
                       >
                         Update
                       </button>

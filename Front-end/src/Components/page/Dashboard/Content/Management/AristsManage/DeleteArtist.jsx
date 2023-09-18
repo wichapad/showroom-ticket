@@ -54,20 +54,20 @@ const DeleteArists = ({ artist }) => {
           <div>
             <img src={artist.artist_image} alt={artist.artist_image} />
           </div>
-          <div className="flex justify-evenly mt-2">
+    
             <button
               onClick={() => deleteArtist(artist.slug)}
-              className="px-4 py-3 rounded-lg bg-blue-700 text-white hover:bg-blue-800"
+              className="my-2 py-[0.6rem] uppercase rounded-lg bg-gray-800 text-white hover:bg-gray-900"
             >
               Confirm
             </button>
             <button
               onClick={toggleClose}
-              className="px-4 py-3 rounded-lg bg-red-700 text-white hover:bg-red-800"
+              className="py-[0.6rem] uppercase rounded-lg bg-red-700 text-white hover:bg-red-800"
             >
               Cancel
             </button>
-          </div>
+      
         </div>
       </div>
     </>

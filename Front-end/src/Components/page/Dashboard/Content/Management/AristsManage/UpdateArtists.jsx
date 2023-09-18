@@ -113,21 +113,21 @@ const UpdateArtists = ({ artist }) => {
                 onChange={inputValueArtists}
               />
             </div>
-            <div className="flex justify-evenly mt-2">
+            <div className="my-2">
               <button
                 type="submit"
-                className="px-4 py-3 rounded-lg bg-blue-700 text-white hover:bg-blue-800"
+                className="w-full uppercase py-[0.6rem] rounded-lg bg-gray-800 text-white hover:bg-gray-900"
               >
                 Update
               </button>
-              <button
-                onClick={toggleClose}
-                className="px-4 py-3 rounded-lg bg-red-700 text-white hover:bg-red-800"
-              >
-                Cancel
-              </button>
             </div>
           </form>
+          <button
+            onClick={toggleClose}
+            className=" py-[0.6rem] uppercase rounded-lg bg-red-700 text-white hover:bg-red-800"
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </>

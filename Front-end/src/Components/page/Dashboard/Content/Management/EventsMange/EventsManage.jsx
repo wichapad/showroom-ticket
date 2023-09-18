@@ -6,6 +6,7 @@ import { FormatDateTime } from "../../../../../FormatDateTime";
 import { DashboardContext } from "../../../../../UseContext/DashboardContext";
 import CreateEvents from "./CreateEvents";
 import UpdateEvents from "./UpdateEvents";
+import DeleteEvents from "./DeleteEvents";
 
 const EventsManage = () => {
   const { state, dispatch } = useContext(DashboardContext);
@@ -40,9 +41,14 @@ const EventsManage = () => {
     const event = eventsList.find((item) => item.event_id === id);
     setSelectedEvent(event);
   };
+  const handleDelete = (id) => {
+    dispatch({ type: "TOGGLE_DELETE" });
+    const event = eventsList.find((item) => item.event_id === id);
+    setSelectedEvent(event);
+  };
   return (
     <div className="flex flex-col whitespace-nowrap">
-      <div className="flex justify-between items-center  p-[1rem]">
+      <div className="flex justify-between items-center py-[1rem] pr-[1.2rem]">
         <form className="w-[300px]">
           <div className="relative">
             <div className="absolute  inset-y-0 left-0 flex items-center text-gray-500 pl-3">
@@ -72,6 +78,13 @@ const EventsManage = () => {
               } fixed top-0 left-0 z-50 h-full w-full bg-[rgba(0,0,0,0.5)] `}
             >
               <UpdateEvents event={selectedEvent} />
+            </div>
+            <div
+              className={`${
+                state.isDelete ? "translate-x-0 " : "translate-x-full"
+              } fixed top-0 left-0 z-50 h-full w-full bg-[rgba(0,0,0,0.5)] `}
+            >
+              <DeleteEvents event={selectedEvent} />
             </div>
           </div>
         </div>
@@ -114,13 +127,16 @@ const EventsManage = () => {
                   <div className="pr-2">
                     <button
                       onClick={() => handleUpdate(item.event_id)}
-                      className="px-4 py-3 rounded-lg bg-blue-700 text-white hover:bg-blue-800"
+                      className="px-4 py-3 rounded-lg bg-gray-800 text-white hover:bg-gray-900"
                     >
                       Update
                     </button>
                   </div>
                   <div>
-                    <button className="px-4 py-3 rounded-lg bg-red-700 text-white hover:bg-red-800">
+                    <button
+                      onClick={() => handleDelete(item.event_id)}
+                      className="px-4 py-3 rounded-lg bg-red-700 text-white hover:bg-red-800"
+                    >
                       Delete
                     </button>
                   </div>
