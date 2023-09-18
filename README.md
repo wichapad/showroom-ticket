@@ -3,7 +3,7 @@
 Web Concert Ticket Booking Develop With React.js
 frontend React.js Tailwind
 Backend Node.js
-Database MongoDB Nosql
+Database postgresql on vercel
 
 Developed for Education Full Stack Programming
 
@@ -20,6 +20,10 @@ Developed for Education Full Stack Programming
 | Login Page | Register Page | Events (CRUD)
 | --- | --- | --- |
 | [![Login](https://github.com/wichapad/showroom-ticket/assets/84759066/ecfe5c71-1ea2-4d36-a484-ffe45644d3eb)](https://showroom-ticket.vercel.app/login) | [![Register](https://github.com/wichapad/showroom-ticket/assets/84759066/e4306e30-6423-459e-8dbd-aa9564c2d68b)](https://showroom-ticket.vercel.app/register) | ![Admin](https://github.com/wichapad/showroom-ticket/assets/84759066/1544bc12-7568-4dcd-8e19-b55c06c4108e)
+
+| Artists(CRUD) | Events(CRUD) | Venues(CRUD)
+| --- | --- | --- |
+| [![artists](https://github.com/wichapad/showroom-ticket/assets/84759066/b44cebce-6983-488a-9a61-54c0dc3bc6b0)] | [![events](https://github.com/wichapad/showroom-ticket/assets/84759066/ac6d4220-7328-49bf-8986-3cdaef51b739)] | ![venues](https://github.com/wichapad/showroom-ticket/assets/84759066/397719e7-4ea9-4f7b-8608-a288f0930eaf)
 
 | Profile Page | Myticket | Purchase History
 | --- | --- | --- |
