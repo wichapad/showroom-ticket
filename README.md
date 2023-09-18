@@ -9,9 +9,9 @@ Developed for Education Full Stack Programming
 
 ## Demo pages
 
-| Home Page | Events Page | Shop Page
+| Ads Video Header | Ads shop | News
 | --- | --- | --- |
-| [![HomePage](https://github.com/wichapad/showroom-ticket/assets/84759066/7c850f21-022e-453c-9c16-e5f2a2a855b2)](https://showroom-ticket.vercel.app/) | [![EventsPage](https://github.com/wichapad/showroom-ticket/assets/84759066/d47e3322-24c2-431f-8281-8fe0be708f29)](https://showroom-ticket.vercel.app/events) | [![ShopPage](https://github.com/wichapad/showroom-ticket/assets/84759066/81d38f7e-e611-421a-ab26-8a3203e296d5)](https://showroom-ticket.vercel.app/shop)
+| [![Ads](https://github.com/wichapad/showroom-ticket/assets/84759066/5890f47e-d291-44bc-99be-30b206f81da7)](https://showroom-ticket.vercel.app/) | [![Shop](https://github.com/wichapad/showroom-ticket/assets/84759066/9385f853-428e-4fad-9cad-e52b9d2767f6)](https://showroom-ticket.vercel.app/events) | [![News](https://github.com/wichapad/showroom-ticket/assets/84759066/53f8dbce-0403-4992-88d9-93ed70beb1eb)](https://showroom-ticket.vercel.app/shop)
 
 | Event Tour | Zone | Seat Row
 | --- | --- | --- |
