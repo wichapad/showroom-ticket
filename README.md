@@ -1,4 +1,4 @@
-# [Showroom-ticket](https://showroom-frontend.onrender.com/) 
+![image](https://github.com/wichapad/showroom-ticket/assets/84759066/5a696ac7-55d1-4d34-8a44-e9f41aa1f3f6)# [Showroom-ticket](https://showroom-frontend.onrender.com/) 
 
 Web Concert Ticket Booking Develop With React.js
 frontend React.js Tailwind
@@ -9,13 +9,15 @@ Developed for Education Full Stack Programming
 
 ## Demo pages
 
+-   [Visit Preview Website](https://showroom-ticket.vercel.app/)
+
 | Ads Video Header | Ads shop | News
 | --- | --- | --- |
 | [![Ads](https://github.com/wichapad/showroom-ticket/assets/84759066/5890f47e-d291-44bc-99be-30b206f81da7)](https://showroom-ticket.vercel.app/) | [![Shop](https://github.com/wichapad/showroom-ticket/assets/84759066/9385f853-428e-4fad-9cad-e52b9d2767f6)](https://showroom-ticket.vercel.app/events) | [![News](https://github.com/wichapad/showroom-ticket/assets/84759066/53f8dbce-0403-4992-88d9-93ed70beb1eb)](https://showroom-ticket.vercel.app/shop)
 
 | Schedule | Zone | Seat Row
 | --- | --- | --- |
-| ![EventTour](https://github.com/wichapad/showroom-ticket/assets/84759066/9210ca3d-86e6-422e-b063-ca1b6f33de08) | ![Zone](https://github.com/wichapad/showroom-ticket/assets/84759066/244ebd05-7638-4c01-b95b-988e355fefd0) | ![ShopPage](https://github.com/wichapad/showroom-ticket/assets/84759066/24fa0811-a4f1-4930-a6d0-9ec1c5896d40)
+| ![EventTour](https://github.com/wichapad/showroom-ticket/assets/84759066/fadf9515-34a1-4f1e-8307-d9d74e8c63dc) | ![Zone](https://github.com/wichapad/showroom-ticket/assets/84759066/fadf9515-34a1-4f1e-8307-d9d74e8c63dc) | ![Seat](https://github.com/wichapad/showroom-ticket/assets/84759066/f1a6e377-6e8f-4f4b-a12e-e8d5d45f5e75)
 
 | Login Page | Register Page | Schedule
 | --- | --- | --- |
@@ -23,7 +25,7 @@ Developed for Education Full Stack Programming
 
 | Profile Page | Myticket | Purchase History
 | --- | --- | --- |
-| [![Profile](https://github.com/wichapad/showroom-ticket/assets/84759066/eabd814a-15eb-4009-81c6-6d73a07a161b)](https://showroom-ticket.vercel.app/user/profile) | [![Myticket](https://github.com/wichapad/showroom-ticket/assets/84759066/748add7c-76c5-4024-bd16-83b0e4277031)](https://showroom-ticket.vercel.app/user/myticket) | [![Purchase](https://github.com/wichapad/showroom-ticket/assets/84759066/2fea1975-f578-41ab-950b-b96607e578cd)](https://showroom-ticket.vercel.app/user/purchase) 
+| [![Profile](https://github.com/wichapad/showroom-ticket/assets/84759066/fadf9515-34a1-4f1e-8307-d9d74e8c63dc)](https://showroom-ticket.vercel.app/user/profile) | [![Myticket](https://github.com/wichapad/showroom-ticket/assets/84759066/748add7c-76c5-4024-bd16-83b0e4277031)](https://showroom-ticket.vercel.app/user/myticket) | [![Purchase](https://github.com/wichapad/showroom-ticket/assets/84759066/2fea1975-f578-41ab-950b-b96607e578cd)](https://showroom-ticket.vercel.app/user/purchase) 
 
 | Artists(CRUD) | Events(CRUD) | Venues(CRUD)
 | --- | --- | --- |
@@ -31,4 +33,4 @@ Developed for Education Full Stack Programming
 
 
 
--   [Live Preview](https://showroom-ticket.vercel.app/)
+
