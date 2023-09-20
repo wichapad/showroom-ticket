@@ -27,7 +27,7 @@ Developed for Education Full Stack Programming
 
 | Artists(CRUD) | Events(CRUD) | Venues(CRUD)
 | --- | --- | --- |
-| [![artists](https://github.com/wichapad/showroom-ticket/assets/84759066/b44cebce-6983-488a-9a61-54c0dc3bc6b0)] | [![events](https://github.com/wichapad/showroom-ticket/assets/84759066/ac6d4220-7328-49bf-8986-3cdaef51b739)] | ![venues](https://github.com/wichapad/showroom-ticket/assets/84759066/397719e7-4ea9-4f7b-8608-a288f0930eaf)
+| [![artists](https://github.com/wichapad/showroom-ticket/assets/84759066/b44cebce-6983-488a-9a61-54c0dc3bc6b0) | [![events](https://github.com/wichapad/showroom-ticket/assets/84759066/ac6d4220-7328-49bf-8986-3cdaef51b739) | ![venues](https://github.com/wichapad/showroom-ticket/assets/84759066/397719e7-4ea9-4f7b-8608-a288f0930eaf)
 
 
 
