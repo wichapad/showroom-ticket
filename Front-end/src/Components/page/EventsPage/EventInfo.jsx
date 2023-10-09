@@ -13,7 +13,7 @@ const EventInfo = () => {
   const singleEventData = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API}/api/events/${slug}`
+        `${process.env.REACT_APP_API}/api/tour/${slug}`
       );
       setSingleEvent(response.data);
     } catch (error) {

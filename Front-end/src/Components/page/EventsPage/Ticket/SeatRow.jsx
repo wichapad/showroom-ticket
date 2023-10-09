@@ -11,23 +11,16 @@ export const SeatRow = () => {
   const [checkedRows, setCheckedRows] = useState({});
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const seatRowsData = async () => {
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API}/api/tickets/${slug}/${id}`
-      );
-      console.log(response.data);
-      setSeatRows(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    seatRowsData();
-  }, [id, slug]);
-
-  
+    axios
+      .get(`${process.env.REACT_APP_API}/api/tickets/${slug}/${id}`)
+      .then((res) => {
+        setSeatRows(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id,slug]);
 
   return (
     <div className="flex justify-center  m-4">

@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
-// const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
@@ -13,19 +12,11 @@ app.use(cors());
 // call routes
 const users = require("./routes/users");
 const authRoute = require("./routes/auth");
+const artistsRoute = require("./routes/artists");
+const venuesRoute = require("./routes/venues");
 const eventsRoute = require("./routes/events");
 const ticketRoute = require("./routes/ticket");
-// const adminRoute = require('./routes/admin');
-// const { requireAdmin } = require("./controllers/authController");
-
-// mongoDB Database
-// mongoose
-//     .connect(process.env.DATABASE, {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: false,
-//     })
-//     .then(() => console.log("Connect mongoDB database success"))
-//     .catch((error) => console.log(error))
+const artistScrhedule = require("./routes/artistSchedule");
 
 // PostgreSQL Database
 const pool = require("./database");
@@ -42,6 +33,13 @@ app.use(users);
 app.use(authRoute);
 app.use("/api", eventsRoute);
 app.use("/api", ticketRoute);
+app.use("/api", artistsRoute);
+app.use("/api", venuesRoute);
+app.use("/api", artistScrhedule);
+
+app.get("/", (req, res) => {
+  res.send("this is API running");
+});
 
 const port = process.env.PORT;
 

@@ -1,26 +1,19 @@
 const express = require("express");
 const {
-  getEvent,
-  singleEvent,
-  getArtists,
-  getVenues,
   createEvent,
   updateEvent,
+  singleEventByEventId,
+  allEvents,
+  deleteEvent,
 } = require("../controllers/eventsController");
 const { requireAdmin } = require("../controllers/authController");
 
 const router = express.Router();
 
-// Route get all data events
-router.get("/events", getEvent);
-router.get("/events/:slug", singleEvent);
-
-// Route post data to database in progreSQL
-router.post("/events/create", requireAdmin, createEvent);
-router.put("/events/:slug", requireAdmin, updateEvent);
-
-// Route get data artist and venue
-router.get("/artists", getArtists);
-router.get("/venues", getVenues);
+router.post("/events/create", createEvent);
+router.get("/events", allEvents);
+router.get("/events/:id", singleEventByEventId);
+router.put("/events/:id", updateEvent);
+router.delete("/events/:id", deleteEvent);
 
 module.exports = router;

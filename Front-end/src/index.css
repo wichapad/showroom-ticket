@@ -15,8 +15,14 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+
     }
-   
+
+    body {
+
+        margin: auto;
+    }
+
 
 
     input {
@@ -29,22 +35,21 @@
 
 @layer components {
     .form-input {
-        display: flex;
-        flex-direction: column;
         margin-bottom: 0.8rem;
     }
 
     /* ------------ NavbarPage in Navrbar folder ------------ */
-    .navbar-li-mobile{
+    .navbar-li-mobile {
         display: block;
         padding: 0.5rem 0 0.5rem 0.75rem;
         color: #FFF;
         border-radius: 0.25rem;
     }
-    .navbar-li-mobile:hover{
+
+    .navbar-li-mobile:hover {
         border: 1px solid rgb(251, 191, 36);
     }
-    
+
 
     /* ------------ HomeComponent in HomePage folder ------------ */
     .home-background {
@@ -88,11 +93,95 @@
         width: 100%;
         text-align: center;
         padding: 1rem;
-   
+
     }
 
     .menu-mobile:hover {
         color: rgb(147, 51, 234);
+    }
+
+    /* ------------ Dashboard Component ------------*/
+    .menu-sidebar-container {
+        display: flex;
+        color: rgb(226 232 240);
+    }
+
+    .menu-sidebar-container:hover {
+        color: #fff;
+        transition: 300 ease-in-out;
+        border-radius: 0.5rem;
+        background-color: rgb(30 41 59);
+        cursor: pointer;
+    }
+
+    .menu-sidebar-inside {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 0.5rem;
+    }
+
+    .icons-sidebar {
+        font-size: 1.5rem;
+        line-height: 2rem;
+        margin-right: 0.75rem;
+    }
+
+    .text-sidebar {
+        font-size: 1.15rem;
+        font-weight: 300;
+        line-height: 1.75rem;
+        color: #fff;
+    }
+
+    .sidebar-dropdown-container {
+        display: flex;
+        padding: 0.75rem 0.5rem;
+        color: rgb(226 232 240);
+
+    }
+
+    .sidebar-dropdown-container:hover {
+        color: #fff;
+        transition: 300 ease-in-out;
+        border-radius: 0.5rem;
+        background-color: rgb(30 41 59);
+        cursor: pointer;
+    }
+
+    .sidebar-dropdown-button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .sidebar-dropdown-li {
+        display: flex;
+        padding: 0.75rem 0.5rem;
+        color: rgb(226 232 240);
+    }
+
+    .sidebar-dropdown-li:hover {
+        color: #fff;
+        transition: 300 ease-in-out;
+        border-radius: 0.5rem;
+        background-color: rgb(30 41 59);
+        cursor: pointer;
+    }
+
+    /* ------------ Management component in dashboard ------------*/
+    .manage_input {
+        border: 1px solid rgb(209, 213, 219);
+        border-radius: 0.25rem;
+        padding: 0.35rem;
+        appearance: none;
+        outline: none;
+    }
+
+    .manage_input:focus {
+        border: 1px solid rgb(55, 65, 81);
+
+
     }
 
 }

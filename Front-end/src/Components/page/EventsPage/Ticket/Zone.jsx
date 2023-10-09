@@ -12,7 +12,7 @@ const Zone = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_API}/api/tickets/${slug}`
       );
-
+        console.log(response.data);
       setSingleTicket(response.data);
     } catch (error) {
       console.log(error);
