@@ -7,12 +7,13 @@ const {
   updateArtists,
   deleteArtists,
 } = require("../controllers/artistsController");
+const { requireAdmin } = require("../controllers/authController");
 const router = express.Router();
 
 router.get("/artists", getArtists);
-router.post("/artists/create", createArtists);
+router.post("/artists/create", requireAdmin, createArtists);
 router.get("/artists/:slug", singleArtist);
-router.put("/artists/:slug", updateArtists);
-router.delete("/artists/:slug", deleteArtists);
+router.put("/artists/:slug", requireAdmin, updateArtists);
+router.delete("/artists/:slug", requireAdmin, deleteArtists);
 router.get("/genres", getGenre);
 module.exports = router;

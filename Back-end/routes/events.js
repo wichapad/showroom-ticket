@@ -10,10 +10,10 @@ const { requireAdmin } = require("../controllers/authController");
 
 const router = express.Router();
 
-router.post("/events/create", createEvent);
+router.post("/events/create", requireAdmin, createEvent);
 router.get("/events", allEvents);
 router.get("/events/:id", singleEventByEventId);
-router.put("/events/:id", updateEvent);
-router.delete("/events/:id", deleteEvent);
+router.put("/events/:id", requireAdmin, updateEvent);
+router.delete("/events/:id", requireAdmin, deleteEvent);
 
 module.exports = router;

@@ -9,11 +9,10 @@ const {
 } = require("../controllers/storeUserController");
 const { requireAdmin } = require("../controllers/authController");
 
-
 router.get("/users", getUsers);
-router.post("/users/create", createUsers);
+router.post("/users/create", requireAdmin, createUsers);
 router.get("/users/:email", getUserByEmail);
-router.put("/users/:email", updateUsersByEmail);
-router.delete("/users/:email", deleteUsers);
+router.put("/users/:email", requireAdmin, updateUsersByEmail);
+router.delete("/users/:email", requireAdmin, deleteUsers);
 
 module.exports = router;
