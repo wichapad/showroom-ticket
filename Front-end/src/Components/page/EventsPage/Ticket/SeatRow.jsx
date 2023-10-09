@@ -10,6 +10,7 @@ export const SeatRow = () => {
   const [seatRows, setSeatRows] = useState([]);
   const [checkedRows, setCheckedRows] = useState({});
   const [totalPrice, setTotalPrice] = useState(0);
+  const [selectedSeats, setSelectedSeats] = useState({});
 
   useEffect(() => {
     axios
@@ -20,7 +21,7 @@ export const SeatRow = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id,slug]);
+  }, [id, slug]);
 
   return (
     <div className="flex justify-center  m-4">
@@ -42,6 +43,8 @@ export const SeatRow = () => {
                           .filter((seat) => newCheckRows[seat])
                           .reduce((total) => total + rows.price, 0);
                         setTotalPrice(updateTotalPrice);
+
+                        setSelectedSeats(newCheckRows);
 
                         return newCheckRows;
                       })
@@ -101,10 +104,17 @@ export const SeatRow = () => {
                 </div>
               </ul>
             </div>
-            <div className="text-center  p-2">
-              <button className="w-full p-2 rounded text-white uppercase bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600">
-                Confirm
-              </button>
+            <div className="text-center my-4">
+              <NavLink
+                to={`/purchase?seats=${Object.keys(selectedSeats)
+                  .filter((seat) => selectedSeats[seat])
+                  .join(", ")}&totalPrice=${totalPrice}&showTime=${formatDate(
+                  item.event_date
+                )} ${formatTime(item.event_time)}`}
+                className=" p-2 rounded text-[14px] text-white uppercase bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600"
+              >
+                Get Tickets
+              </NavLink>
             </div>
           </div>
         </div>

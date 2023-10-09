@@ -115,7 +115,7 @@ const Navbar = () => {
                         to="/dashboard"
                         className="navbar-li-mobile md:hover:border-none md:hover:text-amber-400 md:p-0"
                       >
-                        Dashboard
+                        Controls
                       </NavLink>
                     </li>
                   )}
