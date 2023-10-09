@@ -1,6 +1,6 @@
 import React from "react";
 
-const Purchase = () => {
+const History = () => {
   return (
     <div className="p-4">
       <div className="text-center text-[1.5rem]">
@@ -25,4 +25,4 @@ const Purchase = () => {
   );
 };
 
-export default Purchase;
+export default History;

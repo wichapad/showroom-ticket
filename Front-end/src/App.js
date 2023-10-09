@@ -15,12 +15,13 @@ import Notfound from "./Components/page/ErrorPage/Notfound";
 import TicketLayout from "./Components/page/EventsPage/Ticket/TicketLayout";
 import { SeatRow } from "./Components/page/EventsPage/Ticket/SeatRow";
 import Zone from "./Components/page/EventsPage/Ticket/Zone";
+import Purchase from "./Components/page/PurchasePage/Purchase";
 import NoTicket from "./Components/page/EventsPage/NoTicketPage/NoTicket";
 
 import LayoutProfile from "./Components/page/ProfilePage/LayoutProfile";
 import Profile from "./Components/page/ProfilePage/Profile";
 import MyTicket from "./Components/page/ProfilePage/MyTicket";
-import Purchase from "./Components/page/ProfilePage/Purchase";
+import History from "./Components/page/ProfilePage/History";
 import ChangePassword from "./Components/page/ProfilePage/ChangePassword";
 
 import LayoutDashboard from "./Components/page/Dashboard/LayoutDashboard/LayoutDashboard";
@@ -47,9 +48,13 @@ const App = () => {
         {/* Route Booking Ticket seat */}
         <Route path="booking/:slug" element={<TicketLayout />}>
           <Route index element={<Zone />} />
-          <Route path=":id" element={<SeatRow />} />
+          <Route path=":id" element={<SeatRow />} >
+            
+          </Route>
           <Route path="notfound" element={<NoTicket />} />
         </Route>
+
+        <Route path="purchase" element={<Purchase />} />
 
         {/* Route Shopping Components */}
         <Route path="shop" element={<Shop />} />
@@ -57,7 +62,7 @@ const App = () => {
         <Route path="user" element={<LayoutProfile />}>
           <Route path="profile" element={<Profile />} />
           <Route path="myticket" element={<MyTicket />} />
-          <Route path="purchase" element={<Purchase />} />
+          <Route path="history" element={<History />} />
           <Route path="changepassword" element={<ChangePassword />} />
         </Route>
       </Route>
@@ -72,7 +77,7 @@ const App = () => {
           <Route index element={<Dashboard />} />
           <Route path="tour" element={<AllEvents />} />
           <Route path="tickets" element={<Tickets />} />
-          <Route path="artists" element={<ArtistsManage />}/>
+          <Route path="artists" element={<ArtistsManage />} />
           <Route path="events" element={<EventsMange />} />
           <Route path="venues" element={<VenuesManage />} />
         </Route>

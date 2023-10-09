@@ -77,9 +77,9 @@ JOIN
 JOIN 
   artist a ON a.artist_id = e.artist_id
 WHERE 
-  ctgy.ticket_ctgy_id = '1'
+  e.slug_event = $1
 AND 
-  e.slug_event = '50db29e0'
+ctgy.ticket_ctgy_id = $2
 GROUP BY 
   e.event_id,a.artist_name,e.event_date, e.event_time, ctgy.ticket_ctgy_id, ctgy.price;
 

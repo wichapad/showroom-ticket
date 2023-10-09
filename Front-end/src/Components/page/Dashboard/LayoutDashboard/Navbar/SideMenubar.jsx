@@ -42,23 +42,6 @@ const SideMunubar = ({ isOpen }) => {
         >
           <ul className="mt-2 px-[0.35rem] py-2">
             <li>
-              <form className="md:hidden">
-                <label>
-                  <div className="relative p-1">
-                    <div className="absolute inset-y-0 left-0 flex items-center text-xl text-gray-500 pl-3">
-                      <HiOutlineSearch />
-                    </div>
-                    <input
-                      type="text"
-                      id="mobile-search"
-                      className="py-2 pl-[2.5rem] rounded-lg shadow text-md font-normal "
-                      placeholder="Search"
-                    />
-                  </div>
-                </label>
-              </form>
-            </li>
-            <li>
               <NavLink to="/dashboard">
                 <div className="menu-sidebar-container">
                   <div className="menu-sidebar-inside">
@@ -200,12 +183,18 @@ const SideMunubar = ({ isOpen }) => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to='/dashboard/events' className="sidebar-dropdown-li">
+                    <NavLink
+                      to="/dashboard/events"
+                      className="sidebar-dropdown-li"
+                    >
                       <p className="pl-8 text-sidebar">Events</p>
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to='/dashboard/venues' className="sidebar-dropdown-li">
+                    <NavLink
+                      to="/dashboard/venues"
+                      className="sidebar-dropdown-li"
+                    >
                       <p className="pl-8 text-sidebar">Venues</p>
                     </NavLink>
                   </li>

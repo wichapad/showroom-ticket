@@ -50,7 +50,7 @@ const LayoutProfile = () => {
                   My Ticket
                 </NavLink>
                 <NavLink
-                  to="/user/purchase"
+                  to="/user/history"
                   className="menu-mobile border-b border-gray-300"
                 >
                   Purchase History
@@ -72,7 +72,7 @@ const LayoutProfile = () => {
             <NavLink to="/user/myticket" className="p-2 hover:text-purple-600">
               My Ticket
             </NavLink>
-            <NavLink to="/user/purchase" className="p-2 hover:text-purple-600">
+            <NavLink to="/user/history" className="p-2 hover:text-purple-600">
               Purchase History
             </NavLink>
             <NavLink

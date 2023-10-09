@@ -19,31 +19,18 @@ const NavDashboard = ({ onToggleBar }) => {
             type="button"
             onClick={toggleSidebar}
           >
-            {!isSidebarOpen ? <HiMenuAlt1 className="md:hidden"/> : <HiX className="md:hidden"/>}
+            {!isSidebarOpen ? (
+              <HiMenuAlt1 className="md:hidden" />
+            ) : (
+              <HiX className="md:hidden" />
+            )}
           </button>
           <a href="/" className="flex items-center">
             <img src={logo} className="h-5" alt="Flowbite Logo" />
           </a>
         </div>
-        <form className="hidden md:flex">
-          <label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 flex items-center text-xl text-gray-500 pl-3">
-                <HiOutlineSearch />
-              </div>
-              <input
-                type="text"
-                className="py-2 pl-[2.5rem] w-[250px] rounded-lg text-md font-normal "
-                placeholder="Search"
-              />
-            </div>
-          </label>
-        </form>
-        <div className="flex items-center px-2">
-          <div className="text-xl text-white mr-2 md:hidden">
-            <HiOutlineSearch className="cursor-pointer" />
-          </div>
 
+        <div className="flex items-center px-2">
           <div className="bg-gray-900 w-[35px] h-[35px] rounded-full"></div>
         </div>
       </div>
