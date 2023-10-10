@@ -15,27 +15,34 @@ const Purchase = () => {
   const showTime = queryParams.get("showTime");
   return (
     <div className="pt-[4rem]">
-      <div>
-        <p>{artist}</p>
-        <p>{eventName}</p>
-        <p>{selectedSeats}</p>
-        <p>${totalPrice}</p>
-        <p>{showTime}</p>
-        <div className="border rounded m-2">
+      <div className="p-4 ">
+        <div className="border border-gray-400 rounded-[5px] my-2">
+          <div className="p-2 rounded-t bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600">
+            <p className="text-white">Payment method</p>
+          </div>
+         <div className="p-2">
+         <p>{artist}</p>
+          <p>{eventName}</p>
+          <p>{selectedSeats}</p>
+          <p>${totalPrice}</p>
+          <p>{showTime}</p>
+         </div>
+        </div>
+        <div className="border border-gray-400 rounded-[5px] my-2">
           <div className="p-2 rounded-t bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600">
             <p className="text-white">Payment method</p>
           </div>
           <div className="p-2">
-            <div className="flex">
-              <div className="p-2 text-center border">
+            <div className="">
+              <div className="payment-method-container">
                 <img src={CreditCard} alt="" />
                 <p>Credit/Debit card payment</p>
               </div>
-              <div className="mx-3 p-2 text-center border">
+              <div className="my-3 payment-method-container">
                 <img src={Banking} alt="" />
                 <p>Mobile banking payment</p>
               </div>
-              <div className="p-2 text-center border">
+              <div className="payment-method-container">
                 <img src={TrueMoney} alt="" />
                 <p>TrueMoney wallet payment</p>
               </div>
