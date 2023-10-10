@@ -1,6 +1,6 @@
 import { useState } from "react";
 import logo from "../../../../../images/showroomlogowhite.png";
-import { HiOutlineSearch, HiMenuAlt1, HiX } from "react-icons/hi";
+import { HiMenuAlt1, HiX } from "react-icons/hi";
 
 const NavDashboard = ({ onToggleBar }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
