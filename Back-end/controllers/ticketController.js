@@ -2,15 +2,24 @@ const pool = require("../database");
 
 // exports.getTicket = (req, res) => {
 //   const query = `SELECT
-//     e.event_id,e.event_name, e.event_date,  e.event_time,e.slug_event,
-// 	ctgy.ticket_ctgy_id, ctgy.description,
-//     json_agg(json_build_object('ticket_id', t.ticket_id, 'seat', t.seat, 'price', ctgy.price)) AS seats
+//   e.event_id, e.event_name, e.event_date, e.event_time,e.slug_event,
+//   v.venue_name,v.venue_city,v.venue_state,
+//   a.artist_name,a.artist_image,
+//   json_agg(json_build_object('ctgy_id',ctgy.ticket_ctgy_id,'description', ctgy.description,'area',ctgy.area,'price',ctgy.price)) AS zone,
+//   json_agg(json_build_object('ticket_id', t.ticket_id,'seat', t.seat,'price', ctgy.price)) AS seats
 // FROM
-//     event e
-// 	JOIN ticket_category ctgy ON ctgy.event_id = e.event_id
-// 	JOIN ticket t ON t.event_id = e.event_id
+//   event e
+// JOIN
+//   ticket_category ctgy ON ctgy.event_id = e.event_id
+// JOIN
+// 	ticket t ON  t.ticket_ctgy_id = ctgy.ticket_ctgy_id
+// JOIN
+//   artist a ON a.artist_id = e.artist_id
+// JOIN
+//   venue v ON v.venue_id = e.venue_id
+
 // GROUP BY
-//     e.event_id,ctgy.ticket_ctgy_id;
+// e.event_id,v.venue_name,v.venue_city,v.venue_state,a.artist_name,a.artist_image;
 
 //   `;
 
@@ -41,7 +50,8 @@ JOIN
 WHERE
   slug_event = $1
 GROUP BY
-e.event_id,v.venue_name,v.venue_city,v.venue_state,a.artist_name,a.artist_image;
+e.event_id,e.event_name, e.event_date, e.event_time,e.slug_event,
+v.venue_name,v.venue_city,v.venue_state,a.artist_name,a.artist_image;
 
 	`;
 
@@ -64,7 +74,7 @@ exports.seatRow = (req, res) => {
   a.artist_name,
   e.event_name,e.event_date,e.event_time,
   v.venue_name,v.venue_city,v.venue_state,
-  ctgy.ticket_ctgy_id,
+  ctgy.ticket_ctgy_id,ctgy.area,
   e.slug_event,
   json_agg(json_build_object('ticket_id', t.ticket_id,'seat', t.seat,'price', ctgy.price)) AS seats
 FROM 
@@ -82,7 +92,9 @@ WHERE
 AND 
   e.slug_event = $2
 GROUP BY 
-  e.event_id,a.artist_name,e.event_date, e.event_time,v.venue_name,v.venue_city,v.venue_state,ctgy.ticket_ctgy_id, ctgy.price;
+  e.event_id,a.artist_name,e.event_name,e.event_date,e.event_time,
+  v.venue_name,v.venue_city,v.venue_state,
+  ctgy.ticket_ctgy_id,ctgy.area;
   `;
 
   pool.query(query, [id, slug], (err, result) => {

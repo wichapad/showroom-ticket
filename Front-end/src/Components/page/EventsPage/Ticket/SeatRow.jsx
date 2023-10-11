@@ -108,7 +108,13 @@ export const SeatRow = () => {
               <NavLink
                 to={`/purchase?seats=${Object.keys(selectedSeats)
                   .filter((seat) => selectedSeats[seat])
-                  .join(", ")}&artist=${item.artist_name}&eventName=${item.event_name}&totalPrice=${totalPrice}&showTime=${formatDate(
+                  .join(", ")}&artist=${item.artist_name}&eventName=${
+                  item.event_name
+                }&venueName=${item.venue_name}&venueCity=${
+                  item.venue_city
+                }&venueState=${
+                  item.venue_state
+                }&totalPrice=${totalPrice}&showTime=${formatDate(
                   item.event_date
                 )} ${formatTime(item.event_time)}`}
                 className=" p-2 rounded text-[14px] text-white uppercase bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600"
