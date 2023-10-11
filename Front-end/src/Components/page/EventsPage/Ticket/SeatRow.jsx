@@ -114,6 +114,8 @@ export const SeatRow = () => {
                   item.venue_city
                 }&venueState=${
                   item.venue_state
+                }&zone=${
+                  item.area
                 }&totalPrice=${totalPrice}&showTime=${formatDate(
                   item.event_date
                 )} ${formatTime(item.event_time)}`}

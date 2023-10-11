@@ -14,64 +14,74 @@ const Purchase = () => {
   const venueName = queryParams.get("venueName");
   const venueCity = queryParams.get("venueCity");
   const venueState = queryParams.get("venueState");
+  const zone = queryParams.get("zone");
   const selectedSeats = queryParams.get("seats");
   const totalPrice = queryParams.get("totalPrice");
   const showTime = queryParams.get("showTime");
   return (
     <div className="pt-[4rem]">
-      <div className="p-4">
-        {/* Detail concert */}
-        <div className="border border-gray-400 rounded-[5px] my-2">
-          <div className="p-2 rounded-t bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600">
-            <p className="text-white">Payment method</p>
-          </div>
-          <div className="p-2 text-[14px]">
-            {/* Artist */}
-            <div className="flex justify-center ">
-              <p>{artist}</p>
-              <p className="px-1">{eventName}</p>
+      <div className="p-4 md:flex">
+        {/* Payment method */}
+        <div className="w-full ">
+          <div className="border border-gray-400 rounded-[5px] m-2">
+            <div className="p-2 rounded-t bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600">
+              <p className="text-white">Payment method</p>
             </div>
-            {/* Location */}
-            <div className="flex justify-center items-center text-[10px] text-gray-400">
-              <p>
-                <FaLocationDot />
-              </p>
-              <p>{venueName}</p>
-              <p className="px-1">{venueCity}</p>
-              <p>{venueState}</p>
-            </div>
-            {/* Showtime */}
-            <div className="text-center my-2 p-1  border rounded-[5px]">
-              <p className="text-purple-800">{showTime}</p>
-            </div>
-            <div className="flex justify-between border-b py-1">
-              <p className="text-gray-400">Number of seats</p>
-              <p>{selectedSeats}</p>
-            </div>
-            <div className="flex justify-between border-b py-1">
-              <p className="text-gray-400">Price</p>
-              <p>${totalPrice}</p>
+            <div className="p-2 ">
+              <div className="grid grid-cols-2 place-items-center gap-4 sm:grid-cols-2 md:grid-cols-3">
+                <div className="payment-method-container w-[200px] sm:w-full">
+                  <img src={CreditCard} alt="" />
+                  <p>Credit/Debit card payment</p>
+                </div>
+                <div className="my-3 payment-method-container w-[200px] sm:w-full">
+                  <img src={Banking} alt="" />
+                  <p>Mobile banking payment</p>
+                </div>
+                <div className="payment-method-container w-[200px] sm:w-full">
+                  <img src={TrueMoney} alt="" />
+                  <p>TrueMoney wallet payment</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        {/* Payment method */}
-        <div className="border border-gray-400 rounded-[5px] my-2">
-          <div className="p-2 rounded-t bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600">
-            <p className="text-white">Payment method</p>
-          </div>
-          <div className="p-2">
-            <div className="grid grid-cols-1 place-items-center sm:grid-cols-2 md:grid-cols-3">
-              <div className="payment-method-container">
-                <img src={CreditCard} alt="" />
-                <p>Credit/Debit card payment</p>
+
+        {/* Detail concert */}
+        <div className="w-full md:w-[450px]">
+          <div className=" border border-gray-400 rounded-[5px] m-2">
+            <div className="p-2 rounded-t bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600">
+              <p className="text-white">Payment method</p>
+            </div>
+            <div className="p-2 text-[14px]">
+              {/* Artist */}
+              <div className="flex justify-center ">
+                <p>{artist}</p>
+                <p className="px-1">{eventName}</p>
               </div>
-              <div className="my-3 payment-method-container">
-                <img src={Banking} alt="" />
-                <p>Mobile banking payment</p>
+              {/* Location */}
+              <div className="flex justify-center items-center text-[10px] text-gray-400">
+                <p>
+                  <FaLocationDot />
+                </p>
+                <p>{venueName}</p>
+                <p className="px-1">{venueCity}</p>
+                <p>{venueState}</p>
               </div>
-              <div className="payment-method-container">
-                <img src={TrueMoney} alt="" />
-                <p>TrueMoney wallet payment</p>
+              {/* Showtime */}
+              <div className="text-center my-2 p-1  border rounded-[5px]">
+                <p className="text-purple-800">{showTime}</p>
+              </div>
+              <div className="flex justify-between border-b py-1">
+                <p className="text-gray-400">Zone</p>
+                <p>{zone}</p>
+              </div>
+              <div className="flex justify-between border-b py-1">
+                <p className="text-gray-400">Seat number</p>
+                <p>{selectedSeats}</p>
+              </div>
+              <div className="flex justify-between border-b py-1">
+                <p className="text-gray-400">Price</p>
+                <p>${totalPrice}</p>
               </div>
             </div>
           </div>
