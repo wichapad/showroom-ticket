@@ -1,5 +1,4 @@
 import {
-  HiOutlineSearch,
   HiChartPie,
   HiInboxIn,
   HiShoppingBag,

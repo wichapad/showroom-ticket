@@ -62,9 +62,8 @@ exports.seatRow = (req, res) => {
   const query = `SELECT
   e.event_id,
   a.artist_name,
-  e.event_name,
-  e.event_date,
-  e.event_time,
+  e.event_name,e.event_date,e.event_time,
+  v.venue_name,v.venue_city,v.venue_state,
   ctgy.ticket_ctgy_id,
   e.slug_event,
   json_agg(json_build_object('ticket_id', t.ticket_id,'seat', t.seat,'price', ctgy.price)) AS seats
@@ -76,14 +75,14 @@ JOIN
   ticket_category ctgy ON ctgy.ticket_ctgy_id = t.ticket_ctgy_id
 JOIN 
   artist a ON a.artist_id = e.artist_id
+  JOIN 
+  venue v ON v.venue_id = e.venue_id
 WHERE 
   ctgy.ticket_ctgy_id = $1
 AND 
   e.slug_event = $2
 GROUP BY 
-  e.event_id,a.artist_name,e.event_date, e.event_time, ctgy.ticket_ctgy_id, ctgy.price;
-
-
+  e.event_id,a.artist_name,e.event_date, e.event_time,v.venue_name,v.venue_city,v.venue_state,ctgy.ticket_ctgy_id, ctgy.price;
   `;
 
   pool.query(query, [id, slug], (err, result) => {
