@@ -4,6 +4,7 @@ import CreditCard from "../../../images/PaymentsImg/Creditcard.png";
 import Banking from "../../../images/PaymentsImg/banking.png";
 import TrueMoney from "../../../images/PaymentsImg/truemoneywallet.png";
 import { FaLocationDot } from "react-icons/fa6";
+import FormCreditCard from "./FormPayment/FormCreditCard";
 
 const Purchase = () => {
   const location = useLocation();
@@ -18,29 +19,41 @@ const Purchase = () => {
   const selectedSeats = queryParams.get("seats");
   const totalPrice = queryParams.get("totalPrice");
   const showTime = queryParams.get("showTime");
+
   return (
-    <div className="pt-[4rem]">
-      <div className="p-4 md:flex">
+    <div className="pt-[4rem] ">
+      <div className="p-4 md:flex md:max-w-screen-2xl md:mx-auto">
         {/* Payment method */}
-        <div className="w-full ">
+        <div className=" sm:w-full">
           <div className="border border-gray-400 rounded-[5px] m-2">
             <div className="p-2 rounded-t bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600">
               <p className="text-white">Payment method</p>
             </div>
-            <div className="p-2 ">
-              <div className="grid grid-cols-2 place-items-center gap-4 sm:grid-cols-2 md:grid-cols-3">
-                <div className="payment-method-container w-[200px] sm:w-full">
-                  <img src={CreditCard} alt="" />
-                  <p>Credit/Debit card payment</p>
+            <div className="p-2">
+              <div className="grid grid-cols-3 place-items-center gap-2 lg:flex lg:justify-evenly">
+                <div className="payment-method-container w-full lg:w-[200px] text-[12px] sm:text-[14px]">
+                  <img
+                    className="w-[50px] sm:w-[70px]"
+                    src={CreditCard}
+                    alt=""
+                  />
+                  <p>Credit/Debit card </p>
                 </div>
-                <div className="my-3 payment-method-container w-[200px] sm:w-full">
-                  <img src={Banking} alt="" />
-                  <p>Mobile banking payment</p>
+                <div className="my-3 payment-method-container w-full lg:w-[200px] text-[12px] sm:text-[14px]">
+                  <img className="w-[50px] sm:w-[70px]" src={Banking} alt="" />
+                  <p>Mobile banking </p>
                 </div>
-                <div className="payment-method-container w-[200px] sm:w-full">
-                  <img src={TrueMoney} alt="" />
-                  <p>TrueMoney wallet payment</p>
+                <div className="payment-method-container w-full lg:w-[200px] text-[12px] sm:text-[14px]">
+                  <img
+                    className="w-[50px] sm:w-[70px]"
+                    src={TrueMoney}
+                    alt=""
+                  />
+                  <p>TrueMoney wallet </p>
                 </div>
+              </div>
+              <div>
+                <FormCreditCard />
               </div>
             </div>
           </div>
@@ -50,7 +63,7 @@ const Purchase = () => {
         <div className="w-full md:w-[450px]">
           <div className=" border border-gray-400 rounded-[5px] m-2">
             <div className="p-2 rounded-t bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600">
-              <p className="text-white">Payment method</p>
+              <p className="text-white">Booking details</p>
             </div>
             <div className="p-2 text-[14px]">
               {/* Artist */}

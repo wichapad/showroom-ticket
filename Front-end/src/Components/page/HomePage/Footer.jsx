@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className="slide-bg-image">
-      <div className="text-white grid grid-cols-2 gap-4 md:flex justify-around lg:flex lg:justify-between max-w-screen-lg mx-auto">
+      <div className="p-2 text-white grid grid-cols-2 gap-4 md:flex justify-around lg:flex lg:justify-between max-w-screen-lg mx-auto">
         <div className="md:w-48">
           <a href="/" className="flex items-center">
             <img src={logo} className="h-5" alt="Flowbite Logo" />
