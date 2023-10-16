@@ -10,7 +10,7 @@ import "./customSwiper.css";
 const ShopHome = () => {
   return (
     <div className="slide-bg-image ">
-      <div className="flex flex-col md:flex-col lg:flex-row max-w-screen-xl mx-auto">
+      <div className="flex flex-col md:flex-col lg:flex-row max-w-screen-xl mx-auto p-2">
         <Swiper
           effect={"cube"}
           grabCursor={true}
