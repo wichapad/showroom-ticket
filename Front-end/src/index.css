@@ -77,7 +77,6 @@
         width: 350px;
     }
 
-
     .swiper-slide {
         background-position: center;
         background-size: cover;
@@ -86,6 +85,21 @@
     .swiper-slide img {
         display: block;
         width: 100%;
+    }
+
+    .home-shop-container {
+        display: flex;
+        border: 1px solid rgb(100 116 139);
+        border-radius: 10px;
+    }
+
+    .home-shop-text-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1;
+        padding: 0 0.8rem;
+        
     }
 
     /* ------------ Shop Component in Shop folder ------------ */
@@ -104,7 +118,7 @@
     }
 
     .shop-text {
-        padding:1rem 0.8rem;
+        padding: 1rem 0.8rem;
         font-weight: 300;
         color: #FFF;
         cursor: pointer;
@@ -115,7 +129,7 @@
     }
 
     .shop-price {
-        padding:0 0.8rem 1rem;
+        padding: 0 0.8rem 1rem;
         color: #FFF;
         font-size: 18px;
         font-weight: 700;
