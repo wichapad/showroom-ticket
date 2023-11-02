@@ -70,7 +70,7 @@
         background-position: center center;
         background-size: cover;
         width: 100%;
-        
+
     }
 
     .swiper {
@@ -86,6 +86,39 @@
     .swiper-slide img {
         display: block;
         width: 100%;
+    }
+
+    /* ------------ Shop Component in Shop folder ------------ */
+    .shop-container {
+        border: 1px solid rgb(31 41 55);
+        border-radius: 10px;
+        background-color: rgb(31 41 55);
+    }
+
+    .shop-image {
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
+        object-fit: cover;
+        object-position: top;
+        cursor: pointer;
+    }
+
+    .shop-text {
+        padding:1rem 0.8rem;
+        font-weight: 300;
+        color: #FFF;
+        cursor: pointer;
+    }
+
+    .shop-text:hover {
+        color: rgb(251, 191, 36);
+    }
+
+    .shop-price {
+        padding:0 0.8rem 1rem;
+        color: #FFF;
+        font-size: 18px;
+        font-weight: 700;
     }
 
     /* ------------ LayoutProfile Component in ProfilePage folder ------------*/
@@ -112,17 +145,19 @@
         cursor: pointer;
     }
 
-        /* ------------ Form Credit Card component ------------ */
+    /* ------------ Form Credit Card component ------------ */
 
-    .title-credit-cards{
+    .title-credit-cards {
         font-size: 14px;
     }
-    .form-credit-cards{
+
+    .form-credit-cards {
         border: 1px solid rgb(156 163 175);
         border-radius: 5px;
         padding: 0.3rem 0.5rem;
     }
-    .form-credit-cards:focus{
+
+    .form-credit-cards:focus {
         border: 1px solid #000;
     }
 
