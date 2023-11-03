@@ -31,6 +31,7 @@ import Tickets from "./Components/page/Dashboard/Content/Tickets/Tickets";
 import ArtistsManage from "./Components/page/Dashboard/Content/Management/AristsManage/AristsMange";
 import EventsMange from "./Components/page/Dashboard/Content/Management/EventsMange/EventsManage";
 import VenuesManage from "./Components/page/Dashboard/Content/Management/VenuesMange/VenuesMange";
+import Contact from "./Components/page/ContactUsPage/Contact";
 
 const App = () => {
   return (
@@ -53,7 +54,6 @@ const App = () => {
           </Route>
           <Route path="notfound" element={<NoTicket />} />
         </Route>
-
         <Route path="purchase" element={<Purchase />} />
 
         {/* Route Shopping Components */}
@@ -65,7 +65,10 @@ const App = () => {
           <Route path="history" element={<History />} />
           <Route path="changepassword" element={<ChangePassword />} />
         </Route>
+
+        <Route path="contact" element={<Contact/>}/>
       </Route>
+
 
       {/* Route Login & Register */}
       <Route path="login" element={<Login />} />
