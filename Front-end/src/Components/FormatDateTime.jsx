@@ -5,24 +5,14 @@ export const FormatDateTime = () => {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const monthString = [
-      "JAN",
-      "FEB",
-      "MAR",
-      "APR",
-      "MAY",
-      "JUN",
-      "JUL",
-      "AUG",
-      "SEP",
-      "OCT",
-      "NOV",
-      "DEC",
+      "JAN","FEB","MAR","APR","MAY","JUN",
+      "JUL","AUG","SEP","OCT","NOV","DEC",
     ];
     const day = date.getDate();
     const monthIndex = date.getMonth();
     const month = monthString[monthIndex];
     const year = date.getFullYear();
-    return `${month}  ${day < 10 ? "0" + day : day}  ${year}`;
+    return `${day < 10 ? "0" + day : day} ${month}  ${year}`;
   };
 
   const formatTime = (time24Hour) => {
