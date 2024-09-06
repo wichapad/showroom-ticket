@@ -177,6 +177,20 @@
     }
 
     /* ------------ Dashboard Component ------------*/
+    /* ----- Dashboard Sidebars Component -----*/
+    .sidebar_container {
+        width: 45px;
+        height: 92vh;
+        overflow-y: auto;
+        background: linear-gradient(to right, #5B21B6, #4C1D95, #5B21B6);
+        transition: all 0.1s ease-out;
+    }
+    
+    .sidebar_container:hover {
+        width: 230px;
+       transition: all 0.2s ease-in;
+    }
+
     .menu-sidebar-container {
         display: flex;
         color: rgb(226 232 240);
@@ -197,13 +211,13 @@
     }
 
     .icons-sidebar {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         line-height: 2rem;
         margin-right: 0.75rem;
     }
 
     .text-sidebar {
-        font-size: 1.15rem;
+        font-size: 1rem;
         font-weight: 300;
         line-height: 1.75rem;
         color: #fff;

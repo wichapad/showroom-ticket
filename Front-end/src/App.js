@@ -5,33 +5,32 @@ import { getAdminId } from "./Components/Auth/services/autherize";
 import Login from "./Components/Auth/Login";
 import Register from "./Components/Auth/Register";
 
-import Home from "./Components/page/HomePage/Home";
-import Shop from "./Components/page/ShopPage/Shop";
+import Home from "./Components/HomePage/Home";
+import Shop from "./Components/ShopPage/Shop";
 
-import EventsLayout from "./Components/page/EventsPage/EventsLayout";
-import Events from "./Components/page/EventsPage/Events";
-import EventInfo from "./Components/page/EventsPage/EventInfo";
-import Notfound from "./Components/page/ErrorPage/Notfound";
-import TicketLayout from "./Components/page/EventsPage/Ticket/TicketLayout";
-import { SeatRow } from "./Components/page/EventsPage/Ticket/SeatRow";
-import Zone from "./Components/page/EventsPage/Ticket/Zone";
-import Purchase from "./Components/page/PurchasePage/Purchase";
-import NoTicket from "./Components/page/EventsPage/NoTicketPage/NoTicket";
+import EventsLayout from "./Components/EventsPage/EventsLayout";
+import Events from "./Components/EventsPage/Events";
+import EventInfo from "./Components/EventsPage/EventInfo";
+import Notfound from "./Components/ErrorPage/Notfound";
+import TicketLayout from "./Components/EventsPage/Ticket/TicketLayout";
+import { SeatRow } from "./Components/EventsPage/Ticket/SeatRow";
+import Zone from "./Components/EventsPage/Ticket/Zone";
+import Purchase from "./Components/PurchasePage/Purchase";
+import NoTicket from "./Components/EventsPage/NoTicketPage/NoTicket";
 
-import LayoutProfile from "./Components/page/ProfilePage/LayoutProfile";
-import Profile from "./Components/page/ProfilePage/Profile";
-import MyTicket from "./Components/page/ProfilePage/MyTicket";
-import History from "./Components/page/ProfilePage/History";
-import ChangePassword from "./Components/page/ProfilePage/ChangePassword";
+import LayoutProfile from "./Components/ProfilePage/LayoutProfile";
+import Profile from "./Components/ProfilePage/Profile";
+import MyTicket from "./Components/ProfilePage/MyTicket";
+import History from "./Components/ProfilePage/History";
+import ChangePassword from "./Components/ProfilePage/ChangePassword";
 
-import LayoutDashboard from "./Components/page/Dashboard/LayoutDashboard/LayoutDashboard";
-import Dashboard from "./Components/page/Dashboard/Content/Chart/ChartDashboard";
-import AllEvents from "./Components/page/Dashboard/Content/Events/AllEvents";
-import Tickets from "./Components/page/Dashboard/Content/Tickets/Tickets";
-import ArtistsManage from "./Components/page/Dashboard/Content/Management/AristsManage/AristsMange";
-import EventsMange from "./Components/page/Dashboard/Content/Management/EventsMange/EventsManage";
-import VenuesManage from "./Components/page/Dashboard/Content/Management/VenuesMange/VenuesMange";
-import Contact from "./Components/page/ContactUsPage/Contact";
+import LayoutDashboard from "./Components/Dashboard/LayoutDashboard/LayoutDashboard";
+import Dashboard from "./Components/Dashboard/Content/Chart/ChartDashboard";
+import AllEvents from "./Components/Dashboard/Content/Events/AllEvents";
+import Tickets from "./Components/Dashboard/Content/Tickets/Tickets";
+import ArtistsManage from "./Components/Dashboard/Content/Management/AristsManage/AristsMange";
+import EventsMange from "./Components/Dashboard/Content/Management/EventsMange/EventsManage";
+import VenuesManage from "./Components/Dashboard/Content/Management/VenuesMange/VenuesMange";
 
 const App = () => {
   return (
@@ -65,8 +64,6 @@ const App = () => {
           <Route path="history" element={<History />} />
           <Route path="changepassword" element={<ChangePassword />} />
         </Route>
-
-        <Route path="contact" element={<Contact/>}/>
       </Route>
 
 
