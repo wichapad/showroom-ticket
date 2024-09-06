@@ -24,13 +24,13 @@ import MyTicket from "./Components/ProfilePage/MyTicket";
 import History from "./Components/ProfilePage/History";
 import ChangePassword from "./Components/ProfilePage/ChangePassword";
 
-import LayoutDashboard from "./Components/Dashboard/LayoutDashboard/LayoutDashboard";
-import Dashboard from "./Components/Dashboard/Content/Chart/ChartDashboard";
-import AllEvents from "./Components/Dashboard/Content/Events/AllEvents";
-import Tickets from "./Components/Dashboard/Content/Tickets/Tickets";
-import ArtistsManage from "./Components/Dashboard/Content/Management/AristsManage/AristsMange";
-import EventsMange from "./Components/Dashboard/Content/Management/EventsMange/EventsManage";
-import VenuesManage from "./Components/Dashboard/Content/Management/VenuesMange/VenuesMange";
+import LayoutDashboard from "./Components/page/Dashboard/LayoutDashboard/LayoutDashboard";
+import Dashboard from "./Components/page/Dashboard/Content/Chart/ChartDashboard";
+import AllEvents from "./Components/page/Dashboard/Content/Events/AllEvents";
+import Tickets from "./Components/page/Dashboard/Content/Tickets/Tickets";
+import ArtistsManage from "./Components/page/Dashboard/Content/Management/AristsManage/AristsMange";
+import EventsMange from "./Components/page/Dashboard/Content/Management/EventsMange/EventsManage";
+import VenuesManage from "./Components/page/Dashboard/Content/Management/VenuesMange/VenuesMange";
 
 const App = () => {
   return (
@@ -53,7 +53,6 @@ const App = () => {
           </Route>
           <Route path="notfound" element={<NoTicket />} />
         </Route>
-
         <Route path="purchase" element={<Purchase />} />
 
         {/* Route Shopping Components */}
@@ -65,7 +64,10 @@ const App = () => {
           <Route path="history" element={<History />} />
           <Route path="changepassword" element={<ChangePassword />} />
         </Route>
+
+        <Route path="contact" element={<Contact/>}/>
       </Route>
+
 
       {/* Route Login & Register */}
       <Route path="login" element={<Login />} />

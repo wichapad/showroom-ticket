@@ -48,7 +48,9 @@ const EventInfo = () => {
                 />
                 <div className="pl-8 text-2xl text-white font-black md:text-3xl ">
                   <p className="text-lg ">{event.genre_name}</p>
-                  <p className="text-[1.2rem] md:text-[1.5rem]">{event.artist_name}</p>
+                  <p className="text-[1.2rem] md:text-[1.5rem]">
+                    {event.artist_name}
+                  </p>
                 </div>
               </div>
             </div>
@@ -58,56 +60,58 @@ const EventInfo = () => {
             <div className="m-2 w-36 border-b-2 border-black">
               <p className="text-2xl font-bold uppercase">list events</p>
             </div>
-            {event.events
-              .slice()
-              .sort((a, b) => a.event_id - b.event_id)
-              .map((item, index) => (
-                <div
-                  key={index}
-                  className="m-2 border border-violet-400 rounded shadow sm:max-w-screen-md"
-                >
-                  <div className="py-2 px-4 sm:flex justify-between items-center">
-                    <div>
-                      <div className="flex">
-                        <div className="flex  items-center mr-2">
-                          <BsFillCalendarEventFill className="mr-2 text-gray-400" />
-                          <p>{formatDate(item.date)}</p>
+            <div>
+              {event.events
+                .slice()
+                .sort((a, b) => a.event_id - b.event_id)
+                .map((item, index) => (
+                  <div
+                    key={index}
+                    className="m-2 border border-violet-400 rounded shadow sm:max-w-screen-md"
+                  >
+                    <div className="py-2 px-4 sm:flex justify-between items-center">
+                      <div>
+                        <div className="flex">
+                          <div className="flex  items-center mr-2">
+                            <BsFillCalendarEventFill className="mr-2 text-gray-400" />
+                            <p>{formatDate(item.date)}</p>
+                          </div>
+                          <div className="flex items-center">
+                            <BsFillClockFill className="mr-2 text-gray-400" />
+                            <p>{formatTime(item.time)}</p>
+                          </div>
                         </div>
-                        <div className="flex items-center">
-                          <BsFillClockFill className="mr-2 text-gray-400" />
-                          <p>{formatTime(item.time)}</p>
+                        <div className="my-2">
+                          <p className="text-[18px] font-[300]">
+                            {item.event_name}
+                          </p>
+                        </div>
+                        <div className="sm:flex">
+                          <div>
+                            <p>{item.venue_name},</p>
+                          </div>
+                          <div className="md:mx-2">
+                            <p>{item.city},</p>
+                          </div>
+                          <div>
+                            <p>{item.state}</p>
+                          </div>
                         </div>
                       </div>
                       <div className="my-2">
-                        <p className="text-[18px] font-[300]">
-                          {item.event_name}
-                        </p>
-                      </div>
-                      <div className="sm:flex">
                         <div>
-                          <p>{item.venue_name},</p>
+                          <NavLink
+                            to={`/booking/${item.slug_event}`}
+                            className="uppercase text-sm font-bold py-3 px-4 text-gray-200 rounded-md bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95"
+                          >
+                            Get Ticket
+                          </NavLink>
                         </div>
-                        <div className="mx-2">
-                          <p>{item.city},</p>
-                        </div>
-                        <div>
-                          <p>{item.state}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="my-2">
-                      <div>
-                        <NavLink
-                          to={`/booking/${item.slug_event}`}
-                          className="uppercase text-sm font-bold py-3 px-4 text-gray-200 rounded-md bg-gradient-to-r from-purple-600 via-violet-700 to-purple-600 active:scale-95"
-                        >
-                          Get Ticket
-                        </NavLink>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+            </div>
           </div>
         </div>
       ))}
