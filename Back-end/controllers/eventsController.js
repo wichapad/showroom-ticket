@@ -57,7 +57,7 @@ exports.updateEvent = async (req, res) => {
 };
 
 exports.allEvents = (req, res) => {
-  const query = `SELECT e.event_name,e.event_date,e.event_time,v.venue_name
+  const query = `SELECT e.event_id,e.event_name,e.event_date,e.event_time,e.artist_id,e.venue_id,v.venue_name
                   FROM event e
                   JOIN venue v ON e.venue_id = v.venue_id;`;
   pool.query(query, (err, result) => {
